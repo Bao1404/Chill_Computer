@@ -11,6 +11,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
 </head>
 <body>
     <div class="header">
@@ -61,7 +64,7 @@
 
         <div class="header-2 row" style="margin: 15px 0;">
             <div class="col-lg-2 logo-sanpham">
-                <img src="imgs/output-onlinepngtools.png" alt="" width="60px" height="60px">
+                <a asp-area="" asp-controller="Home" asp-action="Index"><img src="../imgs/output-onlinepngtools.png" alt="" width="60px" height="60px"></a>
 
                 <button id="productMenu" class="header-sanpham">
                     <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -101,11 +104,8 @@
             <div class="menu-dropdown" id="productDropdown">
                 <div class="product-menu">
                     <ul style="padding: 0;">
-                        <li class="category" data-category="laptop">Laptop</li>
-                        <li class="category" data-category="mainboard">
-                            Tai
-                            nghe
-                        </li>
+                        <li class="category"><a text-dark asp-area="" asp-controller="Product" asp-action="ProductListPage">Laptop</a></li>
+                        <li class="category">Tai nghe</li>
                         <li class="category">Chuột</li>
                         <li class="category">Bàn phím</li>
                         <li class="category">Màn hình</li>
@@ -256,14 +256,11 @@
         </div>
     </div>
 
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div class="">
             @RenderBody()
-        </main>
     </div>
 
-    <div class="footer">
-        <div class="row">
+    <div class="footer-style row">
             <div class="col-lg-4">
                 <img src="../imgs/output-onlinepngtools.png" alt width="100px"
                      height="100px">
@@ -291,19 +288,37 @@
                 </button>
             </div>
         </div>
-    </div>
 
     <script>
         $(document).ready(function() {
-            $('#productDropdown').hide();
-            $('#productMenu').click(function (){
-                $('#productDropdown').slideToggle();
+                var isBlur = false;
+                $('#productDropdown').hide();
+                $('#productMenu').click(function (){
+                    $('#productDropdown').slideToggle();
+                    $('#laptop-category').show();
+                    if(!isBlur){
+                        $('.main-content').css({'filter' : 'blur(2px)'})
+                    }
+                    else{
+                        $('.main-content').css({'filter' : 'none'})
+                    }
+                    isBlur = !isBlur;
+                });
+
+                const productId = document.getElementById('')
+
+                $('#laptop').hover(function() {
+                    $('#laptop-category').show();
+                }, function(){
+
+                });
+
+                $(".box").click(function(){
+                    $(".box").removeClass("box-active");
+                    $(this).addClass("box-active");
+                });
             });
-        });
     </script>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
