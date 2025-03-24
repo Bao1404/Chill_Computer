@@ -1,0 +1,755 @@
+﻿
+@{
+    ViewData["Title"] = "Product List Page";
+}
+
+<div class="main-content">
+
+    <div class="title">
+        <a href="HomePage.html">
+            <p class="box">Trang chủ</p>
+        </a>
+        <p> / </p>
+        <p class="box box-active">Laptop</p>
+        <p> / </p>
+        <p class="box">Laptop</p>
+    </div>
+
+    <h1>Laptop</h1>
+
+    <div class="list-box">
+
+        <button class="box">
+            <span>Lenovo</span>
+        </button>
+
+        <button class="box">
+            <span>Dell</span>
+        </button>
+
+        <button class="box">
+            <span>Asus</span>
+        </button>
+
+        <button class="box">
+            <span>Acer</span>
+        </button>
+
+        <button class="box">
+            <span>MSI</span>
+        </button>
+
+        <button class="box">
+            <span>HP</span>
+        </button>
+
+        <button class="box">
+            <span>LG</span>
+        </button>
+
+        <button class="box">
+            <span>Razer</span>
+        </button>
+    </div>
+
+    <div class="sl-sap-xep">
+        <span>100 Sản phẩm</span>
+        <select name="" id="select" class="select-filter">
+            <option value="0">Nổi bật nhất</option>
+            <option value="1">Giá tăng dần</option>
+            <option value="2">Giảm giảm dần</option>
+        </select>
+    </div>
+
+    <div class="product-list-content">
+        <div class="content-filter col-lg-3">
+            <div class="filter-type">
+                <div class="filter-title">
+                    <span>Thương hiệu</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0002 8.00025C21.0002 8.25625 20.9023 8.51225 20.7073 8.70725L12.7072 16.7072C12.3162 17.0982 11.6842 17.0982 11.2933 16.7072L3.29325 8.70725C2.90225 8.31625 2.90225 7.68425 3.29325 7.29325C3.68425 6.90225 4.31625 6.90225 4.70725 7.29325L12.0002 14.5862L19.2932 7.29325C19.6842 6.90225 20.3162 6.90225 20.7073 7.29325C20.9023 7.48825 21.0002 7.74425 21.0002 8.00025Z" fill="#06152B" />
+                    </svg>
+                </div>
+
+                <div class="filter-category row">
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>Lenovo</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>Dell</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>Asus</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>Acer</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>MSI</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>HP</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>LG</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>Razer</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-type">
+                <div class="filter-title">
+                    <span>Nhu cầu</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0002 8.00025C21.0002 8.25625 20.9023 8.51225 20.7073 8.70725L12.7072 16.7072C12.3162 17.0982 11.6842 17.0982 11.2933 16.7072L3.29325 8.70725C2.90225 8.31625 2.90225 7.68425 3.29325 7.29325C3.68425 6.90225 4.31625 6.90225 4.70725 7.29325L12.0002 14.5862L19.2932 7.29325C19.6842 6.90225 20.3162 6.90225 20.7073 7.29325C20.9023 7.48825 21.0002 7.74425 21.0002 8.00025Z" fill="#06152B" />
+                    </svg>
+                </div>
+
+                <div class="filter-category row">
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>Sinh viên</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>Lập trình</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>Gaming</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>Mỏng nhẹ</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>Đồ họa</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>Văn phòng</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-type">
+                <div class="filter-title">
+                    <span>Khoảng giá</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0002 8.00025C21.0002 8.25625 20.9023 8.51225 20.7073 8.70725L12.7072 16.7072C12.3162 17.0982 11.6842 17.0982 11.2933 16.7072L3.29325 8.70725C2.90225 8.31625 2.90225 7.68425 3.29325 7.29325C3.68425 6.90225 4.31625 6.90225 4.70725 7.29325L12.0002 14.5862L19.2932 7.29325C19.6842 6.90225 20.3162 6.90225 20.7073 7.29325C20.9023 7.48825 21.0002 7.74425 21.0002 8.00025Z" fill="#06152B" />
+                    </svg>
+                </div>
+
+                <div class="filter-category row">
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>Dưới 10 triệu</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>Từ 10 - 15 triệu</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>Từ 15 - 20 triệu</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>Từ 20 - 25 triệu</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>Từ 25 - 30  triệu</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>Từ 30 - 40 triệu</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>Trên 40 triệu</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-type">
+                <div class="filter-title">
+                    <span>CPU</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0002 8.00025C21.0002 8.25625 20.9023 8.51225 20.7073 8.70725L12.7072 16.7072C12.3162 17.0982 11.6842 17.0982 11.2933 16.7072L3.29325 8.70725C2.90225 8.31625 2.90225 7.68425 3.29325 7.29325C3.68425 6.90225 4.31625 6.90225 4.70725 7.29325L12.0002 14.5862L19.2932 7.29325C19.6842 6.90225 20.3162 6.90225 20.7073 7.29325C20.9023 7.48825 21.0002 7.74425 21.0002 8.00025Z" fill="#06152B" />
+                    </svg>
+                </div>
+
+                <div class="cpu-brand">
+                    <span>Intel</span>
+                </div>
+
+                <div class="filter-category row">
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>Core i5</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>Core i7</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>Core i9</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>Core Ultra 5</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>Core Ultra 7</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>Core Ultra 9</span>
+                    </div>
+                </div>
+
+                <div class="cpu-brand">
+                    <span>AMD</span>
+                </div>
+
+                <div class="filter-category row">
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>Ryzen 5</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>Ryzen 7</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>Ryzen 9</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-type">
+                <div class="filter-title">
+                    <span>Card đồ họa</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0002 8.00025C21.0002 8.25625 20.9023 8.51225 20.7073 8.70725L12.7072 16.7072C12.3162 17.0982 11.6842 17.0982 11.2933 16.7072L3.29325 8.70725C2.90225 8.31625 2.90225 7.68425 3.29325 7.29325C3.68425 6.90225 4.31625 6.90225 4.70725 7.29325L12.0002 14.5862L19.2932 7.29325C19.6842 6.90225 20.3162 6.90225 20.7073 7.29325C20.9023 7.48825 21.0002 7.74425 21.0002 8.00025Z" fill="#06152B" />
+                    </svg>
+                </div>
+
+                <div class="filter-category row">
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>AMD Radeon Series</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>NVIDIA GeFore Series</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>Card Onboard</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-type">
+                <div class="filter-title">
+                    <span>Dung lượng RAM</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0002 8.00025C21.0002 8.25625 20.9023 8.51225 20.7073 8.70725L12.7072 16.7072C12.3162 17.0982 11.6842 17.0982 11.2933 16.7072L3.29325 8.70725C2.90225 8.31625 2.90225 7.68425 3.29325 7.29325C3.68425 6.90225 4.31625 6.90225 4.70725 7.29325L12.0002 14.5862L19.2932 7.29325C19.6842 6.90225 20.3162 6.90225 20.7073 7.29325C20.9023 7.48825 21.0002 7.74425 21.0002 8.00025Z" fill="#06152B" />
+                    </svg>
+                </div>
+
+                <div class="filter-category row">
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>8 GB</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>12 GB</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>16 GB</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>24 GB</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>32 GB</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-type">
+                <div class="filter-title">
+                    <span>Dung lượng SSD</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0002 8.00025C21.0002 8.25625 20.9023 8.51225 20.7073 8.70725L12.7072 16.7072C12.3162 17.0982 11.6842 17.0982 11.2933 16.7072L3.29325 8.70725C2.90225 8.31625 2.90225 7.68425 3.29325 7.29325C3.68425 6.90225 4.31625 6.90225 4.70725 7.29325L12.0002 14.5862L19.2932 7.29325C19.6842 6.90225 20.3162 6.90225 20.7073 7.29325C20.9023 7.48825 21.0002 7.74425 21.0002 8.00025Z" fill="#06152B" />
+                    </svg>
+                </div>
+
+                <div class="filter-category row">
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>256 GB</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>512 GB</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>1 TB</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-type">
+                <div class="filter-title">
+                    <span>Kích thước màn hình</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0002 8.00025C21.0002 8.25625 20.9023 8.51225 20.7073 8.70725L12.7072 16.7072C12.3162 17.0982 11.6842 17.0982 11.2933 16.7072L3.29325 8.70725C2.90225 8.31625 2.90225 7.68425 3.29325 7.29325C3.68425 6.90225 4.31625 6.90225 4.70725 7.29325L12.0002 14.5862L19.2932 7.29325C19.6842 6.90225 20.3162 6.90225 20.7073 7.29325C20.9023 7.48825 21.0002 7.74425 21.0002 8.00025Z" fill="#06152B" />
+                    </svg>
+                </div>
+
+                <div class="filter-category row">
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>13 Inch</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>14 Inch</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>15 Inch</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>Trên 16 Inch</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-type">
+                <div class="filter-title">
+                    <span>Tần số quét</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0002 8.00025C21.0002 8.25625 20.9023 8.51225 20.7073 8.70725L12.7072 16.7072C12.3162 17.0982 11.6842 17.0982 11.2933 16.7072L3.29325 8.70725C2.90225 8.31625 2.90225 7.68425 3.29325 7.29325C3.68425 6.90225 4.31625 6.90225 4.70725 7.29325L12.0002 14.5862L19.2932 7.29325C19.6842 6.90225 20.3162 6.90225 20.7073 7.29325C20.9023 7.48825 21.0002 7.74425 21.0002 8.00025Z" fill="#06152B" />
+                    </svg>
+                </div>
+
+                <div class="filter-category row">
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>60 Hz</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>120 Hz</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>144 Hz</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>165 Hz</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>240 Hz</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-type">
+                <div class="filter-title">
+                    <span>Độ phân giải</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0002 8.00025C21.0002 8.25625 20.9023 8.51225 20.7073 8.70725L12.7072 16.7072C12.3162 17.0982 11.6842 17.0982 11.2933 16.7072L3.29325 8.70725C2.90225 8.31625 2.90225 7.68425 3.29325 7.29325C3.68425 6.90225 4.31625 6.90225 4.70725 7.29325L12.0002 14.5862L19.2932 7.29325C19.6842 6.90225 20.3162 6.90225 20.7073 7.29325C20.9023 7.48825 21.0002 7.74425 21.0002 8.00025Z" fill="#06152B" />
+                    </svg>
+                </div>
+
+                <div class="filter-category row">
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>FHD</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>2K</span>
+                    </div>
+
+                    <div class="filter-category-name col-lg-6">
+                        <input type="checkbox" name="Lenovo" id="">
+                        <span>4K</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-list-content col-lg-9" style="display: flex; flex-direction: column;">
+            <div class="product-list">
+                <a asp-area="" asp-controller="Product" asp-action="ProductDetailPage">
+                    <div class="product-box">
+                        <img src="../imgs/lenovo-thinkpad-x1-carbon-gen-10-thinkpro.webp" height="200px" width="200px" alt="">
+                        <div class="product-info">
+                            <span>Lenovo ThinkPad X1 Carbon Gen10</span>
+                            <h6>25.990.000 đ</h6>
+                            <div class="color-list">
+                                <span>Màu</span>
+                                <svg width="14" height="14">
+                                    <circle cx="7" cy="7" r="7" fill="black" />
+                                </svg>
+                                <svg width="14" height="14">
+                                    <circle cx="7" cy="7" r="7" fill="lightgray" />
+                                </svg>
+                            </div>
+                            <span>i7 1365U, 16GB, 256GB, FHD + Touch</span>
+                        </div>
+                    </div>
+                </a>
+
+                <div class="product-box">
+                    <img src="../imgs/lenovo-thinkpad-x1-carbon-gen-10-thinkpro.webp" height="200px" width="200px" alt="">
+                    <div class="product-info">
+                        <span>Lenovo ThinkPad X1 Carbon Gen10</span>
+                        <h6>25.990.000 đ</h6>
+                        <div class="color-list">
+                            <span>Màu</span>
+                            <svg width="14" height="14">
+                                <circle cx="7" cy="7" r="7" fill="black" />
+                            </svg>
+                            <svg width="14" height="14">
+                                <circle cx="7" cy="7" r="7" fill="lightgray" />
+                            </svg>
+                        </div>
+                        <span>i7 1365U, 16GB, 256GB, FHD + Touch</span>
+                    </div>
+                </div>
+
+                <div class="product-box">
+                    <img src="../imgs/lenovo-thinkpad-x1-carbon-gen-10-thinkpro.webp" height="200px" width="200px" alt="">
+                    <div class="product-info">
+                        <span>Lenovo ThinkPad X1 Carbon Gen10</span>
+                        <h6>25.990.000 đ</h6>
+                        <div class="color-list">
+                            <span>Màu</span>
+                            <svg width="14" height="14">
+                                <circle cx="7" cy="7" r="7" fill="black" />
+                            </svg>
+                            <svg width="14" height="14">
+                                <circle cx="7" cy="7" r="7" fill="lightgray" />
+                            </svg>
+                        </div>
+                        <span>i7 1365U, 16GB, 256GB, FHD + Touch</span>
+                    </div>
+                </div>
+
+                <div class="product-box">
+                    <img src="../imgs/lenovo-thinkpad-x1-carbon-gen-10-thinkpro.webp" height="200px" width="200px" alt="">
+                    <div class="product-info">
+                        <span>Lenovo ThinkPad X1 Carbon Gen10</span>
+                        <h6>25.990.000 đ</h6>
+                        <div class="color-list">
+                            <span>Màu</span>
+                            <svg width="14" height="14">
+                                <circle cx="7" cy="7" r="7" fill="black" />
+                            </svg>
+                            <svg width="14" height="14">
+                                <circle cx="7" cy="7" r="7" fill="lightgray" />
+                            </svg>
+                        </div>
+                        <span>i7 1365U, 16GB, 256GB, FHD + Touch</span>
+                    </div>
+                </div>
+
+                <div class="product-box">
+                    <img src="../imgs/lenovo-thinkpad-x1-carbon-gen-10-thinkpro.webp" height="200px" width="200px" alt="">
+                    <div class="product-info">
+                        <span>Lenovo ThinkPad X1 Carbon Gen10</span>
+                        <h6>25.990.000 đ</h6>
+                        <div class="color-list">
+                            <span>Màu</span>
+                            <svg width="14" height="14">
+                                <circle cx="7" cy="7" r="7" fill="black" />
+                            </svg>
+                            <svg width="14" height="14">
+                                <circle cx="7" cy="7" r="7" fill="lightgray" />
+                            </svg>
+                        </div>
+                        <span>i7 1365U, 16GB, 256GB, FHD + Touch</span>
+                    </div>
+                </div>
+
+                <div class="product-box">
+                    <img src="../imgs/lenovo-thinkpad-x1-carbon-gen-10-thinkpro.webp" height="200px" width="200px" alt="">
+                    <div class="product-info">
+                        <span>Lenovo ThinkPad X1 Carbon Gen10</span>
+                        <h6>25.990.000 đ</h6>
+                        <div class="color-list">
+                            <span>Màu</span>
+                            <svg width="14" height="14">
+                                <circle cx="7" cy="7" r="7" fill="black" />
+                            </svg>
+                            <svg width="14" height="14">
+                                <circle cx="7" cy="7" r="7" fill="lightgray" />
+                            </svg>
+                        </div>
+                        <span>i7 1365U, 16GB, 256GB, FHD + Touch</span>
+                    </div>
+                </div>
+
+                <div class="product-box">
+                    <img src="../imgs/lenovo-thinkpad-x1-carbon-gen-10-thinkpro.webp" height="200px" width="200px" alt="">
+                    <div class="product-info">
+                        <span>Lenovo ThinkPad X1 Carbon Gen10</span>
+                        <h6>25.990.000 đ</h6>
+                        <div class="color-list">
+                            <span>Màu</span>
+                            <svg width="14" height="14">
+                                <circle cx="7" cy="7" r="7" fill="black" />
+                            </svg>
+                            <svg width="14" height="14">
+                                <circle cx="7" cy="7" r="7" fill="lightgray" />
+                            </svg>
+                        </div>
+                        <span>i7 1365U, 16GB, 256GB, FHD + Touch</span>
+                    </div>
+                </div>
+
+                <div class="product-box">
+                    <img src="../imgs/lenovo-thinkpad-x1-carbon-gen-10-thinkpro.webp" height="200px" width="200px" alt="">
+                    <div class="product-info">
+                        <span>Lenovo ThinkPad X1 Carbon Gen10</span>
+                        <h6>25.990.000 đ</h6>
+                        <div class="color-list">
+                            <span>Màu</span>
+                            <svg width="14" height="14">
+                                <circle cx="7" cy="7" r="7" fill="black" />
+                            </svg>
+                            <svg width="14" height="14">
+                                <circle cx="7" cy="7" r="7" fill="lightgray" />
+                            </svg>
+                        </div>
+                        <span>i7 1365U, 16GB, 256GB, FHD + Touch</span>
+                    </div>
+                </div>
+
+                <div class="product-box">
+                    <img src="../imgs/lenovo-thinkpad-x1-carbon-gen-10-thinkpro.webp" height="200px" width="200px" alt="">
+                    <div class="product-info">
+                        <span>Lenovo ThinkPad X1 Carbon Gen10</span>
+                        <h6>25.990.000 đ</h6>
+                        <div class="color-list">
+                            <span>Màu</span>
+                            <svg width="14" height="14">
+                                <circle cx="7" cy="7" r="7" fill="black" />
+                            </svg>
+                            <svg width="14" height="14">
+                                <circle cx="7" cy="7" r="7" fill="lightgray" />
+                            </svg>
+                        </div>
+                        <span>i7 1365U, 16GB, 256GB, FHD + Touch</span>
+                    </div>
+                </div>
+
+                <div class="product-box">
+                    <img src="../imgs/lenovo-thinkpad-x1-carbon-gen-10-thinkpro.webp" height="200px" width="200px" alt="">
+                    <div class="product-info">
+                        <span>Lenovo ThinkPad X1 Carbon Gen10</span>
+                        <h6>25.990.000 đ</h6>
+                        <div class="color-list">
+                            <span>Màu</span>
+                            <svg width="14" height="14">
+                                <circle cx="7" cy="7" r="7" fill="black" />
+                            </svg>
+                            <svg width="14" height="14">
+                                <circle cx="7" cy="7" r="7" fill="lightgray" />
+                            </svg>
+                        </div>
+                        <span>i7 1365U, 16GB, 256GB, FHD + Touch</span>
+                    </div>
+                </div>
+
+                <div class="product-box">
+                    <img src="../imgs/lenovo-thinkpad-x1-carbon-gen-10-thinkpro.webp" height="200px" width="200px" alt="">
+                    <div class="product-info">
+                        <span>Lenovo ThinkPad X1 Carbon Gen10</span>
+                        <h6>25.990.000 đ</h6>
+                        <div class="color-list">
+                            <span>Màu</span>
+                            <svg width="14" height="14">
+                                <circle cx="7" cy="7" r="7" fill="black" />
+                            </svg>
+                            <svg width="14" height="14">
+                                <circle cx="7" cy="7" r="7" fill="lightgray" />
+                            </svg>
+                        </div>
+                        <span>i7 1365U, 16GB, 256GB, FHD + Touch</span>
+                    </div>
+                </div>
+
+                <div class="product-box">
+                    <img src="../imgs/lenovo-thinkpad-x1-carbon-gen-10-thinkpro.webp" height="200px" width="200px" alt="">
+                    <div class="product-info">
+                        <span>Lenovo ThinkPad X1 Carbon Gen10</span>
+                        <h6>25.990.000 đ</h6>
+                        <div class="color-list">
+                            <span>Màu</span>
+                            <svg width="14" height="14">
+                                <circle cx="7" cy="7" r="7" fill="black" />
+                            </svg>
+                            <svg width="14" height="14">
+                                <circle cx="7" cy="7" r="7" fill="lightgray" />
+                            </svg>
+                        </div>
+                        <span>i7 1365U, 16GB, 256GB, FHD + Touch</span>
+                    </div>
+                </div>
+
+                <div class="product-box">
+                    <img src="../imgs/lenovo-thinkpad-x1-carbon-gen-10-thinkpro.webp" height="200px" width="200px" alt="">
+                    <div class="product-info">
+                        <span>Lenovo ThinkPad X1 Carbon Gen10</span>
+                        <h6>25.990.000 đ</h6>
+                        <div class="color-list">
+                            <span>Màu</span>
+                            <svg width="14" height="14">
+                                <circle cx="7" cy="7" r="7" fill="black" />
+                            </svg>
+                            <svg width="14" height="14">
+                                <circle cx="7" cy="7" r="7" fill="lightgray" />
+                            </svg>
+                        </div>
+                        <span>i7 1365U, 16GB, 256GB, FHD + Touch</span>
+                    </div>
+                </div>
+
+                <div class="product-box">
+                    <img src="../imgs/lenovo-thinkpad-x1-carbon-gen-10-thinkpro.webp" height="200px" width="200px" alt="">
+                    <div class="product-info">
+                        <span>Lenovo ThinkPad X1 Carbon Gen10</span>
+                        <h6>25.990.000 đ</h6>
+                        <div class="color-list">
+                            <span>Màu</span>
+                            <svg width="14" height="14">
+                                <circle cx="7" cy="7" r="7" fill="black" />
+                            </svg>
+                            <svg width="14" height="14">
+                                <circle cx="7" cy="7" r="7" fill="lightgray" />
+                            </svg>
+                        </div>
+                        <span>i7 1365U, 16GB, 256GB, FHD + Touch</span>
+                    </div>
+                </div>
+
+                <div class="product-box">
+                    <img src="../imgs/lenovo-thinkpad-x1-carbon-gen-10-thinkpro.webp" height="200px" width="200px" alt="">
+                    <div class="product-info">
+                        <span>Lenovo ThinkPad X1 Carbon Gen10</span>
+                        <h6>25.990.000 đ</h6>
+                        <div class="color-list">
+                            <span>Màu</span>
+                            <svg width="14" height="14">
+                                <circle cx="7" cy="7" r="7" fill="black" />
+                            </svg>
+                            <svg width="14" height="14">
+                                <circle cx="7" cy="7" r="7" fill="lightgray" />
+                            </svg>
+                        </div>
+                        <span>i7 1365U, 16GB, 256GB, FHD + Touch</span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-load-more">
+                <span>Xem thêm</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 22C9.34784 22 6.8043 20.9464 4.92893 19.0711C3.05357 17.1957 2 14.6522 2 12C2 10.6868 2.25866 9.38642 2.7612 8.17317C3.26375 6.95991 4.00035 5.85752 4.92893 4.92893C6.8043 3.05357 9.34784 2 12 2C14.6522 2 17.1957 3.05357 19.0711 4.92893C20.9464 6.8043 22 9.34784 22 12C22 13.3132 21.7413 14.6136 21.2388 15.8268C20.7362 17.0401 19.9997 18.1425 19.0711 19.0711C18.1425 19.9997 17.0401 20.7362 15.8268 21.2388C14.6136 21.7413 13.3132 22 12 22ZM11 6V14L7.5 10.5L6.08 11.92L12 17.84L17.92 11.92L16.5 10.5L13 14V6H11Z" fill="black" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+        $(document).ready(function(){
+            $('#select').change(function(){
+                if($(this).val() == 2){
+                    $(this).css('background-image', 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'20\' height=\'20\' viewBox=\'0 0 20 20\'%3E%3Cpath fill-rule=\'evenodd\' clip-rule=\'evenodd\' d=\'M15.7097 10.9678L15.7803 11.0343C16.0507 11.3227 16.0715 11.7765 15.8427 12.0903L15.7803 12.1657L10.5303 17.7657L10.4974 17.7988L10.4465 17.8429L10.363 17.9003L10.2785 17.943L10.1995 17.9713L10.0886 17.9945L10 18L9.94357 17.9978L9.84946 17.9838L9.76589 17.9602L9.68258 17.9251L9.60947 17.8832L9.53091 17.8242L9.46967 17.7657L4.21967 12.1657C3.92678 11.8533 3.92678 11.3467 4.21967 11.0343C4.49003 10.7459 4.91546 10.7237 5.20967 10.9678L5.28033 11.0343L9.25 15.2672V2.8C9.25 2.35817 9.58579 2 10 2C10.4142 2 10.75 2.35817 10.75 2.8V15.2688L14.7197 11.0343C14.99 10.7459 15.4155 10.7237 15.7097 10.9678L15.7803 11.0343L15.7097 10.9678Z\' fill=\'%2306152B\'/%3E%3C/svg%3E")');
+                }
+                if($(this).val() == 1){
+                    $(this).css('background-image', 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'20\' height=\'20\' viewBox=\'0 0 24 24\'%3E%3Cpath fill-rule=\'evenodd\' clip-rule=\'evenodd\' d=\'M4.3871 10.7903L4.29289 10.7071C3.93241 10.3466 3.90468 9.77939 4.2097 9.3871L4.29289 9.29289L11.2929 2.29289L11.3369 2.2515L11.4047 2.19633L11.5159 2.12467L11.6287 2.07123L11.734 2.03585L11.8819 2.00691L12 2L12.0752 2.00279L12.2007 2.02024L12.3121 2.04974L12.4232 2.09367L12.5207 2.146L12.6254 2.21969L12.7071 2.29289L19.7071 9.29289C20.0976 9.68342 20.0976 10.3166 19.7071 10.7071C19.3466 11.0676 18.7794 11.0953 18.3871 10.7903L18.2929 10.7071L13 5.416V21C13 21.5523 12.5523 22 12 22C11.4477 22 11 21.5523 11 21V5.414L5.70711 10.7071C5.34662 11.0676 4.77939 11.0953 4.3871 10.7903L4.29289 10.7071L4.3871 10.7903Z\' fill=\'%2306152B\'/%3E%3C/svg%3E")');
+                }
+                if($(this).val() == 0){
+                    $(this).css('background-image', 'url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'24\' height=\'24\' viewBox=\'0 0 24 24\'><path fill-rule=\'evenodd\' clip-rule=\'evenodd\' d=\'M19.7905 18.6133L19.7073 18.7075L16.7072 21.7075C16.6802 21.7345 16.6517 21.76 16.6217 21.7838L16.5005 21.8665L16.4272 21.9049L16.3401 21.9411L16.2337 21.9729L16.1167 21.9936L16.0331 21.9998L15.9411 21.9986L15.8253 21.9851L15.688 21.9506L15.5769 21.9067L15.4794 21.8544L15.3833 21.7876L15.293 21.7075L12.2929 18.7075C11.9024 18.317 11.9024 17.6838 12.2929 17.2933C12.6534 16.9328 13.2206 16.9051 13.6129 17.2101L13.7072 17.2933L15 18.5854L15.0001 9.00038C15.0001 8.48754 15.3861 8.06487 15.8835 8.0071L16.0001 8.00038C16.5524 8.00038 17.0001 8.44809 17.0001 9.00038L17 18.5854L18.2931 17.2933C18.6535 16.9328 19.2208 16.9051 19.6131 17.2101L19.7073 17.2933C20.0378 17.6237 20.0886 18.1279 19.8598 18.5118L19.7905 18.6133ZM4.2929 5.29311L7.29297 2.29311L7.40492 2.19653L7.5158 2.1251L7.62902 2.07132L7.73424 2.03594L7.8253 2.01552L7.94107 2.00195L8.05925 2.00196L8.17476 2.01549L8.31285 2.05009L8.36681 2.06961L8.45396 2.10888L8.52079 2.14629L8.60181 2.20134L8.66558 2.25376L8.70724 2.29311L11.7073 5.29311L11.7905 5.38732C12.0701 5.74692 12.0701 6.25352 11.7905 6.61312L11.7073 6.70733L11.6131 6.79052C11.2535 7.07012 10.7469 7.07012 10.3873 6.79052L10.2931 6.70733L9 5.41522L9.00013 15.0002C9.00013 15.5131 8.61409 15.9357 8.11675 15.9935L8.00013 16.0002L7.88346 15.9935C7.42437 15.9402 7.06013 15.5759 7.00681 15.1168L7.00008 15.0002L7 5.41522L5.70715 6.70733L5.61294 6.79052C5.22064 7.09554 4.65339 7.06781 4.2929 6.70733C3.93241 6.34684 3.90468 5.77961 4.20971 5.38732L4.2929 5.29311Z\' fill=\'%2306152B\'/></svg>")');
+                }
+            })
+        }
+    )
+
+
+</script>
+

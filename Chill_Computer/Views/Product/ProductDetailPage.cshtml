@@ -1,0 +1,174 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Product Detail Page";
+}
+
+
+<div class="main-content">
+    <div class="title">
+        <a href="HomePage.html">
+            <p class="box">Trang chủ</p>
+        </a>
+        <p> / </p>
+        <p class="box">Laptop</p>
+        <p> / </p>
+        <p class="box box-active">Lenovo</p>
+    </div>
+
+    <div class="slide-box" id="active-slide">
+        <div class="active-slide"></div>
+        <button class="btn-slide">Thông tin</button>
+        <button class="btn-slide">Cấu hình</button>
+        <button class="btn-slide">Bài viết</button>
+    </div>
+
+    <div class="product-basic-info row">
+        <div class="basic-info-left col-lg-7">
+            <div class="product-img-container">
+                <img src="../imgs/lenovo-thinkpad-x1-carbon-gen-10-thinkpro.webp"
+                     alt width="486px" height="486px">
+            </div>
+
+            <div class="img-selection">
+                <button class="selected-img">
+                    <img src="../imgs/lenovo-thinkpad-x1-carbon-gen-10-thinkpro.webp" alt="">
+                </button>
+                <button>
+                    <img src="../imgs/lenovo-thinkpad-x1-carbon-gen-11-thinkpro-05.webp" alt="">
+                </button>
+                <button>
+                    <img src="../imgs/lenovo-thinkpad-x1-carbon-gen-11-thinkpro-02.webp" alt="">
+                </button>
+            </div>
+
+            <div class="product-detail-info">
+                <h3>Cấu hình & đặc điểm</h3>
+                <div class="rounded-table" style="overflow: hidden;">
+                    <table>
+                        <tr>
+                            <td>Loại CPU</td>
+                            <td>Intel - Core i7 1365U</td>
+                        </tr>
+                        <tr>
+                            <td>Tốc đọ</td>
+                            <td>1.0 GHz, Lên tới 5.2 GHz </td>
+                        </tr>
+                        <tr>
+                            <td>Bộ nhớ đệm</td>
+                            <td>12MB</td>
+                        </tr>
+                        <tr>
+                            <td>Card onboard</td>
+                            <td>Intel Iris Xe Graphics</td>
+                        </tr>
+                        <tr>
+                            <td>Card rời</td>
+                            <td>Không</td>
+                        </tr>
+                        <tr>
+                            <td>Dung lượng RAM</td>
+                            <td>32GB LPDDR5 6400MHz</td>
+                        </tr>
+                        <tr>
+                            <td>Hỗ trợ tối đa</td>
+                            <td>32GB (Không thể nâng cấp)</td>
+                        </tr>
+                        <tr>
+                            <td>Dung lượng SSD</td>
+                            <td>512 GB (M.2 NVMe)</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="basic-info-right col-lg-5">
+            <h3>
+                Lenovo ThinkPad X1 Carbon Gen 11 - i7 1365U, 32GB,
+                512GB, FHD+
+            </h3>
+
+            <span>Phiên bản</span>
+
+            <div class="type-div">
+                <button class="type-box">
+                    i7 1365U, 32GB, 512GB,
+                    FHD+
+                </button>
+                <button class="type-box">
+                    i7 1365U, 16GB, 512GB,
+                    FHD+
+                </button>
+                <button class="type-box">
+                    i7 1370P, 32GB, 512GB,
+                    FHD+
+                </button>
+                <button class="type-box">
+                    i7 1370P, 64GB, 512GB, 2.8K
+                    OLED
+                </button>
+            </div>
+
+            <span>Màu</span>
+
+            <div class="color-div">
+                <button class="type-box">Đen</button>
+                <button class="type-box">Trắng</button>
+            </div>
+
+            <h4 class>25.990.000</h4>
+
+            <div class="btn-div">
+                <button class="btn1 col-lg-6">
+                    <svg width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M16.9303 7C16.9621 6.92913 16.977 6.85189 16.9739 6.77432H17C16.8882 4.10591 14.6849 2 12.0049 2C9.325 2 7.12172 4.10591 7.00989 6.77432C6.9967 6.84898 6.9967 6.92535 7.00989 7H6.93171C5.65022 7 4.28034 7.84597 3.88264 10.1201L3.1049 16.3147C2.46858 20.8629 4.81062 22 7.86853 22H16.1585C19.2075 22 21.4789 20.3535 20.9133 16.3147L20.1444 10.1201C19.676 7.90964 18.3503 7 17.0865 7H16.9303ZM15.4932 7C15.4654 6.92794 15.4506 6.85153 15.4497 6.77432C15.4497 4.85682 13.8899 3.30238 11.9657 3.30238C10.0416 3.30238 8.48184 4.85682 8.48184 6.77432C8.49502 6.84898 8.49502 6.92535 8.48184 7H15.4932ZM9.097 12.1486C8.60889 12.1486 8.21321 11.7413 8.21321 11.2389C8.21321 10.7366 8.60889 10.3293 9.097 10.3293C9.5851 10.3293 9.98079 10.7366 9.98079 11.2389C9.98079 11.7413 9.5851 12.1486 9.097 12.1486ZM14.002 11.2389C14.002 11.7413 14.3977 12.1486 14.8858 12.1486C15.3739 12.1486 15.7696 11.7413 15.7696 11.2389C15.7696 10.7366 15.3739 10.3293 14.8858 10.3293C14.3977 10.3293 14.002 10.7366 14.002 11.2389Z"
+                              fill="white" />
+                    </svg>
+                    Thêm vào giỏ
+                </button>
+                <button class="btn2 col-lg-6">Mua ngay</button>
+            </div>
+        </div>
+    </div>
+
+    <div>
+    </div>
+</div>
+
+<script>
+            $(document).ready(function(){
+        $(".box").click(function(){
+            $(".box").removeClass("box-active");
+            $(this).addClass("box-active");
+        });
+
+        var initialPosition = $(".btn-slide").first().position().left;
+        $(".active-slide").css({
+            left: initialPosition,
+            transition: "left 0.5s"
+        });
+
+        $(".btn-slide").click(function(){
+            var activePosition = $(this).position().left;
+            var activeSlide = $(".active-slide");
+            activeSlide.css({
+                left: activePosition
+            })
+        });
+
+        $('.img-selection button').first().addClass('selected-img').css('border', '2px solid black');
+
+        $('.img-selection button').on('click', function(){
+            var newImgSrc = $(this).find('img').attr('src');
+            $('.product-img-container img').attr('src', newImgSrc);
+
+            $('.img-selection button').removeClass('selected-img').css('border', 'none');
+            $(this).addClass('selected-img').css('border', '2px solid black');
+        });
+    });
+</script>
