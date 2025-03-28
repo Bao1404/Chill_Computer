@@ -93,7 +93,7 @@
                             </a>
                         </li>
                         <li class="nav-item @ViewData["ChooseManageOrder"]">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="ManageOrder">
                                 Quản lý
                                 đơn hàng
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" fill="currentColor"
@@ -103,10 +103,10 @@
                                 </svg>
                             </a>
                         </li>
-                        <li class="nav-item @ViewData["ChooseManageCustomer"]">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="UserInformation"
-                               asp-action="Index">
-                                Quản lý khách hàng
+                        <li class="nav-item @ViewData["ChooseManageAccount"]">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin"
+                               asp-action="ManageAccount">
+                                Quản lý tài khoản
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" fill="currentColor"
                                      class="bi bi-chevron-right" viewBox="0 0 10 16">
                                     <path fill-rule="evenodd"
@@ -115,7 +115,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="UserInformation"
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home"
                                asp-action="Index">
                                 Trang chủ
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
