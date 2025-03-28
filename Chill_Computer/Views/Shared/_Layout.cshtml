@@ -104,8 +104,8 @@
             <div class="menu-dropdown" id="productDropdown">
                 <div class="product-menu">
                     <ul style="padding: 0;">
-                        <li class="category"><a text-dark asp-area="" asp-controller="Product" asp-action="ProductListPage">Laptop</a></li>
-                        <li class="category">Tai nghe</li>
+                        <li class="category" id="laptop" data-category="laptop"><a asp-controller="Product" asp-action="ProductListPage">Laptop</a></li>
+                        <li class="category" id="headphone" data-category="headphone">Tai nghe</li>
                         <li class="category">Chuột</li>
                         <li class="category">Bàn phím</li>
                         <li class="category">Màn hình</li>
@@ -117,7 +117,7 @@
                     </ul>
                 </div>
 
-                <div class="product-menu-details">
+                <div class="product-menu-details" id="laptop-category">
                     <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
                         <span>Laptop</span>
                         <svg width="32" height="32" viewBox="0 0 32 32"
@@ -251,6 +251,142 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="product-menu-details" id="headphone-category">
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                            <span>Laptop</span>
+                            <svg width="32" height="32" viewBox="0 0 32 32"
+                                 fill="none"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <rect width="32" height="32"
+                                      fill="url(#pattern0_117_1786)" />
+                                <defs>
+                                    <pattern id="pattern0_117_1786"
+                                             patternContentUnits="objectBoundingBox"
+                                             width="1" height="1">
+                                        <use xlink:href="#image0_117_1786"
+                                             transform="scale(0.00195312)" />
+                                    </pattern>
+                                    <image id="image0_117_1786" width="512"
+                                           height="512"
+                                           preserveAspectRatio="none"
+                                           xlink:href="data:image/png;base64,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iu/DECBAgMB2Be5vFgAM/+32opsTIECAwB4Flu8B0OWvARr+eyy8D0WAAAECBF5r8FkAw18fEiBAgACBPQs8c+AAYPjvueA+HAECBAgQWATuiYh3DhQCDH89SIAAAQIEDijwwgECgOF/wIL70AQIECBAYBFYvifAW3sMAYa/viNAgAABAk0Elq8J8N4eQoDh36TgjkGAAAECBI4EnoqIa4UhwPA/kvYrAQIECBBoJnC2KAAsf93QDwIECBAgQKCxwKMR8d8dBYHrEfH9xnd1NAIECBAgQOAWgXsj4hd3+L8E/h4RZ27Z0z8SIECAAAECKxF4KCL+dMLPBrwZEV9byf0ckwABAgQIEPgYgfsi4lsR8eeIuBQR794MBcv3ErgcERc/+KJCL0fEwx+zh/9EgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgACB1gL/B0B2HXumjZA2AAAAAElFTkSuQmCC" />
+                                </defs>
+                            </svg>
+                        </div>
+
+                        <div class="product-category">
+                            <div class="row">
+                                <div class="col-lg-4 category-type">
+                                    <span>Thương hiệu</span>
+                                    <div class="row category-content">
+                                        <div class="col-lg-6">
+                                            <p>Dell</p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p>Acer</p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p>Razor</p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p>Lenovo</p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p>Asus</p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p>HP</p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p>MSI</p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p>LG</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 category-type">
+                                    <span>Khoảng giá</span>
+                                    <div class="row category-content">
+                                        <div class="col-lg-6">
+                                            <p>Dưới 10 triệu</p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p>Từ 10 - 15 triệu</p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p>Từ 15 - 20 triệu</p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p>Từ 20 - 25 triệu</p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p>Từ 25 - 30 triệu</p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p>Từ 30 - 40 triệu</p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p>Trên 40 triệu</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 category-type">
+                                    <span>Loại GPU</span>
+                                    <div class="row category-content">
+                                        <div class="col-lg-6">
+                                            <p>AMD Radeon Series</p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p>NVIDIA GeFore Series</p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p>Card Onboard</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 category-type">
+                                    <span>Nhu Cầu</span>
+                                    <div class="row category-content">
+                                        <div class="col-lg-6">
+                                            <p>Sinh viên</p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p>Gaming</p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p>Đồ họa</p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p>Lập trình</p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p>Mỏng nhẹ</p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p>Văn phòng</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 category-type">
+                                    <span>Loại CPU</span>
+                                    <div class="row category-content">
+                                        <div class="col-lg-6">
+                                            <p>Intel</p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p>AMD</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -260,34 +396,38 @@
             @RenderBody()
     </div>
 
-    <div class="footer-style row">
-            <div class="col-lg-4">
-                <img src="../imgs/output-onlinepngtools.png" alt width="100px"
-                     height="100px">
-            </div>
+    <div class="footer-style ">
+        <div class="footer-content">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="../imgs/output-onlinepngtools.png" alt width="100px"
+                         height="100px">
+                </div>
 
-            <div class="col-lg-4">
-                <h4>Thông tin hữu ích</h4>
-                <ul class="list-group">
-                    <li>Chính sách bảo hành</li>
-                    <li>Chính sách đổi trả</li>
-                    <li>Chính sách vận chuyển</li>
-                    <li>Chính sách bảo mật</li>
-                    <li>Chính sách thanh toán</li>
-                </ul>
-            </div>
+                <div class="col-md-4">
+                    <h4>Thông tin hữu ích</h4>
+                    <ul class="list-group">
+                        <li>Chính sách bảo hành</li>
+                        <li>Chính sách đổi trả</li>
+                        <li>Chính sách vận chuyển</li>
+                        <li>Chính sách bảo mật</li>
+                        <li>Chính sách thanh toán</li>
+                    </ul>
+                </div>
 
-            <div class="col-lg-4">
-                <h4>Phản hồi góp ý</h4>
-                <span>Đội ngũ kiểm soát chất lượng của chúng tôi sẵn sàng lắng nghe quý khách</span>
-                <button class="btn-phanhoi">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M19 4C20.6569 4 22 5.34315 22 7V17C22 18.6569 20.6569 20 19 20H5C3.34315 20 2 18.6569 2 17V7C2 5.34315 3.34315 4 5 4H19ZM20 7.328L12.6585 13.7526C12.3129 14.055 11.8111 14.0802 11.4394 13.8282L11.3415 13.7526L4 7.329V17C4 17.5523 4.44772 18 5 18H19C19.5523 18 20 17.5523 20 17V7.328ZM18.48 6H5.518L12 11.6712L18.48 6Z" fill="white" />
-                    </svg>
-                    <span>Gửi phản hồi</span>
-                </button>
+                <div class="col-md-4">
+                    <h4>Phản hồi góp ý</h4>
+                    <span>Đội ngũ kiểm soát chất lượng của chúng tôi sẵn sàng lắng nghe quý khách</span>
+                    <button class="btn-phanhoi">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M19 4C20.6569 4 22 5.34315 22 7V17C22 18.6569 20.6569 20 19 20H5C3.34315 20 2 18.6569 2 17V7C2 5.34315 3.34315 4 5 4H19ZM20 7.328L12.6585 13.7526C12.3129 14.055 11.8111 14.0802 11.4394 13.8282L11.3415 13.7526L4 7.329V17C4 17.5523 4.44772 18 5 18H19C19.5523 18 20 17.5523 20 17V7.328ZM18.48 6H5.518L12 11.6712L18.48 6Z" fill="white" />
+                        </svg>
+                        <span>Gửi phản hồi</span>
+                    </button>
+                </div>
             </div>
         </div>
+    </div>
 
     <script>
         $(document).ready(function() {
