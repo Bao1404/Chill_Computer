@@ -1,0 +1,85 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Cart Page";
+}
+
+<div style="background-color: #f8f8fc; padding: 10px 0">
+    <div class="main-content">
+        <div class="cart-title">
+            <div style="display: flex; align-items: center;">
+                <h2>Giỏ hàng </h2> <span>(1 sản phẩm)</span>
+            </div>
+
+            <div style="display: flex; gap: 5px; align-items: center;">
+                <svg width="27" height="27" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M17 8C17.5523 8 18 8.44772 18 9V19C18 20.6569 16.6569 22 15 22H9C7.34315 22 6 20.6569 6 19V9C6 8.44772 6.44772 8 7 8H17ZM16 10H8V19C8 19.5523 8.44772 20 9 20H15C15.5523 20 16 19.5523 16 19V10ZM9 3C9 2.44772 9.44772 2 10 2H14C14.5523 2 15 2.44772 15 3V4H19C19.5523 4 20 4.44772 20 5C20 5.55228 19.5523 6 19 6H5C4.44772 6 4 5.55228 4 5C4 4.44772 4.44772 4 5 4H9V3Z" fill="#404040" />
+                </svg>
+                <h6 style="margin: 0;">Xóa tất cả</h6>
+            </div>
+        </div>
+
+        <div class="content-box">
+            <div class="left-cart-box">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="col-lg-6">Sản phẩm</th>
+                            <th class="col-lg-2">Đơn giá</th>
+                            <th class="col-lg-2">Số lượng</th>
+                            <th class="col-lg-2">Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="cart-product-name">
+                                <img src="../imgs/lenovo-thinkpad-x1-carbon-gen-10-thinkpro.webp" alt="">
+                                <div>
+                                    <h6>Lenovo ThinkPad X1 Carbon Gen 11</h6>
+                                    <span>i7 1365U, 32GB, 512GB, FHD / Black</span>
+                                </div>
+                            </td>
+                            <td><span>28.790.000</span></td>
+                            <td style="margin: auto;">
+                                <span>1</span>
+                                <br>
+                                <span>Xóa</span>
+                            </td>
+                            <td><span>28.790.000</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="right-cart-box">
+                <div class="discount-box">
+                    <span>Khuyến mãi</span>
+                    <a href="">Chọn hoặc nhập khuyến mãi</a>
+                </div>
+
+                <div class="total-box">
+                    <h6>Thanh toán</h6>
+                    <div class="total-box-detail">
+                        <span>Tổng tạm tính</span>
+                        <span>28.790.000</span>
+                    </div>
+                    <div class="total-box-detail">
+                        <span>Khuyến mãi</span>
+                        <span>0</span>
+                    </div>
+                    <div class="total-box-detail">
+                        <span>Thành tiền</span>
+                        <div style="display: flex; flex-direction: column; align-items: flex-end;">
+                            <span style="color: #5A82FC;">28.790.000</span>
+                            <span>(Đã bao gồm VAT)</span>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin: 20px 0 5px 0;">
+                        <button class="total-btn">Thanh toán</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
