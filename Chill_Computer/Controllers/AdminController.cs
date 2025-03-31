@@ -8,5 +8,21 @@ namespace Chill_Computer.Controllers
         {
             return View();
         }
+
+        public IActionResult ManageInventory()
+        {
+            return View();
+        }
+
+        public IActionResult ManageOrder()
+        {
+            return View();
+        }
+        public IActionResult ManageAccount()
+        {
+            return View();
+        }
+
+
     }
 }
