@@ -229,6 +229,15 @@ span {
     width: 100%;
 }
 
+.category-div {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.product-menu a{
+    color: black;
+}
 
 .category:hover {
     background-color: rgb(90, 130, 252, 0.3);
@@ -251,8 +260,14 @@ span {
     font-size: 18px;
     font-weight: 700;
     font-family: Lexend, sans-serif;
-    padding: 0 20px;
-    width: 25%;
+    padding-right: 20px;
+    width: 26%;
+    overflow-y: scroll;
+    max-height: 462px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
 }
 
     .product-menu ul {
@@ -264,7 +279,7 @@ span {
     }
 
     .product-menu li {
-        height: 32px;
+        height: 40px;
         padding: 0 10px;
     }
 
@@ -272,6 +287,7 @@ span {
     display: flex;
     align-items: flex-start;
     border-bottom: 1px solid lightgray;
+    max-height: 462px;
 }
 
 .dropdown-position {
@@ -333,6 +349,7 @@ span {
     flex-direction: column;
     margin: 0 200px;
     min-height: 453px;
+    margin-bottom: 30px;
 }
 
     .main-content h1 {
@@ -441,7 +458,7 @@ span {
 
 .product-list {
     display: flex;
-    gap: 23.5px;
+    gap: 24.5px;
     padding-left: 25px;
     flex-wrap: wrap;
 }
@@ -862,4 +879,94 @@ td:last-child {
 
 .right-cart-box {
     width: 30%;
+}
+
+.btn-reset {
+    background-color: white;
+    border-radius: 15px;
+    border: 1px solid lightgray;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+.PC-box {
+    border: 1px solid lightgray;
+    border-radius: 15px;
+    width: 65%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.component-choice {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.component-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #F2F4F7;
+    width: 100%;
+    border-radius: 15px;
+    padding: 10px;
+    font-family: Lexend, sans-serif;
+}
+
+.btn-add-component {
+    background-color: #5A82FC;
+    color: white;
+    min-height: 50px;
+    min-width: 120px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px
+}
+
+.component-cart {
+    border: 1px solid lightgray;
+    border-radius: 15px;
+    width: 30%;
+    padding: 15px 20px;
+    font-family: lexend, sans-serif;
+    max-height: 150px;
+}
+
+    .component-cart h4 {
+        margin: 0;
+    }
+
+.component-cart-text {
+    display: flex;
+    justify-content: space-between;
+}
+
+    .component-cart-text h4 {
+        font-weight: bold;
+    }
+
+.btn-add-to-cart {
+    background-color: #5A82FC;
+    border: 1px solid lightgray;
+    border-radius: 15px;
+    min-height: 50px;
+    padding: 0 20px;
+    font-weight: 600;
+}
+
+.component-box img {
+    width: 50px;
+    height: 50px;
+}
+
+.component-box h4 {
+    margin: 0;
 }
