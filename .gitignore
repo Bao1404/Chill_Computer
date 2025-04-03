@@ -361,6 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/Chill_Computer/Models
-/Chill_Computer/appsettings.json
 /Chill_Computer/Program.cs
+/Chill_Computer/Chill_Computer.csproj
+/Chill_Computer/appsettings.json
+/Chill_Computer/Models
