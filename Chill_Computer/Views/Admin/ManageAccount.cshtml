@@ -1,0 +1,174 @@
+﻿@model List<Chill_Computer.ViewModels.AccountViewModel>
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewData["ChooseManageAccount"] = "chooseButton";
+}
+
+<nav class="navbar navbar-light bg-light" style="height: 30px;">
+    <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+               style="width: 500px; border-radius: 15px;">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
+                style="border-radius: 20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="26"
+                 fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+            </svg>
+        </button>
+    </form>
+</nav>
+
+<div>
+    <table class="table" style="width: 900px; margin: 30px;">
+        <thead>
+        <th class="col-md-1">#</th>
+        <th class="col-md-4">Username</th>
+        <th class="col-md-4">Họ và tên</th>
+        <th class="col-md-1">Role</th>
+        <th class="col-md-2"></th>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var account in Model)
+                {
+                    <tr>
+                        <th scope="row">@account.Id</th>
+                        <td>@account.Username</td>
+                        <td>@account.FullName</td> 
+                        <td>@account.Role</td>
+                        <td>
+                            <button type="button" class="btn btn-primary" onclick="openModalUpdateRole('@account.Username', '@account.RoleId')">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                 fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+
+                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+
+                                <path fill-rule="evenodd"
+                                      d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+
+                            </svg>
+
+                        </button>
+
+                            <button type="button" class="btn btn-danger" onclick="openModalDelete('@account.Username')">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                 fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+
+                                <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
+
+                            </svg>
+
+                        </button>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5" class="text-center">No accounts found.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<nav aria-label="Page navigation example" style="margin: 20px 30px 0 0;">
+    <ul class="pagination">
+        <li class="page-item @(ViewBag.CurrentPage == 1 ? "disabled" : "")">
+            <a class="page-link" href="@Url.Action("ManageAccount", new { pageNumber = ViewBag.CurrentPage - 1 })" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                <a class="page-link" href="@Url.Action("ManageAccount", new { pageNumber = i })">@i</a>
+            </li>
+        }
+        <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages ? "disabled" : "")">
+            <a class="page-link" href="@Url.Action("ManageAccount", new { pageNumber = ViewBag.CurrentPage + 1 })" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<!-- Modal Update-->
+<div class="modal fade" id="DetailAccount" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Update Role</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/Admin/UpdateRole" method="post">
+                    <label>Username:</label>
+                    <input type="text" name="username" id="username" value="" readonly/> 
+                    <label for="roleId">Chọn Vai Trò:</label>
+                    <select name="roleId" id="roleId" value="">
+                        <option value="1">Admin</option>
+                        <option value="2">Customer</option>
+                        <option value="3">Employee</option>
+                    </select>
+                    <button type="submit">Cập nhật vai trò</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Delete -->
+<div class="modal fade" id="AlertDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Confirm Delete Account</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/Admin/DeleteAccount" method="post">
+                    <label>Username:</label>
+                    <input type="text" name="usernameDe" id="usernameDe" value="" readonly />
+                    <button type="submit">Xác nhận</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- Bao gồm jQuery và Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<script>
+    function openModalDelete(username) {
+        $('#usernameDe').val(username);
+        $('#AlertDelete').modal('show');
+    }
+    function openModalUpdateRole(username, roleId) {
+        $('#username').val(username); // Cập nhật tên người dùng vào trường ẩn
+        $('#roleId').val(roleId); // Cập nhật vai trò hiện tại trong dropdown
+        $('#DetailAccount').modal('show'); // Hiển thị modal
+    }
+</script>
