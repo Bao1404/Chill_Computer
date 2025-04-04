@@ -6,7 +6,7 @@
 <div class="main-content">
 
     <div class="title">
-        <a href="HomePage.html">
+        <a asp-controller="Home" asp-action="Index">
             <p class="box">Trang chủ</p>
         </a>
         <p> / </p>
@@ -449,7 +449,7 @@
             </div>
         </div>
 
-        <div class="product-list-content col-lg-9" style="display: flex; flex-direction: column;">
+        <div class="product-list-content col-lg-9" style="display: flex; flex-direction: column; padding: 0;">
             <div class="product-list">
                 <a asp-area="" asp-controller="Product" asp-action="ProductDetailPage">
                     <div class="product-box">
