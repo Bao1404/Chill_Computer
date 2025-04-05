@@ -1,3 +1,8 @@
+using Chill_Computer.Models;
+using Chill_Computer.Contacts;
+using Chill_Computer.Services;
+using Microsoft.EntityFrameworkCore;
+
 namespace Chill_Computer
 {
     public class Program
@@ -8,6 +13,12 @@ namespace Chill_Computer
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<ChillComputerContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("Chill_Computer") ?? throw new InvalidOperationException("Connection string 'Chill_Computer' not found"))
+            );
+
+            builder.Services.AddScoped<IProductTypeRepository, ProductTypeRepository>();
+            builder.Services.AddScoped<IProductTypeFilterRepository, ProductTypeFilterRepository>();
 
             var app = builder.Build();
 

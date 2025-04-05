@@ -49,7 +49,10 @@
         }
 
         .box-border-Right{
-            justify-items: center; height: 650px; width: 1000px; border: 1px solid;
+            justify-items: right;
+            height: 650px;
+            width: 1000px;
+            border: 1px solid;
             margin: 20px 0 0 0;
             padding: 15px;
             border-radius: 15px;
@@ -69,9 +72,9 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1 listAdmin">
                         <li class="nav-item @ViewData["ChooseDashboard"]">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Admin">
                                 Dashboard
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" fill="currentColor"
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="20" fill="currentColor"
                                      class="bi bi-chevron-right" viewBox="0 0 10 16">
                                     <path fill-rule="evenodd"
                                           d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
@@ -79,7 +82,7 @@
                             </a>
                         </li>
                         <li class="nav-item @ViewData["ChooseManageInventory"]">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="ManageInventory">
                                 Quản lý
                                 kho
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" fill="currentColor"
@@ -90,7 +93,7 @@
                             </a>
                         </li>
                         <li class="nav-item @ViewData["ChooseManageOrder"]">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="ManageOrder">
                                 Quản lý
                                 đơn hàng
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" fill="currentColor"
@@ -100,10 +103,10 @@
                                 </svg>
                             </a>
                         </li>
-                        <li class="nav-item @ViewData["ChooseManageCustomer"]">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="UserInformation"
-                               asp-action="Index">
-                                Quản lý khách hàng
+                        <li class="nav-item @ViewData["ChooseManageAccount"]">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin"
+                               asp-action="ManageAccount">
+                                Quản lý tài khoản
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" fill="currentColor"
                                      class="bi bi-chevron-right" viewBox="0 0 10 16">
                                     <path fill-rule="evenodd"
@@ -112,7 +115,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="UserInformation"
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home"
                                asp-action="Index">
                                 Trang chủ
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
@@ -128,9 +131,9 @@
 
         <div class="col-md-8" style="justify-items: center;">
             <div class="box-border-Right">
-                <main class="col-md-8 col-lg-9 ms-sm-auto px-4">
+                
                     @RenderBody() <!-- Đây là phần nội dung chính -->
-                </main>
+                
             </div>
         </div>
 

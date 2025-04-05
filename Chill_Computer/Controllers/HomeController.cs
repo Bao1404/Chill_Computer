@@ -1,20 +1,29 @@
-using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
 using Chill_Computer.Models;
+using Chill_Computer.Services;
+using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace Chill_Computer.Controllers;
 
-public class HomeController : Controller
+public class HomeController : BaseController
 {
     private readonly ILogger<HomeController> _logger;
+    private readonly IProductTypeRepository _productTypeRepository;
+    private readonly ChillComputerContext _context;
+    private readonly IProductTypeFilterRepository _productTypeFilterRepository;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger, ChillComputerContext context, IProductTypeRepository productTypeRepository, IProductTypeFilterRepository productTypeFilterRepository)
+        : base(context, productTypeRepository, productTypeFilterRepository)
     {
         _logger = logger;
+        _productTypeRepository = productTypeRepository;
+        _context = context;
+        _productTypeFilterRepository = productTypeFilterRepository;
     }
 
     public IActionResult Index()
     {
+        Init();
         return View();
     }
 
