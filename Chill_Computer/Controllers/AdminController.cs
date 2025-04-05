@@ -1,4 +1,4 @@
-﻿using Chill_Computer.Contact;
+﻿using Chill_Computer.Contacts;
 using Chill_Computer.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
