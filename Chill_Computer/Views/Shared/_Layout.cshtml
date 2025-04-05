@@ -14,6 +14,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
 </head>
 <body>
     <div class="chat-bubble" id="chatBubble">
@@ -135,7 +136,7 @@
     <div class="dropdown-position">
         <div class="dropdown">
             <div class="menu-dropdown" id="productDropdown">
-                <partial name="Partials/_MenuView"  />
+                <partial name="Partials/_MenuView"  model="ViewBag.MenuTitle"/>
             </div>
         </div>
     </div>
@@ -185,11 +186,15 @@
     <script>
         $(document).ready(function() {
                 var isBlur = false;
+                var categories = document.querySelectorAll('.category');
+                var categoryProducts = document.querySelectorAll('.product-menu-details');
+
+        var currentCategory = null;
                 $('#chatbox').hide();
                 $('#productDropdown').hide();
                 $('#productMenu').click(function (){
                     $('#productDropdown').slideToggle();
-                    $('#laptop-category').show();
+                    $('#Laptop').show();
                     if(!isBlur){
                         $('.main-content').css({'filter' : 'blur(2px)'})
                     }
@@ -199,13 +204,18 @@
                     isBlur = !isBlur;
                 });
 
-                const productId = document.getElementById('')
 
-                $('#laptop').hover(function() {
-                    $('#laptop-category').show();
-                }, function(){
+        $('.category').mouseover(function() {
+            var categoryType = $(this).attr('data-category');
+            $('.product-menu-details').each(function() {
+                if ($(this).attr('id') === categoryType) {
+                    $(this).css('display', 'block');
+                } else {
+                    $(this).css('display', 'none');
+                }
+            });
+        });
 
-                });
 
                 $(".box").click(function(){
                     $(".box").removeClass("box-active");

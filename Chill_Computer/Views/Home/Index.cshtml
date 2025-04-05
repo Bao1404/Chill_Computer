@@ -4,147 +4,96 @@
 }
 
 <div class="main-content">
-            <div class="homepage-img-slider">
-                <img src="../imgs/loq_t9_banner_1920x450_2048x2048.webp" alt="">
-            </div>
+    <div class="homepage-img-slider">
+        <img src="../imgs/loq_t9_banner_1920x450_2048x2048.webp" alt="">
+    </div>
 
-            <div class="feature-category">
-                <h3>Danh mục nổi bật</h3>
-                <div class="feature-category-list">
-                    <div class="feature-category-box">
-                        <img src="../imgs/laptop-1-1.webp" alt>
-                        <span>Laptop</span>
-                    </div>
-                    <div class="feature-category-box">
-                        <img
-                            src="../imgs/danh-muc-icon-ban-phim-thinkpro.vn.webp"
-                            alt>
-                        <span>Bàn phím</span>
-                    </div>
-                    <div class="feature-category-box">
-                        <img
-                            src="../imgs/pro2-lightspeed-black-new-galler_84b2343575d14402814bbcf5389c1f24_medium.webp"
-                            alt style="width: 200px; height: 150px">
-                        <span>Chuột</span>
-                    </div>
-                    <div class="feature-category-box">
-                        <img
-                            src="../imgs/tai_nghe_ed3b4f52172f40929e1d3ab493099b73.webp"
-                            alt>
-                        <span>Tai nghe</span>
-                    </div>
-                    <div class="feature-category-box">
-                        <img
-                            src="../imgs/gearvn-man-hinh-cong-asus-rog-swift-pg34wcdm-1_5a24f0c3ac764de5b5bc28a08e27a7e3_medium.webp"
-                            alt>
-                        <span>Màn hình</span>
-                    </div>
-                    <div class="feature-category-box">
-                        <img
-                            src="../imgs/icon3_5c59c1dc52ec4b81a94a3edba293e895.webp"
-                            alt>
-                        <span>PC</span>
-                    </div>
+    <div class="feature-category">
+        <h3>Danh mục nổi bật</h3>
+        <div class="feature-category-list">
+            <a asp-controller="Product" asp-action="ProductListPage" style="text-decoration: none; color: black;">
+                <div class="feature-category-box">
+                    <img src="../imgs/laptop-1-1.webp" alt>
+                    <span>Laptop</span>
                 </div>
-            </div>
+            </a>
 
-            <div class="liked-product">
-                <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 30px;">
-                    <h1>Có thể bạn sẽ thích</h1>
-                    <div class="slide-box" id="active-slide-1">
-                        <div class="active-slide"></div>
-                        <button class="btn-slide">Laptop</button>
-                        <button class="btn-slide">Bàn phím</button>
-                        <button class="btn-slide">Chuột</button>
-                        <button class="btn-slide">Tai nghe</button>
-                    </div>
+            <a asp-controller="Product" asp-action="ProductListPage" style="text-decoration: none; color: black;">
+                <div class="feature-category-box">
+                    <img
+                    src="../imgs/danh-muc-icon-ban-phim-thinkpro.vn.webp"
+                    alt>
+                    <span>Bàn phím</span>
                 </div>
-                <div class="liked-product-box">
-                    <div class="product-box" style="width: 230px;">
-                        <img src="../imgs/lenovo-thinkpad-x1-carbon-gen-10-thinkpro.webp" height="230px" width="230px" alt="">
+            </a>
+
+            <a asp-controller="Product" asp-action="ProductListPage" style="text-decoration: none; color: black;">
+                <div class="feature-category-box">
+                    <img src="../imgs/logitech-g102-lightsync-rgb-black-1_bf4f5774229c4a0f81b8e8a2feebe4d8_aeb4ae49ee844c3e9d315883d4e482d4_medium-removebg-preview.png"
+                    alt style="width: 150px; height: 150px">
+                    <span>Chuột</span>
+                </div>
+            </a>
+
+            <a asp-controller="Product" asp-action="ProductListPage" style="text-decoration: none; color: black;">
+                <div class="feature-category-box">
+                    <img src="../imgs/image8.png"
+                    alt>
+                    <span>Tai nghe</span>
+                </div>
+            </a>
+
+            <a asp-controller="Product" asp-action="ProductListPage" style="text-decoration: none; color: black;">
+                <div class="feature-category-box">
+                    <img
+                    src="../imgs/image6.png"
+                    alt>
+                    <span>Màn hình</span>
+                </div>
+            </a>
+
+            <a asp-controller="Product" asp-action="ProductListPage" style="text-decoration: none; color: black;">
+                <div class="feature-category-box">
+                    <img src="../imgs/gvn07935_aaa9b99c81f044ba81926066e554a4b2_medium.png"
+                    alt>
+                    <span>PC</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="liked-product">
+        <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 30px;">
+            <h1>Có thể bạn sẽ thích</h1>
+            <div class="slide-box" id="active-slide-1">
+                <div class="active-slide"></div>
+                <button class="btn-slide" id="1">Laptop</button>
+                <button class="btn-slide" id="4">Bàn phím</button>
+                <button class="btn-slide" id="3">Chuột</button>
+                <button class="btn-slide" id="2">Tai nghe</button>
+            </div>
+        </div>
+        <div class="liked-product-box">
+            @foreach (var product in ViewBag.ProductList)
+            {
+                <a asp-controller="Product" asp-action="ProductListPage" style="text-decoration: none; color: black;">
+                    <div class="product-box" data-category="@product.TypeId">
+                        <img src="@product.Img1" height="214px" width="214px" alt="" style="overflow:hidden; background: none;">
                         <div class="product-info">
-                            <span>Lenovo ThinkPad X1 Carbon Gen10</span>
-                            <h6>25.990.000 đ</h6>
+                            <span>@product.ProductName</span>
+                            <h6>@product.FormattedPrice đ</h6>
                             <div class="color-list">
-                                <span>Màu</span>
+                                <span>@product.Color</span>
                                 <svg width="14" height="14">
-                                    <circle cx="7" cy="7" r="7" fill="black" />
-                                </svg>
-                                <svg width="14" height="14">
-                                    <circle cx="7" cy="7" r="7" fill="lightgray" />
+                                    <circle cx="7" cy="7" r="7" fill="@(product.Color.Contains("Gray") || product.Color.Contains("Grey") ? "Gray" : "")" />
                                 </svg>
                             </div>
-                            <span>i7 1365U, 16GB, 256GB, FHD + Touch</span>
+                            <span>@product.Version</span>
                         </div>
                     </div>
-                    <div class="product-box" style="width: 230px;">
-                        <img src="../imgs/lenovo-thinkpad-x1-carbon-gen-10-thinkpro.webp" height="230px" width="230px" alt="">
-                        <div class="product-info">
-                            <span>Lenovo ThinkPad X1 Carbon Gen10</span>
-                            <h6>25.990.000 đ</h6>
-                            <div class="color-list">
-                                <span>Màu</span>
-                                <svg width="14" height="14">
-                                    <circle cx="7" cy="7" r="7" fill="black" />
-                                </svg>
-                                <svg width="14" height="14">
-                                    <circle cx="7" cy="7" r="7" fill="lightgray" />
-                                </svg>
-                            </div>
-                            <span>i7 1365U, 16GB, 256GB, FHD + Touch</span>
-                        </div>
-                    </div>
-                    <div class="product-box" style="width: 230px;">
-                        <img src="../imgs/lenovo-thinkpad-x1-carbon-gen-10-thinkpro.webp" height="230px" width="230px" alt="">
-                        <div class="product-info">
-                            <span>Lenovo ThinkPad X1 Carbon Gen10</span>
-                            <h6>25.990.000 đ</h6>
-                            <div class="color-list">
-                                <span>Màu</span>
-                                <svg width="14" height="14">
-                                    <circle cx="7" cy="7" r="7" fill="black" />
-                                </svg>
-                                <svg width="14" height="14">
-                                    <circle cx="7" cy="7" r="7" fill="lightgray" />
-                                </svg>
-                            </div>
-                            <span>i7 1365U, 16GB, 256GB, FHD + Touch</span>
-                        </div>
-                    </div>
-                    <div class="product-box" style="width: 230px;">
-                        <img src="../imgs/lenovo-thinkpad-x1-carbon-gen-10-thinkpro.webp" height="230px" width="230px" alt="">
-                        <div class="product-info">
-                            <span>Lenovo ThinkPad X1 Carbon Gen10</span>
-                            <h6>25.990.000 đ</h6>
-                            <div class="color-list">
-                                <span>Màu</span>
-                                <svg width="14" height="14">
-                                    <circle cx="7" cy="7" r="7" fill="black" />
-                                </svg>
-                                <svg width="14" height="14">
-                                    <circle cx="7" cy="7" r="7" fill="lightgray" />
-                                </svg>
-                            </div>
-                            <span>i7 1365U, 16GB, 256GB, FHD + Touch</span>
-                        </div>
-                    </div>
-                    <div class="product-box" style="width: 230px;">
-                        <img src="../imgs/lenovo-thinkpad-x1-carbon-gen-10-thinkpro.webp" height="230px" width="230px" alt="">
-                        <div class="product-info">
-                            <span>Lenovo ThinkPad X1 Carbon Gen10</span>
-                            <h6>25.990.000 đ</h6>
-                            <div class="color-list">
-                                <span>Màu</span>
-                                <svg width="14" height="14">
-                                    <circle cx="7" cy="7" r="7" fill="black" />
-                                </svg>
-                                <svg width="14" height="14">
-                                    <circle cx="7" cy="7" r="7" fill="lightgray" />
-                                </svg>
-                            </div>
-                            <span>i7 1365U, 16GB, 256GB, FHD + Touch</span>
-                        </div>
-                    </div>        
+                </a>
+            }
+       
                 </div>
                 <div class="load-more-homepage">
                     <button class="btn-load-more">
@@ -223,24 +172,54 @@
         </div>
         <script>
         $(document).ready(function(){
-            var initialPosition1 = $("#active-slide-1 .btn-slide").first().position().left;
+               $(document).ready(function(){
+        // === Initial Setup: show only Laptop (id = 1) ===
+        var initialButton = $("#active-slide-1 .btn-slide#1");
+        var initialPosition1 = initialButton.position().left;
+
         $("#active-slide-1 .active-slide").css({
             left: initialPosition1,
             transition: "left 0.5s"
         });
 
+        // Show only Laptop products (data-category = "1")
+        $(".product-box").each(function() {
+            var productCategory = $(this).attr('data-category');
+            if (productCategory === "1") {
+                $(this).parent().show();
+            } else {
+                $(this).parent().hide();
+            }
+        });
+
+        // === Click Handler ===
+        $("#active-slide-1 .btn-slide").click(function(){
+            var activePosition = $(this).position().left;
+            var activeSlide = $("#active-slide-1 .active-slide");
+            var selectedId = $(this).attr('id');
+
+            // Move the active slide
+            activeSlide.css({
+                left: activePosition
+            });
+
+            // Show/Hide products based on selected button
+            $(".product-box").each(function() {
+                var productCategory = $(this).attr('data-category');
+                if (productCategory === selectedId) {
+                    $(this).parent().show();
+                } else {
+                    $(this).parent().hide();
+                }
+            });
+        });
+    });
+
+
         var initialPosition2 = $("#active-slide-2 .btn-slide").first().position().left;
         $("#active-slide-2 .active-slide").css({
             left: initialPosition2,
             transition: "left 0.5s"
-        });
-
-        $("#active-slide-1 .btn-slide").click(function(){
-            var activePosition = $(this).position().left;
-            var activeSlide = $("#active-slide-1 .active-slide");
-            activeSlide.css({
-                left: activePosition
-            })
         });
 
         $("#active-slide-2 .btn-slide").click(function(){
@@ -250,5 +229,5 @@
                 left: activePosition
             })
         });
-        })
+        });
     </script>
