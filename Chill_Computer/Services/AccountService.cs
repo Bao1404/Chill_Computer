@@ -1,9 +1,11 @@
-﻿using Chill_Computer.Contacts;
+using Chill_Computer.Contacts;
 using Chill_Computer.Models;
 using Chill_Computer.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace Chill_Computer.Services
+
 {
     public class AccountService : IAccountService
     {
@@ -111,6 +113,7 @@ namespace Chill_Computer.Services
         {
             return _context.Accounts.FirstOrDefault(x => x.UserName == username);
         }
+
         public bool IsExistAccount(string username)
         {
             if (_context.Accounts.Any(x => x.UserName == username))
