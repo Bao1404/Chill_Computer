@@ -367,7 +367,8 @@ span {
 
     .list-box .box {
         min-width: 65px;
-        height: 25px;
+        height: 36px;
+        font-size: 16px;
         text-align: center;
         font-weight: 600;
         color: black;

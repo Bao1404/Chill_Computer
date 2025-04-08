@@ -1,6 +1,7 @@
 ﻿
 @{
-    ViewData["Title"] = "Product List Page";
+    ViewData["Title"] = ViewBag.ProductTypeName;
+    var listId = new List<string>();
 }
 
 <div class="main-content">
@@ -10,46 +11,30 @@
             <p class="box">Trang chủ</p>
         </a>
         <p> / </p>
-        <p class="box box-active">Laptop</p>
-        <p> / </p>
-        <p class="box">Laptop</p>
+        <p class="box box-active">@ViewBag.ProductTypeName</p>
+        @* <p> / </p> *@
+        @* <p class="box">Laptop</p> *@
     </div>
 
-    <h1>Laptop</h1>
+    <h1>@ViewBag.ProductTypeName</h1>
 
     <div class="list-box">
-
-        <button class="box">
-            <span>Lenovo</span>
-        </button>
-
-        <button class="box">
-            <span>Dell</span>
-        </button>
-
-        <button class="box">
-            <span>Asus</span>
-        </button>
-
-        <button class="box">
-            <span>Acer</span>
-        </button>
-
-        <button class="box">
-            <span>MSI</span>
-        </button>
-
-        <button class="box">
-            <span>HP</span>
-        </button>
-
-        <button class="box">
-            <span>LG</span>
-        </button>
-
-        <button class="box">
-            <span>Razer</span>
-        </button>
+        @foreach (var product in ViewBag.ProductList)
+        {
+            if(product.TypeId == Model)
+            {
+                    @foreach (var brand in ((IEnumerable<dynamic>)ViewBag.ProductBrand).Where(b => b.BrandId == product.BrandId))
+                    {
+                        if (!listId.Contains(brand.BrandName))
+                        {
+                            listId.Add(brand.BrandName);
+                            <button class="box">
+                                <span>@brand.BrandName</span>
+                            </button>
+                        }
+                }
+            }
+        }
     </div>
 
     <div class="sl-sap-xep">

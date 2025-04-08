@@ -1,6 +1,7 @@
 ﻿
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Trang chủ";
+    var storedProduct = new List<dynamic>();
 }
 
 <div class="main-content">
@@ -11,14 +12,14 @@
     <div class="feature-category">
         <h3>Danh mục nổi bật</h3>
         <div class="feature-category-list">
-            <a asp-controller="Product" asp-action="ProductListPage" style="text-decoration: none; color: black;">
+            <a asp-controller="Product" asp-action="ProductListPage" asp-route-id="1" style="text-decoration: none; color: black;">
                 <div class="feature-category-box">
                     <img src="../imgs/laptop-1-1.webp" alt>
                     <span>Laptop</span>
                 </div>
             </a>
 
-            <a asp-controller="Product" asp-action="ProductListPage" style="text-decoration: none; color: black;">
+            <a asp-controller="Product" asp-action="ProductListPage" asp-route-id="4" style="text-decoration: none; color: black;">
                 <div class="feature-category-box">
                     <img
                     src="../imgs/danh-muc-icon-ban-phim-thinkpro.vn.webp"
@@ -27,7 +28,7 @@
                 </div>
             </a>
 
-            <a asp-controller="Product" asp-action="ProductListPage" style="text-decoration: none; color: black;">
+            <a asp-controller="Product" asp-action="ProductListPage" asp-route-id="3" style="text-decoration: none; color: black;">
                 <div class="feature-category-box">
                     <img src="../imgs/logitech-g102-lightsync-rgb-black-1_bf4f5774229c4a0f81b8e8a2feebe4d8_aeb4ae49ee844c3e9d315883d4e482d4_medium-removebg-preview.png"
                     alt style="width: 150px; height: 150px">
@@ -35,7 +36,7 @@
                 </div>
             </a>
 
-            <a asp-controller="Product" asp-action="ProductListPage" style="text-decoration: none; color: black;">
+            <a asp-controller="Product" asp-action="ProductListPage" asp-route-id="2" style="text-decoration: none; color: black;">
                 <div class="feature-category-box">
                     <img src="../imgs/image8.png"
                     alt>
@@ -43,7 +44,7 @@
                 </div>
             </a>
 
-            <a asp-controller="Product" asp-action="ProductListPage" style="text-decoration: none; color: black;">
+            <a asp-controller="Product" asp-action="ProductListPage" asp-route-id="5" style="text-decoration: none; color: black;">
                 <div class="feature-category-box">
                     <img
                     src="../imgs/image6.png"
@@ -52,7 +53,7 @@
                 </div>
             </a>
 
-            <a asp-controller="Product" asp-action="ProductListPage" style="text-decoration: none; color: black;">
+            <a asp-controller="Product" asp-action="ProductListPage" asp-route-id="15" style="text-decoration: none; color: black;">
                 <div class="feature-category-box">
                     <img src="../imgs/gvn07935_aaa9b99c81f044ba81926066e554a4b2_medium.png"
                     alt>
@@ -76,22 +77,38 @@
         <div class="liked-product-box">
             @foreach (var product in ViewBag.ProductList)
             {
-                <a asp-controller="Product" asp-action="ProductListPage" style="text-decoration: none; color: black;">
-                    <div class="product-box" data-category="@product.TypeId">
-                        <img src="@product.Img1" height="214px" width="214px" alt="" style="overflow:hidden; background: none;">
-                        <div class="product-info">
-                            <span>@product.ProductName</span>
-                            <h6>@product.FormattedPrice đ</h6>
-                            <div class="color-list">
-                                <span>@product.Color</span>
-                                <svg width="14" height="14">
-                                    <circle cx="7" cy="7" r="7" fill="@(product.Color.Contains("Gray") || product.Color.Contains("Grey") ? "Gray" : "")" />
-                                </svg>
+                if (!storedProduct.Contains(product.ProductName))
+                {
+                    storedProduct.Add(product.ProductName);
+                    <a asp-controller="Product" asp-action="ProductDetailPage" asp-route-id="@product.ProductId" style="text-decoration: none; color: black;">
+                        <div class="product-box product-item" data-category="@product.TypeId">
+                            <img src="@product.Img1" height="214px" width="214px" alt="" style="overflow:hidden; background: none;">
+                            <div class="product-info">
+                                <span>@product.ProductName</span>
+                                <h6>@product.FormattedPrice đ</h6>
+                                <div class="color-list">
+                                    <span>@product.Color</span>
+                                    <svg width="14" height="14">
+                                        <circle cx="7" cy="7" r="7" fill="@(product.Color.Contains("Gray") || product.Color.Contains("Grey") ? "Gray" : "")" />
+                                    </svg>
+                                </div>
+                                <span>@product.Version</span>
+                                <div class="product-version-count">
+                                    @{
+                                        var versionList = ((IEnumerable<dynamic>)ViewBag.ProductList)
+                                        .Where(p => p.ProductName == product.ProductName)
+                                        .ToList();
+                                    }
+                                    @if (versionList.Count > 1)
+                                    {
+                                        <span>+ @versionList.Count tùy chọn khác</span>
+                                    }
+
+                                </div>
                             </div>
-                            <span>@product.Version</span>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                }  
             }
        
                 </div>
@@ -170,64 +187,80 @@
                 </div>
             </div>
         </div>
-        <script>
-        $(document).ready(function(){
-               $(document).ready(function(){
-        // === Initial Setup: show only Laptop (id = 1) ===
-        var initialButton = $("#active-slide-1 .btn-slide#1");
-        var initialPosition1 = initialButton.position().left;
+<script>
+    $(document).ready(function () {
+        // === Variables for product filtering and loading ===
+        let itemsToShow = 5;
+        const increment = 10;
+        let currentCategory = "1"; // Default: Laptop
 
-        $("#active-slide-1 .active-slide").css({
-            left: initialPosition1,
-            transition: "left 0.5s"
-        });
+        // === Helper to move the active slide bar ===
+        function updateSlideIndicator(containerId, buttonId) {
+            const activeSlide = $(`#${containerId} .active-slide`);
+            const position = $(`#${containerId} .btn-slide#${buttonId}`).position().left;
+            activeSlide.css({ left: position, transition: "left 0.5s" });
+        }
 
-        // Show only Laptop products (data-category = "1")
-        $(".product-box").each(function() {
-            var productCategory = $(this).attr('data-category');
-            if (productCategory === "1") {
-                $(this).parent().show();
-            } else {
-                $(this).parent().hide();
-            }
-        });
+        // === Show only filtered and limited number of products ===
+        function showFilteredProducts() {
+            let visibleCount = 0;
 
-        // === Click Handler ===
-        $("#active-slide-1 .btn-slide").click(function(){
-            var activePosition = $(this).position().left;
-            var activeSlide = $("#active-slide-1 .active-slide");
-            var selectedId = $(this).attr('id');
-
-            // Move the active slide
-            activeSlide.css({
-                left: activePosition
-            });
-
-            // Show/Hide products based on selected button
-            $(".product-box").each(function() {
-                var productCategory = $(this).attr('data-category');
-                if (productCategory === selectedId) {
-                    $(this).parent().show();
+            $(".product-item").each(function () {
+                const category = $(this).attr('data-category');
+                if (category === currentCategory) {
+                    if (visibleCount < itemsToShow) {
+                        $(this).parent().show();
+                        visibleCount++;
+                    } else {
+                        $(this).parent().hide();
+                    }
                 } else {
                     $(this).parent().hide();
                 }
             });
+
+            // Toggle load more button
+            const totalInCategory = $(".product-item").filter(function () {
+                return $(this).attr('data-category') === currentCategory;
+            }).length;
+
+            if (visibleCount >= totalInCategory) {
+                $(".load-more-homepage").hide();
+            } else {
+                $(".load-more-homepage").show();
+            }
+        }
+
+        // === Initial Setup: Show Laptop only (category 1) ===
+        updateSlideIndicator("active-slide-1", "1");
+        showFilteredProducts();
+
+        // === Category Click Handler ===
+        $("#active-slide-1 .btn-slide").click(function () {
+            currentCategory = $(this).attr('id'); // Get new category ID
+            itemsToShow = 5; // Reset visible product count
+            updateSlideIndicator("active-slide-1", currentCategory);
+            showFilteredProducts();
         });
-    });
 
+        // === Load More Button Click ===
+        $(".btn-load-more").click(function () {
+            itemsToShow += increment;
+            showFilteredProducts();
+        });
 
+        // === Handle Active Slide 2 Animation ===
         var initialPosition2 = $("#active-slide-2 .btn-slide").first().position().left;
         $("#active-slide-2 .active-slide").css({
             left: initialPosition2,
             transition: "left 0.5s"
         });
 
-        $("#active-slide-2 .btn-slide").click(function(){
+        $("#active-slide-2 .btn-slide").click(function () {
             var activePosition = $(this).position().left;
-            var activeSlide = $("#active-slide-2 .active-slide");
-            activeSlide.css({
+            $("#active-slide-2 .active-slide").css({
                 left: activePosition
-            })
+            });
         });
-        });
-    </script>
+    });
+</script>
