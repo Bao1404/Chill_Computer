@@ -33,13 +33,21 @@ namespace Chill_Computer.Controllers
         public IActionResult ProductListPage(int id)
         {
             Init();
+            var product = _productRepository.GetProductById(id);
             ViewBag.ProductList = _productRepository.GetProductByTypeId(id);
+            ViewBag.ProductTypeName = _productTypeRepository.GetProductTypeById(id).TypeName;
+            ViewBag.ProductBrand = _brandRepository.GetAllBrands();
             return View(id);
         }
 
         public IActionResult ProductDetailPage(int id)
         {
             Init();
+            var product = _productRepository.GetProductById(id);
+            if (product != null)
+            {
+                ViewBag.ProductTypeName = _productTypeRepository.GetProductTypeById(product.TypeId.Value).TypeName;
+            }
             ViewBag.ProductVersion = _productRepository.GetProductVersionFromProductName(_productRepository.GetProductById(id).ProductName);
             ViewBag.Brand = _brandRepository.GetBrandNameById(_productRepository.GetProductById(id).BrandId.Value);
             ViewBag.AttrbuteList = _attributeRepository.GetAttributeByTypeId(id);
