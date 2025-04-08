@@ -1,7 +1,7 @@
 ﻿using Chill_Computer.Models;
 using Chill_Computer.ViewModels;
 
-namespace Chill_Computer.Contact
+namespace Chill_Computer.Contacts
 {
     public interface IAccountService
     {

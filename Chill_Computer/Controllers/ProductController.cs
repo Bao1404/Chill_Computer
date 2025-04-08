@@ -1,5 +1,5 @@
 ﻿using Chill_Computer.Models;
-using Chill_Computer.Repository;
+using Chill_Computer.Contacts;
 using Chill_Computer.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,6 +27,7 @@ namespace Chill_Computer.Controllers
 
         public IActionResult ProductDetailPage()
         {
+            Init();
             return View();
         }
     }
