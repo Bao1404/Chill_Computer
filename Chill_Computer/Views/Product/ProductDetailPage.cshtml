@@ -2,83 +2,68 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    ViewData["Title"] = "Product Detail Page";
+    ViewData["Title"] = ViewBag.ProductTypeName;
+    var processedId = new List<dynamic>();
+    var processedId2 = new List<string>();
 }
 
+@model Chill_Computer.Models.Product
 
 <div class="main-content">
     <div class="title">
-        <a href="HomePage.html">
+        <a asp-controller="Home" asp-action="Index">
             <p class="box">Trang chủ</p>
         </a>
         <p> / </p>
-        <p class="box">Laptop</p>
+        <p class="box">@ViewBag.ProductTypeName</p>
         <p> / </p>
-        <p class="box box-active">Lenovo</p>
+        <p class="box box-active">@ViewBag.Brand.BrandName</p>
     </div>
 
     <div class="slide-box" id="active-slide">
         <div class="active-slide"></div>
         <button class="btn-slide">Thông tin</button>
-        <button class="btn-slide">Cấu hình</button>
+        <button class="btn-slide"><a href="#details" style="text-decoration:none; color: black;">Cấu hình</a></button>
         <button class="btn-slide">Bài viết</button>
     </div>
 
     <div class="product-basic-info row">
         <div class="basic-info-left col-lg-7">
             <div class="product-img-container">
-                <img src="../imgs/lenovo-thinkpad-x1-carbon-gen-10-thinkpro.webp"
-                     alt width="486px" height="486px">
+                <img src="@Model.Img1"
+                alt width="486px" height="486px">
             </div>
 
             <div class="img-selection">
                 <button class="selected-img">
-                    <img src="../imgs/lenovo-thinkpad-x1-carbon-gen-10-thinkpro.webp" alt="">
+                    <img src="@Model.Img1" alt="">
                 </button>
                 <button>
-                    <img src="../imgs/lenovo-thinkpad-x1-carbon-gen-11-thinkpro-05.webp" alt="">
+                    <img src="@Model.Img2" alt="">
                 </button>
                 <button>
-                    <img src="../imgs/lenovo-thinkpad-x1-carbon-gen-11-thinkpro-02.webp" alt="">
+                    <img src="@Model.Img3" alt="">
                 </button>
             </div>
 
-            <div class="product-detail-info">
+            <div class="product-detail-info" id="details">
                 <h3>Cấu hình & đặc điểm</h3>
                 <div class="rounded-table" style="overflow: hidden;">
                     <table>
-                        <tr>
-                            <td>Loại CPU</td>
-                            <td>Intel - Core i7 1365U</td>
-                        </tr>
-                        <tr>
-                            <td>Tốc đọ</td>
-                            <td>1.0 GHz, Lên tới 5.2 GHz </td>
-                        </tr>
-                        <tr>
-                            <td>Bộ nhớ đệm</td>
-                            <td>12MB</td>
-                        </tr>
-                        <tr>
-                            <td>Card onboard</td>
-                            <td>Intel Iris Xe Graphics</td>
-                        </tr>
-                        <tr>
-                            <td>Card rời</td>
-                            <td>Không</td>
-                        </tr>
-                        <tr>
-                            <td>Dung lượng RAM</td>
-                            <td>32GB LPDDR5 6400MHz</td>
-                        </tr>
-                        <tr>
-                            <td>Hỗ trợ tối đa</td>
-                            <td>32GB (Không thể nâng cấp)</td>
-                        </tr>
-                        <tr>
-                            <td>Dung lượng SSD</td>
-                            <td>512 GB (M.2 NVMe)</td>
-                        </tr>
+                        @foreach (var attr in ViewBag.AttrbuteList)
+                        {
+                            if (!processedId2.Contains(attr.AttributeName))
+                            {
+                                processedId2.Add(attr.AttributeName);
+                                foreach (var productAttr in ((IEnumerable<dynamic>)ViewBag.ProductAttributeList).Where(f => f.AttributeId == attr.AttributeId && f.ProductId == Model.ProductId))
+                                {
+                                    <tr>
+                                        <td>@attr.AttributeName </td>
+                                        <td>@productAttr.AttributeValue </td>
+                                    </tr>
+                                }
+                            }                          
+                        }
                     </table>
                 </div>
             </div>
@@ -87,39 +72,25 @@
 
         <div class="basic-info-right col-lg-5">
             <h3>
-                Lenovo ThinkPad X1 Carbon Gen 11 - i7 1365U, 32GB,
-                512GB, FHD+
+                @Model.ProductName
             </h3>
 
             <span>Phiên bản</span>
 
             <div class="type-div">
-                <button class="type-box">
-                    i7 1365U, 32GB, 512GB,
-                    FHD+
-                </button>
-                <button class="type-box">
-                    i7 1365U, 16GB, 512GB,
-                    FHD+
-                </button>
-                <button class="type-box">
-                    i7 1370P, 32GB, 512GB,
-                    FHD+
-                </button>
-                <button class="type-box">
-                    i7 1370P, 64GB, 512GB, 2.8K
-                    OLED
-                </button>
+                @foreach (var ver in ViewBag.ProductVersion)
+                {
+                    <button class="type-box">@ver</button>
+                }
             </div>
 
             <span>Màu</span>
 
             <div class="color-div">
-                <button class="type-box">Đen</button>
-                <button class="type-box">Trắng</button>
+                <button class="type-box">@Model.Color</button>
             </div>
 
-            <h4 class>25.990.000</h4>
+            <h4 class>@Model.FormattedPrice</h4>
 
             <div class="btn-div">
                 <button class="btn1 col-lg-6">

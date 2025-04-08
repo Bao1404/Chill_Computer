@@ -12,21 +12,14 @@ namespace Chill_Computer.Contacts
         }
         public List<ProductType> GetProductTypes()
         {
-            var productTypes = _context.ProductTypes
-                .Join(_context.ProductTypeFilters,
-                    type => type.TypeId,
-                    typeFilter => typeFilter.TypeId,
-                    (type, typeFilter) => new { ProductType = type, ProductTypeFilter = typeFilter })
-                .Join(_context.FilterCategories,
-                    tf => tf.ProductTypeFilter.FilterId,
-                    category => category.FilterId,
-                    (tf, category) => new { ProductType = tf.ProductType })
-                .Select(result => result.ProductType)
-                .ToList();
+            var productTypes = _context.ProductTypes.ToList();
 
             return productTypes;
         }
 
-
+        public ProductType GetProductTypeById(int id)
+        {
+            return _context.ProductTypes.FirstOrDefault(pt => pt.TypeId == id);
+        }
     }
 }

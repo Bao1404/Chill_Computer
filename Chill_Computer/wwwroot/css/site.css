@@ -311,6 +311,8 @@ span {
 .product-menu-details {
     width: 100%;
     display: none;
+    max-height: 462px;
+    overflow-y: scroll;
 }
 
 .footer-style {
@@ -365,7 +367,8 @@ span {
 
     .list-box .box {
         min-width: 65px;
-        height: 25px;
+        height: 36px;
+        font-size: 16px;
         text-align: center;
         font-weight: 600;
         color: black;
@@ -458,22 +461,44 @@ span {
 
 .product-list {
     display: flex;
-    gap: 24.5px;
+    gap: 15px;
     padding-left: 25px;
     flex-wrap: wrap;
 }
 
 .product-box {
-    width: 170px;
-    height: min-content;
+    width: 254px;
+    min-height: 425px;
     border: 1px solid lightgray;
     border-radius: 20px;
     margin-bottom: 20px;
     padding-bottom: 10px;
 }
 
+.product-box-list {
+    width: 190px;
+    min-height: 425px;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+
+.product-box-list img {
+    margin-top: 15px;
+}
+
+    .product-box img {
+        transition: transform 0.3s;
+        margin: 15px 20px 0 20px;
+    }
+
+.product-box img:hover {
+    transform: scale(1.1);
+}
+
 .product-info {
-    margin: 0 10px;
+    margin: 15px 10px 0 10px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -603,7 +628,7 @@ span {
 .basic-info-right {
     display: flex;
     flex-direction: column;
-    padding: 0 75px !important;
+    padding: 0 20px !important;
     gap: 10px;
 }
 
@@ -713,7 +738,14 @@ td:last-child {
     .feature-category-box img {
         width: 150px;
         height: 150px;
+        border-radius: 20px;
+        transition: transform 0.2s;
     }
+
+        .feature-category-box img:hover {
+            background-color: cyan;
+            transform: scale(1.1);
+        }
 
 .feature-category h3 {
     font-weight: bold;
@@ -726,7 +758,8 @@ td:last-child {
 
 .liked-product-box {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 6.84px;
     margin: 15px 0;
 }
 
@@ -739,6 +772,7 @@ td:last-child {
     display: flex;
     align-items: center;
     height: 35px;
+    border: 1.5px solid lightgray;
     border-radius: 20px;
     background-color: white;
     justify-content: center;

@@ -1,7 +1,9 @@
 ﻿using Chill_Computer.Models;
 using Chill_Computer.ViewModels;
 
+
 namespace Chill_Computer.Contacts
+
 {
     public interface IAccountService
     {
@@ -10,6 +12,8 @@ namespace Chill_Computer.Contacts
         public Account GetAccountByUserName(string username);
         public void UpdateRole(Account a, int roleId);
         public void DeleteAccount(Account a);
-        public Boolean IsExistAccount(string username);
+
+        public bool IsExistAccount(string username);
+
     }
 }

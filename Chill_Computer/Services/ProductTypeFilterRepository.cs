@@ -1,6 +1,7 @@
 ﻿using Chill_Computer.Models;
 using Chill_Computer.Services;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace Chill_Computer.Contacts
 {
@@ -16,9 +17,15 @@ namespace Chill_Computer.Contacts
             return _context.ProductTypeFilters.ToList();
         }
 
-        public ProductTypeFilter GetById(int id)
+        public List<ProductTypeFilter> GetByProductTypeId(int typeId)
         {
-            return _context.ProductTypeFilters.FirstOrDefault(filter => filter.TypeId == id);
+            var filters = (from productType in _context.ProductTypes
+                           join typeFilter in _context.ProductTypeFilters
+                           on productType.TypeId equals typeFilter.TypeId
+                           where productType.TypeId == typeId
+                           select typeFilter)
+                          .OrderBy(filter => filter.FilterId).ToList();
+            return filters;
         }
     }
 }
