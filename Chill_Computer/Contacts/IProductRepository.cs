@@ -8,5 +8,6 @@ namespace Chill_Computer.Contacts
         List<Product> GetProductByTypeId(int id);
         public Product GetProductById(int id);
         List<string> GetProductVersionFromProductName(string name);
+        List<Product> GetProductByBrandId(int id);
     }
 }

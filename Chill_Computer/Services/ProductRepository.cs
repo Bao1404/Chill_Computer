@@ -38,5 +38,15 @@ namespace Chill_Computer.Services
                        select product.Version;
             return list.ToList();
         }
+
+        public List<Product> GetProductByBrandId(int id)
+        {
+            var list = from product in _context.Products
+                       join brand in _context.Brands
+                       on product.BrandId equals brand.BrandId
+                       where product.BrandId == brand.BrandId
+                       select product;
+            return list.ToList();
+        }
     }
 }
