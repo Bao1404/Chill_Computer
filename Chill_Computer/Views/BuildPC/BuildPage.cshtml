@@ -31,7 +31,11 @@
                     <div class="component-choice">
                         <img id="selectedCpuImage" src="https://i.postimg.cc/GhkMNN66/n36733-001-arl-i9k-univ-b4cd53ec34294ed9bea8be6f28991d91-medium.webp" alt="">
                         <h4 id="selectedCpuTitle">CPU</h4>
-                        <p id="selectedCpuName"></p>
+                        <div>
+                            <p id="selectedCpuName"></p>
+                            <p id="selectedCpuPrice" style="color: red"></p>
+                        </div>
+                        <input type="number" id="CpuPrice" hidden value="0">
                     </div>
 
                     <button id="btnCPU" class="btn-add-component" onclick="openModalSelectCPU()">
@@ -46,7 +50,11 @@
                     <div class="component-choice">
                         <img id="selectedMainboardImage" src="https://i.postimg.cc/pLR0tCHr/x870e-aorus-pro-ice-01-68e6e05781dd48d4a03485dd1930d7ad-medium.webp" alt="">
                         <h4 id="selectedMainboardTitle">Mainboard</h4>
-                        <p id="selectedMainboardName"></p>
+                        <div>
+                            <p id="selectedMainboardName"></p>
+                            <p id="selectedMainboardPrice" style="color: red"></p>
+                        </div>
+                        <input type="number" id="MainboardPrice" hidden value="0">
                     </div>
 
                     <button id="btnMainboard" class="btn-add-component" onclick="openModalSelectMainboard()">
@@ -61,7 +69,11 @@
                     <div class="component-choice">
                         <img id="selectedVgaImage" src="https://i.postimg.cc/ZqF7BgDv/VGA.png" alt="">
                         <h4 id="selectedVgaTitle">Card đồ họa</h4>
-                        <p id="selectedVgaName"></p>
+                        <div>
+                            <p id="selectedVgaName"></p>
+                            <p id="selectedVgaPrice" style="color: red"></p>
+                        </div>
+                        <input type="number" id="VgaPrice" hidden value="0">
                     </div>
 
                     <button id="btnVGA" class="btn-add-component" onclick="openModalSelectVGA()">
@@ -76,7 +88,11 @@
                     <div class="component-choice">
                         <img id="selectedRamImage" src="https://i.postimg.cc/RVVw6WZ0/image13.png" alt="">
                         <h4 id="selectedRamTitle">RAM</h4>
-                        <p id="selectedRamName"></p>
+                        <div>
+                            <p id="selectedRamName"></p>
+                            <p id="selectedRamPrice" style="color: red"></p>
+                        </div>
+                        <input type="number" id="RamPrice" hidden value="0">
                     </div>
 
                     <button id="btnRam" class="btn-add-component" onclick="openModalSelectRam()">
@@ -91,7 +107,11 @@
                     <div class="component-choice">
                         <img id="selectedSsdImage" src="https://i.postimg.cc/Y2vZXdrw/image.png" alt="">
                         <h4 id="selectedSsdTitle">SSD</h4>
-                        <p id="selectedSsdName"></p>
+                        <div>
+                            <p id="selectedSsdName"></p>
+                            <p id="selectedSsdPrice" style="color: red"></p>
+                        </div>
+                        <input type="number" id="SsdPrice" hidden value="0">
                     </div>
 
                     <button id="btnSsd" class="btn-add-component" onclick="openModalSelectSsd()">
@@ -106,7 +126,11 @@
                     <div class="component-choice">
                         <img id="selectedHddImage" src="https://i.postimg.cc/fTXFskS2/image2.png" alt="">
                         <h4 id="selectedHddTitle">HDD</h4>
-                        <p id="selectedHddName"></p>
+                        <div>
+                            <p id="selectedHddName"></p>
+                            <p id="selectedHddPrice" style="color: red"></p>
+                        </div>
+                        <input type="number" id="HddPrice" hidden value="0">
                     </div>
 
                     <button id="btnHdd" class="btn-add-component" onclick="openModalSelectHdd()">
@@ -121,7 +145,11 @@
                     <div class="component-choice">
                         <img id="selectedCaseImage" src="https://i.postimg.cc/wxnPnDMR/image3.png" alt="">
                         <h4 id="selectedCaseTitle">Case PC</h4>
-                        <p id="selectedCaseName"></p>
+                        <div>
+                            <p id="selectedCaseName"></p>
+                            <p id="selectedCasePrice" style="color: red"></p>
+                        </div>
+                        <input type="number" id="CasePrice" hidden value="0">
                     </div>
 
                     <button id="btnCase" class="btn-add-component" onclick="openModalSelectCase()">
@@ -136,7 +164,11 @@
                     <div class="component-choice">
                         <img id="selectedPsuImage" src="https://i.postimg.cc/x12Z1YK0/image4.png" alt="">
                         <h4 id="selectedPsuTitle">Nguồn</h4>
-                        <p id="selectedPsuName"></p>
+                        <div>
+                            <p id="selectedPsuName"></p>
+                            <p id="selectedPsuPrice" style="color: red"></p>
+                        </div>
+                        <input type="number" id="PsuPrice" hidden value="0">
                     </div>
 
                     <button id="btnPsu" class="btn-add-component" onclick="openModalSelectPsu()">
@@ -151,7 +183,11 @@
                     <div class="component-choice">
                         <img id="selectedTanNhietImage" src="https://i.postimg.cc/W1wHDKn0/image5.png" alt="">
                         <h4 id="selectedTanNhietTitle">Tản nhiệt</h4>
-                        <p id="selectedTanNhietName"></p>
+                        <div>
+                            <p id="selectedTanNhietName"></p>
+                            <p id="selectedTanNhietPrice" style="color: red"></p>
+                        </div>
+                        <input type="number" id="TanNhietPrice" hidden value="0">
                     </div>
 
                     <button id="btnTanNhiet" class="btn-add-component" onclick="openModalSelectTanNhiet()">
@@ -166,7 +202,11 @@
                     <div class="component-choice">
                         <img id="selectedMonitorImage" src="https://i.postimg.cc/d0QSGBHp/image6.png" alt="">
                         <h4 id="selectedMonitorTitle">Màn hình</h4>
-                        <p id="selectedMonitorName"></p>
+                        <div>
+                            <p id="selectedMonitorName"></p>
+                            <p id="selectedMonitorPrice" style="color: red"></p>
+                        </div>
+                        <input type="number" id="MonitorPrice" hidden value="0">
                     </div>
 
                     <button id="btnMonitor" class="btn-add-component" onclick="openModalSelectMonitor()">
@@ -181,7 +221,11 @@
                     <div class="component-choice">
                         <img id="selectedMouseImage" src="https://i.postimg.cc/tJRnxcyc/image14.png" alt="" width="75px" height="75px">
                         <h4 id="selectedMouseTitle">Chuột</h4>
-                        <p id="selectedMouseName"></p>
+                        <div>
+                            <p id="selectedMouseName"></p>
+                            <p id="selectedMousePrice" style="color: red"></p>
+                        </div>
+                        <input type="number" id="MousePrice" hidden value="0">
                     </div>
 
                     <button id="btnMouse" class="btn-add-component" onclick="openModalSelectMouse()">
@@ -196,7 +240,11 @@
                     <div class="component-choice">
                         <img id="selectedKeyboardImage" src="https://i.postimg.cc/Y9ZnKwrB/image7.png" alt="">
                         <h4 id="selectedKeyboardTitle">Bàn phím</h4>
-                        <p id="selectedKeyboardName"></p>
+                        <div>
+                            <p id="selectedKeyboardName"></p>
+                            <p id="selectedKeyboardPrice" style="color: red"></p>
+                        </div>
+                        <input type="number" id="KeyboardPrice" hidden value="0">
                     </div>
 
                     <button id="btnKeyboard" class="btn-add-component" onclick="openModalSelectKeyboard()">
@@ -211,7 +259,11 @@
                     <div class="component-choice">
                         <img id="selectedEarphoneImage" src="https://i.postimg.cc/cC3Dd5Cg/image8.png" alt="">
                         <h4 id="selectedEarphoneTitle">Tai nghe</h4>
-                        <p id="selectedEarphoneName"></p>
+                        <div>
+                            <p id="selectedEarphoneName"></p>
+                            <p id="selectedEarphonePrice" style="color: red"></p>
+                        </div>
+                        <input type="number" id="EarphonePrice" hidden value="0">
                     </div>
 
                     <button id="btnEarphone" class="btn-add-component" onclick="openModalSelectEarphone()">
@@ -226,7 +278,7 @@
             <div class="component-cart">
                 <div class="component-cart-text">
                     <h4>Tạm tính:</h4>
-                    <h4>0đ</h4>
+                    <h4 id="TotalPrice"></h4>
                 </div>
 
                 <div style="text-align: center; margin-top: 40px;">
@@ -254,7 +306,7 @@
                         {
                             if (product.TypeId == 1)
                             {
-                                <a href="javascript:void(0);" onclick="selectCPU('@product.Img1', '@product.ProductName', this)" style="color: black; text-decoration:none;">
+                                <a href="javascript:void(0);" onclick="selectCPU('@product.Img1', '@product.ProductName', '@product.FormattedPrice', '@product.Price')" style="color: black; text-decoration:none;">
                                     <div class="product-box-list">
                                         <img src="@product.Img1" height="100px" width="100px" alt="">
                                         <div class="product-info">
@@ -281,7 +333,7 @@
 </div>
 
 
-<!-- ModalMainBoard -->
+<!-- Moda MainBoard -->
 <div class="modal fade" id="ModalSelectMainboard" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -295,7 +347,7 @@
                         {
                             if (product.TypeId == 4)
                             {
-                                <a href="javascript:void(0);" onclick="selectMainboard('@product.Img1', '@product.ProductName', this)" style="color: black; text-decoration:none;">
+                                <a href="javascript:void(0);" onclick="selectMainboard('@product.Img1', '@product.ProductName', '@product.FormattedPrice', '@product.Price')" style="color: black; text-decoration:none;">
                                     <div class="product-box-list">
                                         <img src="@product.Img1" height="100px" width="100px" alt="">
                                         <div class="product-info">
@@ -335,7 +387,7 @@
                         {
                             if (product.TypeId == 4)
                             {
-                                <a href="javascript:void(0);" onclick="selectVGA('@product.Img1', '@product.ProductName', this)" style="color: black; text-decoration:none;">
+                                <a href="javascript:void(0);" onclick="selectVGA('@product.Img1', '@product.ProductName', '@product.FormattedPrice', '@product.Price')" style="color: black; text-decoration:none;">
                                     <div class="product-box-list">
                                         <img src="@product.Img1" height="100px" width="100px" alt="">
                                         <div class="product-info">
@@ -375,7 +427,7 @@
                         {
                             if (product.TypeId == 4)
                             {
-                                <a href="javascript:void(0);" onclick="selectRam('@product.Img1', '@product.ProductName', this)" style="color: black; text-decoration:none;">
+                                <a href="javascript:void(0);" onclick="selectRam('@product.Img1', '@product.ProductName', '@product.FormattedPrice', '@product.Price')" style="color: black; text-decoration:none;">
                                     <div class="product-box-list">
                                         <img src="@product.Img1" height="100px" width="100px" alt="">
                                         <div class="product-info">
@@ -415,7 +467,7 @@
                         {
                             if (product.TypeId == 4)
                             {
-                                <a href="javascript:void(0);" onclick="selectSsd('@product.Img1', '@product.ProductName', this)" style="color: black; text-decoration:none;">
+                                <a href="javascript:void(0);" onclick="selectSsd('@product.Img1', '@product.ProductName', '@product.FormattedPrice', '@product.Price')" style="color: black; text-decoration:none;">
                                     <div class="product-box-list">
                                         <img src="@product.Img1" height="100px" width="100px" alt="">
                                         <div class="product-info">
@@ -455,7 +507,7 @@
                         {
                             if (product.TypeId == 4)
                             {
-                                <a href="javascript:void(0);" onclick="selectHdd('@product.Img1', '@product.ProductName', this)" style="color: black; text-decoration:none;">
+                                <a href="javascript:void(0);" onclick="selectHdd('@product.Img1', '@product.ProductName', '@product.FormattedPrice', '@product.Price')" style="color: black; text-decoration:none;">
                                     <div class="product-box-list">
                                         <img src="@product.Img1" height="100px" width="100px" alt="">
                                         <div class="product-info">
@@ -495,7 +547,7 @@
                         {
                             if (product.TypeId == 4)
                             {
-                                <a href="javascript:void(0);" onclick="selectCase('@product.Img1', '@product.ProductName', this)" style="color: black; text-decoration:none;">
+                                <a href="javascript:void(0);" onclick="selectCase('@product.Img1', '@product.ProductName', '@product.FormattedPrice', '@product.Price')" style="color: black; text-decoration:none;">
                                     <div class="product-box-list">
                                         <img src="@product.Img1" height="100px" width="100px" alt="">
                                         <div class="product-info">
@@ -535,7 +587,7 @@
                         {
                             if (product.TypeId == 4)
                             {
-                                <a href="javascript:void(0);" onclick="selectPsu('@product.Img1', '@product.ProductName', this)" style="color: black; text-decoration:none;">
+                                <a href="javascript:void(0);" onclick="selectPsu('@product.Img1', '@product.ProductName', '@product.FormattedPrice', '@product.Price')" style="color: black; text-decoration:none;">
                                     <div class="product-box-list">
                                         <img src="@product.Img1" height="100px" width="100px" alt="">
                                         <div class="product-info">
@@ -575,7 +627,7 @@
                         {
                             if (product.TypeId == 4)
                             {
-                                <a href="javascript:void(0);" onclick="selectTanNhiet('@product.Img1', '@product.ProductName', this)" style="color: black; text-decoration:none;">
+                                <a href="javascript:void(0);" onclick="selectTanNhiet('@product.Img1', '@product.ProductName', '@product.FormattedPrice', '@product.Price')" style="color: black; text-decoration:none;">
                                     <div class="product-box-list">
                                         <img src="@product.Img1" height="100px" width="100px" alt="">
                                         <div class="product-info">
@@ -615,7 +667,7 @@
                         {
                             if (product.TypeId == 4)
                             {
-                                <a href="javascript:void(0);" onclick="selectMonitor('@product.Img1', '@product.ProductName', this)" style="color: black; text-decoration:none;">
+                                <a href="javascript:void(0);" onclick="selectMonitor('@product.Img1', '@product.ProductName', '@product.FormattedPrice', '@product.Price')" style="color: black; text-decoration:none;">
                                     <div class="product-box-list">
                                         <img src="@product.Img1" height="100px" width="100px" alt="">
                                         <div class="product-info">
@@ -655,7 +707,7 @@
                         {
                             if (product.TypeId == 4)
                             {
-                                <a href="javascript:void(0);" onclick="selectMouse('@product.Img1', '@product.ProductName', this)" style="color: black; text-decoration:none;">
+                                <a href="javascript:void(0);" onclick="selectMouse('@product.Img1', '@product.ProductName', '@product.FormattedPrice', '@product.Price')" style="color: black; text-decoration:none;">
                                     <div class="product-box-list">
                                         <img src="@product.Img1" height="100px" width="100px" alt="">
                                         <div class="product-info">
@@ -695,7 +747,7 @@
                         {
                             if (product.TypeId == 4)
                             {
-                                <a href="javascript:void(0);" onclick="selectKeyboard('@product.Img1', '@product.ProductName', this)" style="color: black; text-decoration:none;">
+                                <a href="javascript:void(0);" onclick="selectKeyboard('@product.Img1', '@product.ProductName', '@product.FormattedPrice', '@product.Price')" style="color: black; text-decoration:none;">
                                     <div class="product-box-list">
                                         <img src="@product.Img1" height="100px" width="100px" alt="">
                                         <div class="product-info">
@@ -735,7 +787,7 @@
                         {
                             if (product.TypeId == 4)
                             {
-                                <a href="javascript:void(0);" onclick="selectEarphone('@product.Img1', '@product.ProductName', this)" style="color: black; text-decoration:none;">
+                                <a href="javascript:void(0);" onclick="selectEarphone('@product.Img1', '@product.ProductName', '@product.FormattedPrice', '@product.Price')" style="color: black; text-decoration:none;">
                                     <div class="product-box-list">
                                         <img src="@product.Img1" height="100px" width="100px" alt="">
                                         <div class="product-info">
@@ -766,15 +818,27 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <script>
+    let TotalPrice = 0;
+
+        function updateTotalPrice() {
+        if (!isNaN(TotalPrice) && TotalPrice >= 0) {
+            document.getElementById('TotalPrice').innerText = TotalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + 'đ';
+        } else {
+            document.getElementById('TotalPrice').innerText = '0đ';
+        }
+    }
 
     // CPU
-    function selectCPU (image, name, element) {
+    function selectCPU (image, name, vprice, price) {
         document.getElementById('selectedCpuImage').src = image;
         document.getElementById('selectedCpuName').innerText = name;
         document.getElementById('selectedCpuTitle').innerText = '';
+        document.getElementById('selectedCpuPrice').innerText = vprice + 'đ';
         document.getElementById('btnCPU').querySelector('span').innerText = 'Xóa';
         document.getElementById('btnCPU').querySelector('svg').style.display = 'none';
-
+        document.getElementById('CpuPrice').value = price;
+        TotalPrice += parseInt(price, 10);
+        updateTotalPrice();
         $('#ModalSelectCPU').modal('hide');
     }
 
@@ -787,21 +851,27 @@
 
             document.getElementById('selectedCpuImage').src = 'https://i.postimg.cc/GhkMNN66/n36733-001-arl-i9k-univ-b4cd53ec34294ed9bea8be6f28991d91-medium.webp';
             document.getElementById('selectedCpuName').innerText = '';
+            document.getElementById('selectedCpuPrice').innerText = '';
             document.getElementById('selectedCpuTitle').innerText = 'CPU';
-
+            TotalPrice -= parseInt(document.getElementById('CpuPrice').value);
+            document.getElementById('CpuPrice').value = '';
+            updateTotalPrice();
         } else {
             $('#ModalSelectCPU').modal('show');
         }
     }
 
     // Mainboard
-    function selectMainboard (image, name, element) {
+    function selectMainboard (image, name, vprice, price) {
         document.getElementById('selectedMainboardImage').src = image;
         document.getElementById('selectedMainboardName').innerText = name;
+        document.getElementById('selectedMainboardPrice').innerText = vprice + 'đ';
         document.getElementById('selectedMainboardTitle').innerText = '';
         document.getElementById('btnMainboard').querySelector('span').innerText = 'Xóa';
         document.getElementById('btnMainboard').querySelector('svg').style.display = 'none';
-
+        document.getElementById('MainboardPrice').value = price;
+        TotalPrice += parseInt(price, 10);
+        updateTotalPrice();
         $('#ModalSelectMainboard').modal('hide');
     }
 
@@ -814,7 +884,11 @@
 
             document.getElementById('selectedMainboardImage').src = 'https://i.postimg.cc/pLR0tCHr/x870e-aorus-pro-ice-01-68e6e05781dd48d4a03485dd1930d7ad-medium.webp';
             document.getElementById('selectedMainboardName').innerText = '';
+            document.getElementById('selectedMainboardPrice').innerText = '';
             document.getElementById('selectedMainboardTitle').innerText = 'Mainboard';
+            TotalPrice -= parseInt(document.getElementById('MainboardPrice').value);
+            document.getElementById('MainboardPrice').value = '';
+            updateTotalPrice();
 
         } else {
             $('#ModalSelectMainboard').modal('show');
@@ -822,13 +896,16 @@
     }
 
     // VGA
-    function selectVGA (image, name, element) {
+    function selectVGA (image, name, vprice, price) {
         document.getElementById('selectedVgaImage').src = image;
         document.getElementById('selectedVgaName').innerText = name;
+        document.getElementById('selectedVgaPrice').innerText = vprice + 'đ';
         document.getElementById('selectedVgaTitle').innerText = '';
         document.getElementById('btnVGA').querySelector('span').innerText = 'Xóa';
         document.getElementById('btnVGA').querySelector('svg').style.display = 'none';
-
+        document.getElementById('VgaPrice').value = price;
+        TotalPrice += parseInt(price, 10);
+        updateTotalPrice();
         $('#ModalSelectVGA').modal('hide');
     }
 
@@ -841,21 +918,27 @@
 
             document.getElementById('selectedVgaImage').src = 'https://i.postimg.cc/ZqF7BgDv/VGA.png';
             document.getElementById('selectedVgaName').innerText = '';
+            document.getElementById('selectedVgaPrice').innerText = '';
             document.getElementById('selectedVgaTitle').innerText = 'Card đồ họa';
-
+            TotalPrice -= parseInt(document.getElementById('VgaPrice').value);
+            document.getElementById('VgaPrice').value = '';
+            updateTotalPrice();
         } else {
             $('#ModalSelectVGA').modal('show');
         }
     }
 
     // RAM
-    function selectRam (image, name, element) {
+    function selectRam (image, name, vprice, price) {
         document.getElementById('selectedRamImage').src = image;
         document.getElementById('selectedRamName').innerText = name;
+        document.getElementById('selectedRamPrice').innerText = vprice + 'đ';
         document.getElementById('selectedRamTitle').innerText = '';
         document.getElementById('btnRam').querySelector('span').innerText = 'Xóa';
         document.getElementById('btnRam').querySelector('svg').style.display = 'none';
-
+        document.getElementById('RamPrice').value = price;
+        TotalPrice += parseInt(price, 10);
+        updateTotalPrice();
         $('#ModalSelectRam').modal('hide');
     }
 
@@ -868,21 +951,27 @@
 
             document.getElementById('selectedRamImage').src = 'https://i.postimg.cc/RVVw6WZ0/image13.png';
             document.getElementById('selectedRamName').innerText = '';
+            document.getElementById('selectedRamPrice').innerText = '';
             document.getElementById('selectedRamTitle').innerText = 'RAM';
-
+            TotalPrice -= parseInt(document.getElementById('RamPrice').value);
+            document.getElementById('RamPrice').value = '';
+            updateTotalPrice();
         } else {
             $('#ModalSelectRam').modal('show');
         }
     }
 
     // SSD
-    function selectSsd (image, name, element) {
+    function selectSsd (image, name, vprice, price) {
         document.getElementById('selectedSsdImage').src = image;
         document.getElementById('selectedSsdName').innerText = name;
+        document.getElementById('selectedSsdPrice').innerText = vprice + 'đ';
         document.getElementById('selectedSsdTitle').innerText = '';
         document.getElementById('btnSsd').querySelector('span').innerText = 'Xóa';
         document.getElementById('btnSsd').querySelector('svg').style.display = 'none';
-
+        document.getElementById('SsdPrice').value = price;
+        TotalPrice += parseInt(price, 10);
+        updateTotalPrice();
         $('#ModalSelectSsd').modal('hide');
     }
 
@@ -895,8 +984,11 @@
 
             document.getElementById('selectedSsdImage').src = 'https://i.postimg.cc/Y2vZXdrw/image.png';
             document.getElementById('selectedSsdName').innerText = '';
+            document.getElementById('selectedSsdPrice').innerText = '';
             document.getElementById('selectedSsdTitle').innerText = 'SSD';
-
+            TotalPrice -= parseInt(document.getElementById('SsdPrice').value);
+            document.getElementById('SsdPrice').value = '';
+            updateTotalPrice();
         } else {
             $('#ModalSelectSsd').modal('show');
         }
@@ -904,13 +996,16 @@
 
 
     // HDD
-    function selectHdd (image, name, element) {
+    function selectHdd (image, name, vprice, price) {
         document.getElementById('selectedHddImage').src = image;
         document.getElementById('selectedHddName').innerText = name;
+        document.getElementById('selectedHddPrice').innerText = vprice + 'đ';
         document.getElementById('selectedHddTitle').innerText = '';
         document.getElementById('btnHdd').querySelector('span').innerText = 'Xóa';
         document.getElementById('btnHdd').querySelector('svg').style.display = 'none';
-
+        document.getElementById('HddPrice').value = price;
+        TotalPrice += parseInt(price, 10);
+        updateTotalPrice();
         $('#ModalSelectHdd').modal('hide');
     }
 
@@ -923,21 +1018,27 @@
 
             document.getElementById('selectedHddImage').src = 'https://i.postimg.cc/fTXFskS2/image2.png';
             document.getElementById('selectedHddName').innerText = '';
+            document.getElementById('selectedHddPrice').innerText = '';
             document.getElementById('selectedHddTitle').innerText = 'HDD';
-
+            TotalPrice -= parseInt(document.getElementById('HddPrice').value);
+            document.getElementById('HddPrice').value = '';
+            updateTotalPrice();
         } else {
             $('#ModalSelectHdd').modal('show');
         }
     }
 
     // Case
-    function selectCase (image, name, element) {
+    function selectCase (image, name, vprice, price) {
         document.getElementById('selectedCaseImage').src = image;
         document.getElementById('selectedCaseName').innerText = name;
+        document.getElementById('selectedCasePrice').innerText = vprice + 'đ';
         document.getElementById('selectedCaseTitle').innerText = '';
         document.getElementById('btnCase').querySelector('span').innerText = 'Xóa';
         document.getElementById('btnCase').querySelector('svg').style.display = 'none';
-
+        document.getElementById('CasePrice').value = price;
+        TotalPrice += parseInt(price, 10);
+        updateTotalPrice();
         $('#ModalSelectCase').modal('hide');
     }
 
@@ -950,8 +1051,11 @@
 
             document.getElementById('selectedCaseImage').src = 'https://i.postimg.cc/wxnPnDMR/image3.png';
             document.getElementById('selectedCaseName').innerText = '';
+            document.getElementById('selectedCasePrice').innerText = '';
             document.getElementById('selectedCaseTitle').innerText = 'Case PC';
-
+            TotalPrice -= parseInt(document.getElementById('CasePrice').value);
+            document.getElementById('CasePrice').value = '';
+            updateTotalPrice();
         } else {
             $('#ModalSelectCase').modal('show');
         }
@@ -959,13 +1063,16 @@
 
 
     // PSU (Nguồn)
-    function selectPsu (image, name, element) {
+    function selectPsu (image, name, vprice, price) {
         document.getElementById('selectedPsuImage').src = image;
         document.getElementById('selectedPsuName').innerText = name;
+        document.getElementById('selectedPsuPrice').innerText = vprice + 'đ';
         document.getElementById('selectedPsuTitle').innerText = '';
         document.getElementById('btnPsu').querySelector('span').innerText = 'Xóa';
         document.getElementById('btnPsu').querySelector('svg').style.display = 'none';
-
+        document.getElementById('PsuPrice').value = price;
+        TotalPrice += parseInt(price, 10);
+        updateTotalPrice();
         $('#ModalSelectPsu').modal('hide');
     }
 
@@ -978,8 +1085,11 @@
 
             document.getElementById('selectedPsuImage').src = 'https://i.postimg.cc/x12Z1YK0/image4.png';
             document.getElementById('selectedPsuName').innerText = '';
+            document.getElementById('selectedPsuPrice').innerText = '';
             document.getElementById('selectedPsuTitle').innerText = 'Nguồn';
-
+            TotalPrice -= parseInt(document.getElementById('PsuPrice').value);
+            document.getElementById('PsuPrice').value = '';
+            updateTotalPrice();
         } else {
             $('#ModalSelectPsu').modal('show');
         }
@@ -987,13 +1097,16 @@
 
 
     // Tản Nhiệt
-    function selectTanNhiet (image, name, element) {
+    function selectTanNhiet (image, name, vprice, price) {
         document.getElementById('selectedTanNhietImage').src = image;
         document.getElementById('selectedTanNhietName').innerText = name;
+        document.getElementById('selectedTanNhietPrice').innerText = vprice +'đ';
         document.getElementById('selectedTanNhietTitle').innerText = '';
         document.getElementById('btnTanNhiet').querySelector('span').innerText = 'Xóa';
         document.getElementById('btnTanNhiet').querySelector('svg').style.display = 'none';
-
+        document.getElementById('TanNhietPrice').value = price;
+        TotalPrice += parseInt(price, 10);
+        updateTotalPrice();
         $('#ModalSelectTanNhiet').modal('hide');
     }
 
@@ -1006,8 +1119,11 @@
 
             document.getElementById('selectedTanNhietImage').src = 'https://i.postimg.cc/W1wHDKn0/image5.png';
             document.getElementById('selectedTanNhietName').innerText = '';
+            document.getElementById('selectedTanNhietPrice').innerText = '';
             document.getElementById('selectedTanNhietTitle').innerText = 'Tản Nhiệt';
-
+            TotalPrice -= parseInt(document.getElementById('TanNhietPrice').value);
+            document.getElementById('TanNhietPrice').value = '';
+            updateTotalPrice();
         } else {
             $('#ModalSelectTanNhiet').modal('show');
         }
@@ -1015,13 +1131,16 @@
 
 
     // Monitor
-    function selectMonitor (image, name, element) {
+    function selectMonitor (image, name, vprice, price) {
         document.getElementById('selectedMonitorImage').src = image;
         document.getElementById('selectedMonitorName').innerText = name;
+        document.getElementById('selectedMonitorPrice').innerText = vprice + 'đ';
         document.getElementById('selectedMonitorTitle').innerText = '';
         document.getElementById('btnMonitor').querySelector('span').innerText = 'Xóa';
         document.getElementById('btnMonitor').querySelector('svg').style.display = 'none';
-
+        document.getElementById('MonitorPrice').value = price;
+        TotalPrice += parseInt(price, 10);
+        updateTotalPrice();
         $('#ModalSelectMonitor').modal('hide');
     }
 
@@ -1034,8 +1153,11 @@
 
             document.getElementById('selectedMonitorImage').src = 'https://i.postimg.cc/d0QSGBHp/image6.png';
             document.getElementById('selectedMonitorName').innerText = '';
+            document.getElementById('selectedMonitorPrice').innerText = '';
             document.getElementById('selectedMonitorTitle').innerText = 'Màn Hình';
-
+            TotalPrice -= parseInt(document.getElementById('MonitorPrice').value);
+            document.getElementById('MonitorPrice').value = '';
+            updateTotalPrice();
         } else {
             $('#ModalSelectMonitor').modal('show');
         }
@@ -1043,13 +1165,16 @@
 
 
     // Mouse
-    function selectMouse (image, name, element) {
+    function selectMouse (image, name, vprice, price) {
         document.getElementById('selectedMouseImage').src = image;
         document.getElementById('selectedMouseName').innerText = name;
+        document.getElementById('selectedMousePrice').innerText = vprice + 'đ';
         document.getElementById('selectedMouseTitle').innerText = '';
         document.getElementById('btnMouse').querySelector('span').innerText = 'Xóa';
         document.getElementById('btnMouse').querySelector('svg').style.display = 'none';
-
+        document.getElementById('MousePrice').value = price;
+        TotalPrice += parseInt(price, 10);
+        updateTotalPrice();
         $('#ModalSelectMouse').modal('hide');
     }
 
@@ -1062,8 +1187,11 @@
 
             document.getElementById('selectedMouseImage').src = 'https://i.postimg.cc/tJRnxcyc/image14.png';
             document.getElementById('selectedMouseName').innerText = '';
+            document.getElementById('selectedMousePrice').innerText = '';
             document.getElementById('selectedMouseTitle').innerText = 'Chuột';
-
+            TotalPrice -= parseInt(document.getElementById('MousePrice').value);
+            document.getElementById('MousePrice').value = '';
+            updateTotalPrice();
         } else {
             $('#ModalSelectMouse').modal('show');
         }
@@ -1071,13 +1199,16 @@
 
 
     // Keyboard
-    function selectKeyboard (image, name, element) {
+    function selectKeyboard (image, name, vprice, price) {
         document.getElementById('selectedKeyboardImage').src = image;
         document.getElementById('selectedKeyboardName').innerText = name;
+        document.getElementById('selectedKeyboardPrice').innerText = vprice + 'đ';
         document.getElementById('selectedKeyboardTitle').innerText = '';
         document.getElementById('btnKeyboard').querySelector('span').innerText = 'Xóa';
         document.getElementById('btnKeyboard').querySelector('svg').style.display = 'none';
-
+        document.getElementById('KeyboardPrice').value = price;
+        TotalPrice += parseInt(price, 10);
+        updateTotalPrice();
         $('#ModalSelectKeyboard').modal('hide');
     }
 
@@ -1090,25 +1221,31 @@
 
             document.getElementById('selectedKeyboardImage').src = 'https://i.postimg.cc/Y9ZnKwrB/image7.png';
             document.getElementById('selectedKeyboardName').innerText = '';
+            document.getElementById('selectedKeyboardPrice').innerText = '';
             document.getElementById('selectedKeyboardTitle').innerText = 'Bàn Phím';
-
+            TotalPrice -= parseInt(document.getElementById('KeyboardPrice').value);
+            document.getElementById('KeyboardPrice').value = '';
+            updateTotalPrice();
         } else {
             $('#ModalSelectKeyboard').modal('show');
         }
     }
 
-    function selectEarphone (image, name, element) {
+
+    // Earphone
+    function selectEarphone (image, name, vprice, price) {
         document.getElementById('selectedEarphoneImage').src = image;
         document.getElementById('selectedEarphoneName').innerText = name;
+        document.getElementById('selectedEarphonePrice').innerText = vprice + 'đ';
         document.getElementById('selectedEarphoneTitle').innerText = '';
         document.getElementById('btnEarphone').querySelector('span').innerText = 'Xóa';
         document.getElementById('btnEarphone').querySelector('svg').style.display = 'none';
-
+        document.getElementById('EarphonePrice').value = price;
+        TotalPrice += parseInt(price, 10);
+        updateTotalPrice();
         $('#ModalSelectEarphone').modal('hide');
     }
 
-
-    // Earphone
     function openModalSelectEarphone() {
         var buttonText = document.getElementById('btnEarphone').querySelector('span');
 
@@ -1118,19 +1255,27 @@
 
             document.getElementById('selectedEarphoneImage').src = 'https://i.postimg.cc/cC3Dd5Cg/image8.png';
             document.getElementById('selectedEarphoneName').innerText = '';
+            document.getElementById('selectedEarphonePrice').innerText = '';
             document.getElementById('selectedEarphoneTitle').innerText = 'Tai Nghe';
-
+            TotalPrice -= parseInt(document.getElementById('EarphonePrice').value);
+            document.getElementById('EarphonePrice').value = '';
+            updateTotalPrice();
         } else {
             $('#ModalSelectEarphone').modal('show');
         }
     }
 
     function resetAllBox() {
+        // Total Price
+        TotalPrice = 0;
+        updateTotalPrice();
+
         // CPU
         document.getElementById('btnCPU').querySelector('svg').style.display = 'block';
         document.getElementById('btnCPU').querySelector('span').innerText = 'Thêm';
         document.getElementById('selectedCpuImage').src = 'https://i.postimg.cc/GhkMNN66/n36733-001-arl-i9k-univ-b4cd53ec34294ed9bea8be6f28991d91-medium.webp';
         document.getElementById('selectedCpuName').innerText = '';
+        document.getElementById('selectedCpuPrice').innerText = '';
         document.getElementById('selectedCpuTitle').innerText = 'CPU';
 
         // Mainboard
@@ -1138,6 +1283,7 @@
         document.getElementById('btnMainboard').querySelector('span').innerText = 'Thêm';
         document.getElementById('selectedMainboardImage').src = 'https://i.postimg.cc/pLR0tCHr/x870e-aorus-pro-ice-01-68e6e05781dd48d4a03485dd1930d7ad-medium.webp';
         document.getElementById('selectedMainboardName').innerText = '';
+        document.getElementById('selectedMainboardPrice').innerText = '';
         document.getElementById('selectedMainboardTitle').innerText = 'Mainboard';
 
         // VGA
@@ -1145,6 +1291,7 @@
         document.getElementById('btnVGA').querySelector('span').innerText = 'Thêm';
         document.getElementById('selectedVgaImage').src = 'https://i.postimg.cc/ZqF7BgDv/VGA.png';
         document.getElementById('selectedVgaName').innerText = '';
+        document.getElementById('selectedVgaPrice').innerText = '';
         document.getElementById('selectedVgaTitle').innerText = 'Card đồ họa';
 
         // RAM
@@ -1152,6 +1299,7 @@
         document.getElementById('btnRam').querySelector('span').innerText = 'Thêm';
         document.getElementById('selectedRamImage').src = 'https://i.postimg.cc/RVVw6WZ0/image13.png';
         document.getElementById('selectedRamName').innerText = '';
+        document.getElementById('selectedRamPrice').innerText = '';
         document.getElementById('selectedRamTitle').innerText = 'RAM';
 
         // SSD
@@ -1159,6 +1307,7 @@
         document.getElementById('btnSsd').querySelector('span').innerText = 'Thêm';
         document.getElementById('selectedSsdImage').src = 'https://i.postimg.cc/Y2vZXdrw/image.png';
         document.getElementById('selectedSsdName').innerText = '';
+        document.getElementById('selectedSsdPrice').innerText = '';
         document.getElementById('selectedSsdTitle').innerText = 'SSD';
 
         // HDD
@@ -1166,6 +1315,7 @@
         document.getElementById('btnHdd').querySelector('span').innerText = 'Thêm';
         document.getElementById('selectedHddImage').src = 'https://i.postimg.cc/fTXFskS2/image2.png';
         document.getElementById('selectedHddName').innerText = '';
+        document.getElementById('selectedHddPrice').innerText = '';
         document.getElementById('selectedHddTitle').innerText = 'HDD';
 
         // Case
@@ -1173,6 +1323,7 @@
         document.getElementById('btnCase').querySelector('span').innerText = 'Thêm';
         document.getElementById('selectedCaseImage').src = 'https://i.postimg.cc/wxnPnDMR/image3.png';
         document.getElementById('selectedCaseName').innerText = '';
+        document.getElementById('selectedCasePrice').innerText = '';
         document.getElementById('selectedCaseTitle').innerText = 'Case PC';
 
         // PSU
@@ -1180,6 +1331,7 @@
         document.getElementById('btnPsu').querySelector('span').innerText = 'Thêm';
         document.getElementById('selectedPsuImage').src = 'https://i.postimg.cc/x12Z1YK0/image4.png';
         document.getElementById('selectedPsuName').innerText = '';
+        document.getElementById('selectedPsuPrice').innerText = '';
         document.getElementById('selectedPsuTitle').innerText = 'Nguồn';
 
         //Tan Nhiet
@@ -1187,6 +1339,7 @@
         document.getElementById('btnTanNhiet').querySelector('span').innerText = 'Thêm';
         document.getElementById('selectedTanNhietImage').src = 'https://i.postimg.cc/W1wHDKn0/image5.png';
         document.getElementById('selectedTanNhietName').innerText = '';
+        document.getElementById('selectedTanNhietPrice').innerText = '';
         document.getElementById('selectedTanNhietTitle').innerText = 'Tản Nhiệt';
 
         // Monitor
@@ -1194,6 +1347,7 @@
         document.getElementById('btnMonitor').querySelector('span').innerText = 'Thêm';
         document.getElementById('selectedMonitorImage').src = 'https://i.postimg.cc/d0QSGBHp/image6.png';
         document.getElementById('selectedMonitorName').innerText = '';
+        document.getElementById('selectedMonitorPrice').innerText = '';
         document.getElementById('selectedMonitorTitle').innerText = 'Màn Hình';
 
         // Mouse
@@ -1201,6 +1355,7 @@
         document.getElementById('btnMouse').querySelector('span').innerText = 'Thêm';
         document.getElementById('selectedMouseImage').src = 'https://i.postimg.cc/tJRnxcyc/image14.png';
         document.getElementById('selectedMouseName').innerText = '';
+        document.getElementById('selectedMousePrice').innerText = '';
         document.getElementById('selectedMouseTitle').innerText = 'Chuột';
 
         // Keyboard
@@ -1208,6 +1363,7 @@
         document.getElementById('btnKeyboard').querySelector('span').innerText = 'Thêm';
         document.getElementById('selectedKeyboardImage').src = 'https://i.postimg.cc/Y9ZnKwrB/image7.png';
         document.getElementById('selectedKeyboardName').innerText = '';
+        document.getElementById('selectedKeyboardPrice').innerText = '';
         document.getElementById('selectedKeyboardTitle').innerText = 'Bàn Phím';
 
         // Earphone
@@ -1215,6 +1371,7 @@
         document.getElementById('btnEarphone').querySelector('span').innerText = 'Thêm';
         document.getElementById('selectedEarphoneImage').src = 'https://i.postimg.cc/cC3Dd5Cg/image8.png';
         document.getElementById('selectedEarphoneName').innerText = '';
+        document.getElementById('selectedEarphonePrice').innerText = '';
         document.getElementById('selectedEarphoneTitle').innerText = 'Tai Nghe';
     }
 </script>
