@@ -468,7 +468,7 @@ span {
 
 .product-box {
     width: 254px;
-    min-height: 425px;
+    min-height: 435px;
     border: 1px solid lightgray;
     border-radius: 20px;
     margin-bottom: 20px;
@@ -477,7 +477,7 @@ span {
 
 .product-box-list {
     width: 190px;
-    min-height: 425px;
+    min-height: 435px;
     border: 1px solid lightgray;
     border-radius: 20px;
     margin-bottom: 20px;

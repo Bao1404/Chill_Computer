@@ -1,5 +1,7 @@
 ﻿using Chill_Computer.Contacts;
 using Chill_Computer.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Collections.Generic;
 
 namespace Chill_Computer.Services
 {
@@ -14,6 +16,18 @@ namespace Chill_Computer.Services
         public List<Product> GetAllProducts()
         {
             return _context.Products.ToList();
+        }
+
+        
+
+        public IEnumerable<Product> GetProductsByTypeName(string typeName)
+        {
+            var list = from product in _context.Products
+                       join typeProduct in _context.ProductTypes
+                       on product.TypeId equals typeProduct.TypeId
+                       where typeProduct.TypeName == typeName
+                       select product;
+            return list.ToList();
         }
 
         public List<Product> GetProductByTypeId(int id)
@@ -48,5 +62,6 @@ namespace Chill_Computer.Services
                        select product;
             return list.ToList();
         }
+
     }
 }
