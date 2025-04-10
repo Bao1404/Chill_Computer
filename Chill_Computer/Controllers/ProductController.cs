@@ -34,8 +34,16 @@ namespace Chill_Computer.Controllers
         {
             Init();
             var product = _productRepository.GetProductById(id);
+            var productFilter = _productTypeFilterRepository.GetByProductTypeId(id);
+            List<FilterCategory> listCategory = new List<FilterCategory>();
             ViewBag.ProductList = _productRepository.GetProductByTypeId(id);
-            ViewBag.ProductTypeName = _productTypeRepository.GetProductTypeById(id).TypeName;
+            ViewBag.ProductTypeName = _productTypeRepository.GetProductTypeById(id);
+            ViewBag.ProductFilters = productFilter;
+            foreach (var category in productFilter)
+            {
+                listCategory.AddRange(_filterCategoryRepository.GetGetCategoriesByFilterId(category.FilterId));               
+            }
+            ViewBag.FilterCategory = listCategory;
             ViewBag.ProductBrand = _brandRepository.GetAllBrands();
             return View(id);
         }

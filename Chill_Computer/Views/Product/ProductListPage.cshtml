@@ -2,6 +2,9 @@
 @{
     ViewData["Title"] = ViewBag.ProductTypeName;
     var listId = new List<string>();
+    var storedProduct = new List<dynamic>();
+    var storedFilter = new List<dynamic>();
+    var storedCategory = new List<dynamic>();
 }
 
 <div class="main-content">
@@ -11,34 +14,41 @@
             <p class="box">Trang chủ</p>
         </a>
         <p> / </p>
-        <p class="box box-active">@ViewBag.ProductTypeName</p>
+        <p class="box box-active">@ViewBag.ProductTypeName.TypeName</p>
         @* <p> / </p> *@
         @* <p class="box">Laptop</p> *@
     </div>
 
-    <h1>@ViewBag.ProductTypeName</h1>
+    <h1>@ViewBag.ProductTypeName.TypeName</h1>
 
     <div class="list-box">
         @foreach (var product in ViewBag.ProductList)
         {
             if(product.TypeId == Model)
             {
-                    @foreach (var brand in ((IEnumerable<dynamic>)ViewBag.ProductBrand).Where(b => b.BrandId == product.BrandId))
+                @foreach (var brand in ((IEnumerable<dynamic>)ViewBag.ProductBrand).Where(b => b.BrandId == product.BrandId))
+                {
+                    if (!listId.Contains(brand.BrandName))
                     {
-                        if (!listId.Contains(brand.BrandName))
-                        {
-                            listId.Add(brand.BrandName);
-                            <button class="box">
-                                <span>@brand.BrandName</span>
-                            </button>
-                        }
+                        listId.Add(brand.BrandName);
+                        <button class="box">
+                            <span>@brand.BrandName</span>
+                        </button>
+                    }
                 }
             }
         }
     </div>
 
     <div class="sl-sap-xep">
-        <span>100 Sản phẩm</span>
+        @{
+            List<Product> productList = new List<Product>();
+            foreach (var product in ((IEnumerable<dynamic>)ViewBag.ProductList).Where(p => p.TypeId == Model))
+            {
+                productList.Add(product);
+            }
+            <span>@productList.Count() Sản phẩm</span>
+        }
         <select name="" id="select" class="select-filter">
             <option value="0">Nổi bật nhất</option>
             <option value="1">Giá tăng dần</option>
@@ -48,414 +58,66 @@
 
     <div class="product-list-content">
         <div class="content-filter" style="width: 25%;">
-            <div class="filter-type">
-                <div class="filter-title">
-                    <span>Thương hiệu</span>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0002 8.00025C21.0002 8.25625 20.9023 8.51225 20.7073 8.70725L12.7072 16.7072C12.3162 17.0982 11.6842 17.0982 11.2933 16.7072L3.29325 8.70725C2.90225 8.31625 2.90225 7.68425 3.29325 7.29325C3.68425 6.90225 4.31625 6.90225 4.70725 7.29325L12.0002 14.5862L19.2932 7.29325C19.6842 6.90225 20.3162 6.90225 20.7073 7.29325C20.9023 7.48825 21.0002 7.74425 21.0002 8.00025Z" fill="#06152B" />
-                    </svg>
-                </div>
-
-                <div class="filter-category row">
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>Lenovo</span>
+            @foreach (var filterName in ViewBag.ProductFilters)
+            {
+                <div class="filter-type">
+                    <div class="filter-title">
+                        <span>@filterName.FilterName</span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0002 8.00025C21.0002 8.25625 20.9023 8.51225 20.7073 8.70725L12.7072 16.7072C12.3162 17.0982 11.6842 17.0982 11.2933 16.7072L3.29325 8.70725C2.90225 8.31625 2.90225 7.68425 3.29325 7.29325C3.68425 6.90225 4.31625 6.90225 4.70725 7.29325L12.0002 14.5862L19.2932 7.29325C19.6842 6.90225 20.3162 6.90225 20.7073 7.29325C20.9023 7.48825 21.0002 7.74425 21.0002 8.00025Z" fill="#06152B" />
+                        </svg>
                     </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>Dell</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>Asus</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>Acer</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>MSI</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>HP</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>LG</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>Razer</span>
+                    <div class="filter-category row">
+                        @foreach (var filterCategory in ((IEnumerable<dynamic>) ViewBag.FilterCategory).Where(f => f.FilterId == filterName.FilterId))
+                        {
+                                <div class="filter-category-name col-lg-6">
+                                    <input type="checkbox" name="Lenovo" id="">
+                                    <span>@filterCategory.CategoryName</span>
+                                </div>
+                        }
                     </div>
                 </div>
-            </div>
-
-            <div class="filter-type">
-                <div class="filter-title">
-                    <span>Nhu cầu</span>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0002 8.00025C21.0002 8.25625 20.9023 8.51225 20.7073 8.70725L12.7072 16.7072C12.3162 17.0982 11.6842 17.0982 11.2933 16.7072L3.29325 8.70725C2.90225 8.31625 2.90225 7.68425 3.29325 7.29325C3.68425 6.90225 4.31625 6.90225 4.70725 7.29325L12.0002 14.5862L19.2932 7.29325C19.6842 6.90225 20.3162 6.90225 20.7073 7.29325C20.9023 7.48825 21.0002 7.74425 21.0002 8.00025Z" fill="#06152B" />
-                    </svg>
-                </div>
-
-                <div class="filter-category row">
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>Sinh viên</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>Lập trình</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>Gaming</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>Mỏng nhẹ</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>Đồ họa</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>Văn phòng</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="filter-type">
-                <div class="filter-title">
-                    <span>Khoảng giá</span>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0002 8.00025C21.0002 8.25625 20.9023 8.51225 20.7073 8.70725L12.7072 16.7072C12.3162 17.0982 11.6842 17.0982 11.2933 16.7072L3.29325 8.70725C2.90225 8.31625 2.90225 7.68425 3.29325 7.29325C3.68425 6.90225 4.31625 6.90225 4.70725 7.29325L12.0002 14.5862L19.2932 7.29325C19.6842 6.90225 20.3162 6.90225 20.7073 7.29325C20.9023 7.48825 21.0002 7.74425 21.0002 8.00025Z" fill="#06152B" />
-                    </svg>
-                </div>
-
-                <div class="filter-category row">
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>Dưới 10 triệu</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>Từ 10 - 15 triệu</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>Từ 15 - 20 triệu</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>Từ 20 - 25 triệu</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>Từ 25 - 30  triệu</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>Từ 30 - 40 triệu</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>Trên 40 triệu</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="filter-type">
-                <div class="filter-title">
-                    <span>CPU</span>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0002 8.00025C21.0002 8.25625 20.9023 8.51225 20.7073 8.70725L12.7072 16.7072C12.3162 17.0982 11.6842 17.0982 11.2933 16.7072L3.29325 8.70725C2.90225 8.31625 2.90225 7.68425 3.29325 7.29325C3.68425 6.90225 4.31625 6.90225 4.70725 7.29325L12.0002 14.5862L19.2932 7.29325C19.6842 6.90225 20.3162 6.90225 20.7073 7.29325C20.9023 7.48825 21.0002 7.74425 21.0002 8.00025Z" fill="#06152B" />
-                    </svg>
-                </div>
-
-                <div class="cpu-brand">
-                    <span>Intel</span>
-                </div>
-
-                <div class="filter-category row">
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>Core i5</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>Core i7</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>Core i9</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>Core Ultra 5</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>Core Ultra 7</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>Core Ultra 9</span>
-                    </div>
-                </div>
-
-                <div class="cpu-brand">
-                    <span>AMD</span>
-                </div>
-
-                <div class="filter-category row">
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>Ryzen 5</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>Ryzen 7</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>Ryzen 9</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="filter-type">
-                <div class="filter-title">
-                    <span>Card đồ họa</span>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0002 8.00025C21.0002 8.25625 20.9023 8.51225 20.7073 8.70725L12.7072 16.7072C12.3162 17.0982 11.6842 17.0982 11.2933 16.7072L3.29325 8.70725C2.90225 8.31625 2.90225 7.68425 3.29325 7.29325C3.68425 6.90225 4.31625 6.90225 4.70725 7.29325L12.0002 14.5862L19.2932 7.29325C19.6842 6.90225 20.3162 6.90225 20.7073 7.29325C20.9023 7.48825 21.0002 7.74425 21.0002 8.00025Z" fill="#06152B" />
-                    </svg>
-                </div>
-
-                <div class="filter-category row">
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>AMD Radeon Series</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>NVIDIA GeFore Series</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>Card Onboard</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="filter-type">
-                <div class="filter-title">
-                    <span>Dung lượng RAM</span>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0002 8.00025C21.0002 8.25625 20.9023 8.51225 20.7073 8.70725L12.7072 16.7072C12.3162 17.0982 11.6842 17.0982 11.2933 16.7072L3.29325 8.70725C2.90225 8.31625 2.90225 7.68425 3.29325 7.29325C3.68425 6.90225 4.31625 6.90225 4.70725 7.29325L12.0002 14.5862L19.2932 7.29325C19.6842 6.90225 20.3162 6.90225 20.7073 7.29325C20.9023 7.48825 21.0002 7.74425 21.0002 8.00025Z" fill="#06152B" />
-                    </svg>
-                </div>
-
-                <div class="filter-category row">
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>8 GB</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>12 GB</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>16 GB</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>24 GB</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>32 GB</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="filter-type">
-                <div class="filter-title">
-                    <span>Dung lượng SSD</span>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0002 8.00025C21.0002 8.25625 20.9023 8.51225 20.7073 8.70725L12.7072 16.7072C12.3162 17.0982 11.6842 17.0982 11.2933 16.7072L3.29325 8.70725C2.90225 8.31625 2.90225 7.68425 3.29325 7.29325C3.68425 6.90225 4.31625 6.90225 4.70725 7.29325L12.0002 14.5862L19.2932 7.29325C19.6842 6.90225 20.3162 6.90225 20.7073 7.29325C20.9023 7.48825 21.0002 7.74425 21.0002 8.00025Z" fill="#06152B" />
-                    </svg>
-                </div>
-
-                <div class="filter-category row">
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>256 GB</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>512 GB</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>1 TB</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="filter-type">
-                <div class="filter-title">
-                    <span>Kích thước màn hình</span>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0002 8.00025C21.0002 8.25625 20.9023 8.51225 20.7073 8.70725L12.7072 16.7072C12.3162 17.0982 11.6842 17.0982 11.2933 16.7072L3.29325 8.70725C2.90225 8.31625 2.90225 7.68425 3.29325 7.29325C3.68425 6.90225 4.31625 6.90225 4.70725 7.29325L12.0002 14.5862L19.2932 7.29325C19.6842 6.90225 20.3162 6.90225 20.7073 7.29325C20.9023 7.48825 21.0002 7.74425 21.0002 8.00025Z" fill="#06152B" />
-                    </svg>
-                </div>
-
-                <div class="filter-category row">
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>13 Inch</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>14 Inch</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>15 Inch</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>Trên 16 Inch</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="filter-type">
-                <div class="filter-title">
-                    <span>Tần số quét</span>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0002 8.00025C21.0002 8.25625 20.9023 8.51225 20.7073 8.70725L12.7072 16.7072C12.3162 17.0982 11.6842 17.0982 11.2933 16.7072L3.29325 8.70725C2.90225 8.31625 2.90225 7.68425 3.29325 7.29325C3.68425 6.90225 4.31625 6.90225 4.70725 7.29325L12.0002 14.5862L19.2932 7.29325C19.6842 6.90225 20.3162 6.90225 20.7073 7.29325C20.9023 7.48825 21.0002 7.74425 21.0002 8.00025Z" fill="#06152B" />
-                    </svg>
-                </div>
-
-                <div class="filter-category row">
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>60 Hz</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>120 Hz</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>144 Hz</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>165 Hz</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>240 Hz</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="filter-type">
-                <div class="filter-title">
-                    <span>Độ phân giải</span>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0002 8.00025C21.0002 8.25625 20.9023 8.51225 20.7073 8.70725L12.7072 16.7072C12.3162 17.0982 11.6842 17.0982 11.2933 16.7072L3.29325 8.70725C2.90225 8.31625 2.90225 7.68425 3.29325 7.29325C3.68425 6.90225 4.31625 6.90225 4.70725 7.29325L12.0002 14.5862L19.2932 7.29325C19.6842 6.90225 20.3162 6.90225 20.7073 7.29325C20.9023 7.48825 21.0002 7.74425 21.0002 8.00025Z" fill="#06152B" />
-                    </svg>
-                </div>
-
-                <div class="filter-category row">
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>FHD</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>2K</span>
-                    </div>
-
-                    <div class="filter-category-name col-lg-6">
-                        <input type="checkbox" name="Lenovo" id="">
-                        <span>4K</span>
-                    </div>
-                </div>
-            </div>
+            }    
         </div>
 
         <div class="product-list-content" style="display: flex; flex-direction: column; padding: 0; width: 100%;">
             <div class="product-list">
                 @foreach (var product in ViewBag.ProductList)
                 {
-                    if (product.TypeId == Model)
+                    if (!storedProduct.Contains(product.ProductName))
                     {
-                    <a asp-area="" asp-controller="Product" asp-action="ProductDetailPage" asp-route-id="@product.ProductId" style="color: black; text-decoration:none;">
-                            <div class="product-box-list">
-                                <img src="@product.Img1" height="180px" width="180px" alt="">
-                                <div class="product-info">
-                                    <span>@product.ProductName</span>
-                                    <h6>@product.FormattedPrice</h6>
-                                    <div class="color-list">
-                                        <span>Màu</span>
-                                        <svg width="14" height="14">
-                                            <circle cx="7" cy="7" r="7" fill="@(product.Color.Contains("Gray") || product.Color.Contains("Grey") ? "Gray" : "")" />
-                                        </svg>
+                        storedProduct.Add(product.ProductName);
+                        if (product.TypeId == Model)
+                        {
+                            <a asp-area="" asp-controller="Product" asp-action="ProductDetailPage" asp-route-id="@product.ProductId" style="color: black; text-decoration:none;">
+                                <div class="product-box-list">
+                                    <img src="@product.Img1" height="180px" width="180px" alt="">
+                                    <div class="product-info">
+                                        <span>@product.ProductName</span>
+                                        <h6>@product.FormattedPrice đ</h6>
+                                        <div class="color-list">
+                                            <span>Màu</span>
+                                            <svg width="14" height="14">
+                                                <circle cx="7" cy="7" r="7" fill="@(product.Color.Contains("Gray") || product.Color.Contains("Grey") ? "Gray" : "")" />
+                                            </svg>
+                                        </div>
+                                        <span>@product.Version</span>
+                                        <div class="product-version-count">
+                                            @{
+                                                var versionList = ((IEnumerable<dynamic>)ViewBag.ProductList)
+                                                .Where(p => p.ProductName == product.ProductName)
+                                                .ToList();
+                                            }
+                                            @if (versionList.Count > 1)
+                                            {
+                                                <span>+ @versionList.Count tùy chọn khác</span>
+                                            }
+
+                                        </div>
                                     </div>
-                                    <span>@product.Version</span>
                                 </div>
-                            </div>
-                    </a>
+                            </a>
+                        }
                     }
                 }
 
