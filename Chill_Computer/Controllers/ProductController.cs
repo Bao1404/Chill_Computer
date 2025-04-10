@@ -30,7 +30,7 @@ namespace Chill_Computer.Controllers
             _brandRepository = brandRepository;
         }
 
-        public IActionResult ProductListPage(int id)
+        public IActionResult ProductListPage(int id) //ProductTpyeID
         {
             Init();
             var product = _productRepository.GetProductById(id);
