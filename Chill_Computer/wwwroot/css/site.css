@@ -41,6 +41,8 @@ span {
 
 .header-1 {
     display: flex;
+    color: mistgreen;
+    margin: 15px 200px !important;
 }
 
 .hotline-box {
@@ -129,6 +131,36 @@ span {
 .header-2 {
     display: flex;
     align-items: center;
+    margin: 15px 200px !important;
+    background-color: white;
+    position: relative;
+    z-index: 10;
+}
+
+
+.sticky-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0 !important;
+    padding: 15px 200px;
+    background-color: white;
+    z-index: 1000;
+    animation: slideDown 1s ease forwards;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .logo-sanpham {
@@ -1003,4 +1035,49 @@ td:last-child {
 
 .component-box h4 {
     margin: 0;
+}
+
+.modal-cart {
+    position: absolute;
+    width: 400px;
+    right: 0;
+    margin: 0 75px;
+    background-color: #f5f5f5;
+    font-family: Lexend, sans-serif;
+    border-radius: 20px;
+    border: 1px solid lightgray;
+}
+
+    .modal-cart h5 {
+        margin: 0;
+        font-weight: 600;
+    }
+
+.modal-cart-title {
+    padding: 8px 16px;
+}
+
+.modal-cart-empty {
+    min-height: 140px;
+    background-color: white;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 15px;
+}
+
+.cart-placeholder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid lightgray;
+    padding: 5px 10px;
+}
+
+.sticky-modal {
+    position: fixed;
+    top: -40px !important;
+    right: 100px;
+    z-index: 1000;
 }

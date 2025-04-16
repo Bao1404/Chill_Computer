@@ -51,18 +51,14 @@
                 <div class="rounded-table" style="overflow: hidden;">
                     <table>
                         @foreach (var attr in ViewBag.AttrbuteList)
-                        {
-                            if (!processedId2.Contains(attr.AttributeName))
-                            {
-                                processedId2.Add(attr.AttributeName);
+                        {          
                                 foreach (var productAttr in ((IEnumerable<dynamic>)ViewBag.ProductAttributeList).Where(f => f.AttributeId == attr.AttributeId && f.ProductId == Model.ProductId))
                                 {
                                     <tr>
                                         <td>@attr.AttributeName </td>
                                         <td>@productAttr.AttributeValue </td>
-                                    </tr>
-                                }
-                            }                          
+                                    </tr>                                   
+                                }                                                     
                         }
                     </table>
                 </div>

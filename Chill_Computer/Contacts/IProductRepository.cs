@@ -10,6 +10,8 @@ namespace Chill_Computer.Contacts
         List<string> GetProductVersionFromProductName(string name);
         List<Product> GetProductByBrandId(int id);
         public IEnumerable<Product> GetProductsByTypeName(string typeName);
-        
+        List<Product> GetProductFromFilter(string filterName, string categoryName);
+
+
     }
 }
