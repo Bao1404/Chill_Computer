@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<Chill_Computer.Models.Product>
+@{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
     ViewData["ChooseManageInventory"] = "chooseButton";
 }
@@ -15,227 +16,341 @@
 </nav>
 
 <div>
-    <table class="table" style="width: 900px; margin: 30px 30px 5px 30px;">
+    <table class="table" style="width: 100%; margin: 30px 0;">
         <thead>
         <th class="col-md-1">#</th>
-        <th class="col-md-3">Tên sản phẩm</th>
+        <th class="col-md-4">Tên sản phẩm</th>
         <th class="col-md-1">Loại</th>
-        <th class="col-md-2">Hãng</th>
+        <th class="col-md-1">Hãng</th>
         <th class="col-md-1">Số lượng</th>
         <th class="col-md-2">Giá</th>
         <th class="col-md-2"></th>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Legion R5</td>
-                <td>Laptop</td>
-                <td>Legion</td>
-                <td>200</td>
-                <td>40.000.000đ</td>
-                <td>
-                    <button type="button" class="btn btn-primary">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                             fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                            <path fill-rule="evenodd"
-                                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
-                        </svg>
-                    </button>
-                    <button type="button" class="btn btn-danger">
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                             width="16" height="16" fill="currentColor" class="bi bi-trash3"
-                             viewBox="0 0 16 16">
-                            <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
-                        </svg>
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Legion R5</td>
-                <td>Laptop</td>
-                <td>Legion</td>
-                <td>200</td>
-                <td>40.000.000đ</td>
-                <td>
-                    <button type="button" class="btn btn-primary">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                             fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                            <path fill-rule="evenodd"
-                                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
-                        </svg>
-                    </button>
-                    <button type="button" class="btn btn-danger">
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                             width="16" height="16" fill="currentColor" class="bi bi-trash3"
-                             viewBox="0 0 16 16">
-                            <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
-                        </svg>
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Legion R5</td>
-                <td>Laptop</td>
-                <td>Legion</td>
-                <td>200</td>
-                <td>40.000.000đ</td>
-                <td>
-                    <button type="button" class="btn btn-primary">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                             fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                            <path fill-rule="evenodd"
-                                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
-                        </svg>
-                    </button>
-                    <button type="button" class="btn btn-danger">
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                             width="16" height="16" fill="currentColor" class="bi bi-trash3"
-                             viewBox="0 0 16 16">
-                            <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
-                        </svg>
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">4</th>
-                <td>Legion R5</td>
-                <td>Laptop</td>
-                <td>Legion</td>
-                <td>200</td>
-                <td>40.000.000đ</td>
-                <td>
-                    <button type="button" class="btn btn-primary">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                             fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                            <path fill-rule="evenodd"
-                                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
-                        </svg>
-                    </button>
-                    <button type="button" class="btn btn-danger">
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                             width="16" height="16" fill="currentColor" class="bi bi-trash3"
-                             viewBox="0 0 16 16">
-                            <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
-                        </svg>
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">5</th>
-                <td>Legion R5</td>
-                <td>Laptop</td>
-                <td>Legion</td>
-                <td>200</td>
-                <td>40.000.000đ</td>
-                <td>
-                    <button type="button" class="btn btn-primary">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                             fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                            <path fill-rule="evenodd"
-                                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
-                        </svg>
-                    </button>
-                    <button type="button" class="btn btn-danger">
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                             width="16" height="16" fill="currentColor" class="bi bi-trash3"
-                             viewBox="0 0 16 16">
-                            <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
-                        </svg>
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">6</th>
-                <td>Legion R5</td>
-                <td>Laptop</td>
-                <td>Legion</td>
-                <td>200</td>
-                <td>40.000.000đ</td>
-                <td>
-                    <button type="button" class="btn btn-primary">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                             fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                            <path fill-rule="evenodd"
-                                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
-                        </svg>
-                    </button>
-                    <button type="button" class="btn btn-danger">
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                             width="16" height="16" fill="currentColor" class="bi bi-trash3"
-                             viewBox="0 0 16 16">
-                            <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
-                        </svg>
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">7</th>
-                <td>Legion R5</td>
-                <td>Laptop</td>
-                <td>Legion</td>
-                <td>200</td>
-                <td>40.000.000đ</td>
-                <td>
-                    <button type="button" class="btn btn-primary">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                             fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                            <path fill-rule="evenodd"
-                                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
-                        </svg>
-                    </button>
-                    <button type="button" class="btn btn-danger">
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                             width="16" height="16" fill="currentColor" class="bi bi-trash3"
-                             viewBox="0 0 16 16">
-                            <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
-                        </svg>
-                    </button>
-                </td>
-            </tr>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var product in Model)
+                    {
+                    <tr>
+                        <th scope="row">@product.ProductId</th>
+                        <td style="font-size: 12px">@product.ProductName - @product.Version</td>
+                        <td>@product.Type?.TypeName</td>
+                        <td>@product.Brand?.BrandName</td>
+                        <td>@product.Stock</td>
+                        <td>@product.FormattedPrice đ</td>
+                        <td>
+                            <button type="button" class="btn btn-primary" onclick="openModalUpdate
+                            (
+                                '@product.ProductId',
+                                '@product.ProductName',
+                                '@product.Type?.TypeName',
+                                '@product.Color',
+                                '@product.Price',
+                                '@product.Stock',
+                                '@product.Img1',
+                                '@product.Img2',
+                                '@product.Img3',
+                                '@product.Brand?.BrandName',
+                                '@product.Series?.SeriesName',
+                                '@product.Version'
+                            )">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                     fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+
+                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+
+                                    <path fill-rule="evenodd"
+                                          d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+
+                                </svg>
+
+                            </button>
+
+                            <button type="button" class="btn btn-danger" onclick="openModalDelete('@product.ProductId', '@product.ProductName', '@product.Type.TypeName', '@product.Brand.BrandName', '@product.Version')">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                     fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+
+                                    <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
+
+                                </svg>
+
+                            </button>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5" class="text-center">No Product found.</td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>
-
-<div style="display: flex;">
-    <nav aria-label="Page navigation example" style="margin-right: 25px;">
+<div>
+    <nav aria-label="Page navigation example" style="margin: 20px 30px 0 0;">
         <ul class="pagination">
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
+            <li class="page-item @(ViewBag.CurrentPage == 1 ? "disabled" : "")">
+                <a class="page-link" href="@Url.Action("ManageInventory", new { pageNumber = ViewBag.CurrentPage - 1 })" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
+            @for (int i = 1; i <= ViewBag.TotalPages; i++)
+            {
+                <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                    <a class="page-link" href="@Url.Action("ManageInventory", new { pageNumber = i })">@i</a>
+                </li>
+            }
+            <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages ? "disabled" : "")">
+                <a class="page-link" href="@Url.Action("ManageInventory", new { pageNumber = ViewBag.CurrentPage + 1 })" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>
         </ul>
     </nav>
-
-    <button type="button" class="btn btn-primary" style="height: 40px;">
-        Thêm sản phẩm <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" fill="currentColor"
-                           class="bi bi-plus-circle" viewBox="0 0 16 16">
-            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
-        </svg>
-    </button>
+    <button button type="button" class="btn btn-primary" onclick="openModalAdd()">Thêm sản phẩm</button>
 </div>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<!-- Modal Add Product -->
+<div class="modal fade" id="AddProduct" tabindex="-1" role="dialog" aria-labelledby="AddProductLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="AddProductLabel">Thêm Sản Phẩm Mới</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form action="/Admin/AddProduct" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="productName">Tên sản phẩm:</label>
+                        <input type="text" name="productName" class="form-control" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productPrice">Giá:</label>
+                        <input type="number" name="productPrice" class="form-control" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productStock">Số lượng kho:</label>
+                        <input type="number" name="productStock" class="form-control" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productColor">Màu:</label>
+                        <input type="text" name="productColor" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productVersion">Phiên bản:</label>
+                        <input type="text" name="productVersion" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productImg1">Ảnh 1 URL:</label>
+                        <input type="text" name="productImg1" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productImg2">Ảnh 2 URL:</label>
+                        <input type="text" name="productImg2" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productImg3">Ảnh 3 URL:</label>
+                        <input type="text" name="productImg3" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="typeId">Loại sản phẩm:</label>
+                        <select name="typeId" class="form-control">
+                            <option value="">-- Chọn loại --</option>
+                            @if (ViewBag.TypeList != null)
+                            {
+                                foreach (var type in ViewBag.TypeList)
+                                {
+                                    <option value="@type.TypeId">@type.TypeName</option>
+                                }
+                            }
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="brandId">Thương hiệu:</label>
+                        <input type="text" name="brandName" class="form-control" placeholder="Nhập tên dòng sản phẩm" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="seriesName">Series:</label>
+                        <input type="text" name="seriesName" class="form-control" placeholder="Nhập tên dòng sản phẩm" />
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Thêm sản phẩm</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Update-->
+<div class="modal fade" id="UpdateProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Cập nhật sản phẩm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/Admin/UpdateProduct" method="post">
+                    <div>
+                        <label>ID:</label>
+                        <input type="Number" name="productId" id="productId" value="" readonly />
+                    </div>
+                    <div>
+                        <label>Tên Sản Phẩm:</label>
+                        <input type="text" name="productName" id="productName" style="width:80%" value="" />
+                    </div>
+                    <div>
+                        <label>Loại Sản Phẩm:</label>
+                        <input type="text" name="productType" id="productType" value="" readonly/>
+                    </div>
+                    <div>
+                        <label>Màu:</label>
+                        <input type="text" name="productColor" id="productColor" value=""/>
+                    </div>
+                    <div>
+                        <label>Giá:</label>
+                        <input type="text" name="productPrice" id="productPrice" value=""/>
+                    </div>
+                    <div>
+                        <label>Số lượng:</label>
+                        <input type="number" name="productStock" id="productStock" value="" />
+                    </div>
+                    <div>
+                        <label>Ảnh 1 Url:</label>
+                        <input type="text" name="productImg1" id="productImg1" style="width:80%" value="" />
+                    </div>
+                    <div>
+                        <label>Ảnh 2 Url:</label>
+                        <input type="text" name="productImg2" id="productImg2" style="width:80%" value="" />
+                    </div>
+                    <div>
+                        <label>Ảnh 3 Url:</label>
+                        <input type="text" name="productImg3" id="productImg3" style="width:80%" value="" />
+                    </div>
+                    <div>
+                        <label>Thương hiệu:</label>
+                        <input type="text" name="productBrand" id="productBrand" value="" readonly>
+                    </div>
+                    <div>
+                        <label>Series:</label>
+                        <input type="text" name="productSeries" id="productSeries" style="width:80%" value="">
+                    </div>
+                    <div>
+                        <label>Version:</label>
+                        <input type="text" name="productVersion" id="productVersion" style="width:80%" value="" />
+                    </div>
+                    <button type="submit">Xác nhận</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Delete -->
+<div class="modal fade" id="AlertDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Xác nhận xóa sản phẩm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/Admin/DeleteProduct" method="post">
+                    <div>
+                        <label>Product ID:</label>
+                        <input type="Number" name="productId" id="productId" value="" readonly />
+                    </div>
+                    <div>
+                        <label>Tên Sản Phẩm:</label>
+                        <input type="text" name="productName" id="productName" value="" readonly />
+                    </div>
+                    <div>
+                        <label>Loại Sản Phẩm:</label>
+                        <input type="text" name="productType" id="productType" value="" readonly />
+                    </div>
+                    <div>
+                        <label>Thương hiệu:</label>
+                        <input type="text" name="productBrand" id="productBrand" value="" readonly />
+                    </div>
+                    <div>
+                        <label>Version:</label>
+                        <input type="text" name="productVersion" id="productVersion" value="" readonly />
+                    </div>
+                    <button type="submit">Xác nhận</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script>
-    function openModal() {
+    function openModalDelete(id, name, type, brand, version) {
+        $('#productId').val(id);
+        $('#productName').val(name);
+        $('#productType').val(type);
+        $('#productBrand').val(brand);
+        $('#productVersion').val(version);
         $('#AlertDelete').modal('show');
     }
+
+    function openModalUpdate(
+    productId, productName, typeName, color, price, stock,
+    img1, img2, img3, brandName, seriesName, version
+    )
+    {
+    $('#productId').val(productId);
+    $('#productName').val(productName);
+    $('#productType').val(typeName);
+    $('#productColor').val(color);
+    $('#productPrice').val(price);
+    $('#productStock').val(stock);
+    $('#productImg1').val(img1);
+    $('#productImg2').val(img2);
+    $('#productImg3').val(img3);
+    $('#productBrand').val(brandName);
+    $('#productSeries').val(seriesName);
+    $('#productVersion').val(version);
+
+    $('#UpdateProduct').modal('show');
+     }
+
+     function openModalAdd() {
+        $('#AddProduct').modal('show');
+     }
 </script>

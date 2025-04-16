@@ -18,8 +18,8 @@
     </form>
 </nav>
 
-<div>
-    <table class="table" style="width: 900px; margin: 30px;">
+<div style="width: 100%;">
+    <table class="table" style="width: 100%; margin: 30px 0;">
         <thead>
         <th class="col-md-1">#</th>
         <th class="col-md-4">Username</th>
@@ -98,12 +98,12 @@
 </nav>
 
 <!-- Modal Update-->
-<div class="modal fade" id="DetailAccount" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+<div class="modal fade" id="UpdateAccount" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Update Role</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Cập nhật Role</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -135,7 +135,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Confirm Delete Account</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Xác nhận xóa tài khoản</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -162,8 +162,8 @@
         $('#AlertDelete').modal('show');
     }
     function openModalUpdateRole(username, roleId) {
-        $('#username').val(username); // Cập nhật tên người dùng vào trường ẩn
-        $('#roleId').val(roleId); // Cập nhật vai trò hiện tại trong dropdown
-        $('#DetailAccount').modal('show'); // Hiển thị modal
+        $('#username').val(username); 
+        $('#roleId').val(roleId); 
+        $('#UpdateAccount').modal('show'); 
     }
 </script>

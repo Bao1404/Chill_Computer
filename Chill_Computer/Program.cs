@@ -25,6 +25,8 @@ namespace Chill_Computer
             builder.Services.AddScoped<IAttributeRepository, AttributeRepository>();  
             builder.Services.AddScoped<IProductAttributeRepository, ProductAttributeRepository>();
             builder.Services.AddScoped<IBrandRepository, BrandRepository>();
+            builder.Services.AddScoped<ISeriesRepository, SeriesRepository>();
+            builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 
             var app = builder.Build();
 

@@ -18,5 +18,25 @@ namespace Chill_Computer.Services
         {
             return _context.Brands.FirstOrDefault(b => b.BrandId == id);
         }
+        public void AddBrand(Brand brand)
+        {
+            _context.Brands.Add(brand);
+            _context.SaveChanges();
+        }
+
+        public Brand GetBrandByName(string name)
+        {
+            if (ExistBrandName(name))
+            {
+                Brand br = _context.Brands.FirstOrDefault(x => x.BrandName.Equals(name));
+                return br;
+            }
+            return null;
+        }
+
+        public bool ExistBrandName(string brandName)
+        {
+            return _context.Brands.Any(b => b.BrandName == brandName);
+        }
     }
 }
