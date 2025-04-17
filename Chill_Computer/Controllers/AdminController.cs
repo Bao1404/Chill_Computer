@@ -1,6 +1,7 @@
 ﻿using Chill_Computer.Contacts;
 using Chill_Computer.Models;
 using Chill_Computer.Services;
+using Chill_Computer.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -35,9 +36,9 @@ namespace Chill_Computer.Controllers
         public IActionResult ManageInventory(int pageNumber = 1, int pageSize = 7)
         {
             List<Product> products = _productRepository.GetProductPagination(pageNumber, pageSize);
-            var totalProducts = _context.Products.Count(); 
-            ViewBag.TotalPages = (int)Math.Ceiling((double)totalProducts / pageSize); 
-            ViewBag.CurrentPage = pageNumber; 
+            var totalProducts = _context.Products.Count();
+            ViewBag.TotalPages = (int)Math.Ceiling((double)totalProducts / pageSize);
+            ViewBag.CurrentPage = pageNumber;
             ViewBag.TypeList = _productTypeRepository.GetProductTypes();
             return View(products);
         }
@@ -46,16 +47,17 @@ namespace Chill_Computer.Controllers
         {
             var orders = _orderRepository.GetOrders(pageNumber, pageSize);
             var totalOrders = _context.Orders.Count();
-            ViewBag.TotalPages = (int)Math.Ceiling((double)totalOrders / pageSize); 
-            ViewBag.CurrentPage = pageNumber; 
+            ViewBag.Dictionary = _orderRepository.GetOrderProductsMap();
+            ViewBag.TotalPages = (int)Math.Ceiling((double)totalOrders / pageSize);
+            ViewBag.CurrentPage = pageNumber;
             return View(orders);
         }
         public IActionResult ManageAccount(int pageNumber = 1, int pageSize = 7)
         {
             var accounts = _accountService.GetAccounts(pageNumber, pageSize);
-            var totalAccounts = _context.Accounts.Count(); 
-            ViewBag.TotalPages = (int)Math.Ceiling((double)totalAccounts / pageSize); 
-            ViewBag.CurrentPage = pageNumber; 
+            var totalAccounts = _context.Accounts.Count();
+            ViewBag.TotalPages = (int)Math.Ceiling((double)totalAccounts / pageSize);
+            ViewBag.CurrentPage = pageNumber;
             return View(accounts);
         }
 
@@ -72,7 +74,7 @@ namespace Chill_Computer.Controllers
         [HttpPost]
         public IActionResult DeleteAccount()
         {
-            string username = Request.Form["usernameDe"]; 
+            string username = Request.Form["usernameDe"];
 
             var account = _context.Accounts.FirstOrDefault(a => a.UserName == username);
 
@@ -184,7 +186,7 @@ namespace Chill_Computer.Controllers
         [HttpPost]
         public IActionResult DeleteOrder(IFormCollection form)
         {
-            string orderId = form["orderId"]; 
+            string orderId = form["orderId"];
 
             var order = _orderRepository.GetOrderById(int.Parse(orderId));
 
@@ -207,6 +209,93 @@ namespace Chill_Computer.Controllers
                 _orderRepository.UpdateOrderStatus(orderId, status);
             }
             return RedirectToAction("ManageOrder");
+        }
+
+        [HttpPost]
+        public IActionResult SearchByCustomerName(IFormCollection form)
+        {
+            string customerName = form["customerName"];
+            List<ManageOrderViewModel> orders;
+            int pageNumber = 1;
+            int pageSize = 7;
+
+            if (string.IsNullOrEmpty(customerName))
+            {
+                int totalOrders = _context.Orders.Count();
+                ViewBag.TotalPages = (int)Math.Ceiling((double)totalOrders / pageSize);
+                ViewBag.CurrentPage = pageNumber;
+
+                orders = _orderRepository.GetOrders(pageNumber, pageSize);
+            }
+            else
+            {
+                int totalOrders = _orderRepository.GetOrderBySearchCustomerName(customerName).Count();
+                ViewBag.TotalPages = (int)Math.Ceiling((double)totalOrders / pageSize);
+                ViewBag.CurrentPage = pageNumber;
+
+                orders = _orderRepository.GetOrderBySearchCustomerName(customerName, pageNumber, pageSize);
+            }
+
+            ViewBag.Dictionary = _orderRepository.GetOrderProductsMap();
+            return View("ManageOrder", orders);
+        }
+
+
+        [HttpPost]
+        public IActionResult SearchInventory(IFormCollection form)
+        {
+            string productName = form["keySearch"];
+            List<Product> products;
+            int pageNumber = 1;
+            int pageSize = 7;
+
+            if (string.IsNullOrEmpty(productName))
+            {
+                int totalProducts = _context.Products.Count();
+                ViewBag.TotalPages = (int)Math.Ceiling((double)totalProducts / pageSize);
+                ViewBag.CurrentPage = pageNumber;
+
+                products = _productRepository.GetProductPagination(pageNumber, pageSize);
+            }
+            else
+            {
+                int totalProducts = _productRepository.GetProductsByName(productName).Count();
+                ViewBag.TotalPages = (int)Math.Ceiling((double)totalProducts / pageSize);
+                ViewBag.CurrentPage = pageNumber;
+
+                products = _productRepository.GetProductsByName(productName, pageNumber, pageSize); 
+            }
+
+            ViewBag.TypeList = _productTypeRepository.GetProductTypes();
+            return View("ManageInventory", products);
+        }
+
+        [HttpPost]
+        public IActionResult SearchUserName(IFormCollection form)
+        {
+            string userName = form["keySearch"];
+            List<AccountViewModel> account;
+            int pageNumber = 1;
+            int pageSize = 7;
+
+            if (string.IsNullOrEmpty(userName))
+            {
+                int totalAccount = _context.Accounts.Count();
+                ViewBag.TotalPages = (int)Math.Ceiling((double)totalAccount / pageSize);
+                ViewBag.CurrentPage = pageNumber;
+
+                account = _accountService.GetAccounts(pageNumber, pageSize);
+            }
+            else
+            {
+                int totalAccount = _accountService.SearchByUsername(userName).Count();
+                ViewBag.TotalPages = (int)Math.Ceiling((double)totalAccount / pageSize);
+                ViewBag.CurrentPage = pageNumber;
+
+                account = _accountService.SearchByUsername(userName, pageNumber, pageSize);
+            }
+
+            return View("ManageAccount", account);
         }
     }
 }

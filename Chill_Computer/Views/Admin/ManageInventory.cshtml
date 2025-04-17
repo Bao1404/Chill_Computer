@@ -5,8 +5,8 @@
 }
 
 <nav class="navbar navbar-light bg-light" style="height: 30px;">
-    <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="width: 500px; border-radius: 15px;">
+    <form class="form-inline" action="/Admin/SearchInventory" method="post">
+        <input class="form-control mr-sm-2" name="keySearch" type="search" placeholder="Search" aria-label="Search" style="width: 500px; border-radius: 15px;">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="border-radius: 20px;">
             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="26" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
@@ -35,7 +35,7 @@
                         <th scope="row">@product.ProductId</th>
                         <td style="font-size: 12px">@product.ProductName - @product.Version</td>
                         <td>@product.Type?.TypeName</td>
-                        <td>@product.Brand?.BrandName</td>
+                        <td>@(product.Brand?.BrandName)</td>
                         <td>@product.Stock</td>
                         <td>@product.FormattedPrice đ</td>
                         <td>
@@ -290,23 +290,23 @@
                 <form action="/Admin/DeleteProduct" method="post">
                     <div>
                         <label>Product ID:</label>
-                        <input type="Number" name="productId" id="productId" value="" readonly />
+                        <input type="Number" name="productIdDe" id="productIdDe" value="" readonly />
                     </div>
                     <div>
                         <label>Tên Sản Phẩm:</label>
-                        <input type="text" name="productName" id="productName" value="" readonly />
+                        <input type="text" name="productNameDe" id="productNameDe" value="" readonly />
                     </div>
                     <div>
                         <label>Loại Sản Phẩm:</label>
-                        <input type="text" name="productType" id="productType" value="" readonly />
+                        <input type="text" name="productTypeDe" id="productTypeDe" value="" readonly />
                     </div>
                     <div>
                         <label>Thương hiệu:</label>
-                        <input type="text" name="productBrand" id="productBrand" value="" readonly />
+                        <input type="text" name="productBrandDe" id="productBrandDe" value="" readonly />
                     </div>
                     <div>
                         <label>Version:</label>
-                        <input type="text" name="productVersion" id="productVersion" value="" readonly />
+                        <input type="text" name="productVersionDe" id="productVersionDe" value="" readonly />
                     </div>
                     <button type="submit">Xác nhận</button>
                 </form>
@@ -321,11 +321,11 @@
 
 <script>
     function openModalDelete(id, name, type, brand, version) {
-        $('#productId').val(id);
-        $('#productName').val(name);
-        $('#productType').val(type);
-        $('#productBrand').val(brand);
-        $('#productVersion').val(version);
+        $('#productIdDe').val(id);
+        $('#productNameDe').val(name);
+        $('#productTypeDe').val(type);
+        $('#productBrandDe').val(brand);
+        $('#productVersionDe').val(version);
         $('#AlertDelete').modal('show');
     }
 

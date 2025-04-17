@@ -123,5 +123,27 @@ namespace Chill_Computer.Services
                 _context.SaveChanges();
             }
         }
+
+        public List<Product> GetProductsByName(string name)
+        {
+            return _context.Products
+                     .Include(p => p.Type)
+                     .Include(p => p.Brand)
+                     .Include(p => p.Series)
+                     .Where(p => p.ProductName.Contains(name))
+                     .ToList();
+        }
+
+        public List<Product> GetProductsByName(string name, int pageNumber, int pageSize)
+        {
+            return _context.Products
+                     .Include(p => p.Type)
+                     .Include(p => p.Brand)
+                     .Include(p => p.Series)
+                     .Where(p => p.ProductName.Contains(name))
+                     .Skip((pageNumber - 1) * pageSize)
+                     .Take(pageSize)
+                     .ToList();
+        }
     }
 }

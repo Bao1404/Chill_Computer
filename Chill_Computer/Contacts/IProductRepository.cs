@@ -11,6 +11,8 @@ namespace Chill_Computer.Contacts
         public Product GetProductById(int id);
         List<string> GetProductVersionFromProductName(string name);
         List<Product> GetProductByBrandId(int id);
+        public List<Product> GetProductsByName(string name);
+        public List<Product> GetProductsByName(string name, int pageNumber, int pageSize);
         public IEnumerable<Product> GetProductsByTypeName(string typeName);
         public List<ManageProductViewModel> GetProducts(int pageNumber, int pageSize);
         public void AddProduct(Product product);
