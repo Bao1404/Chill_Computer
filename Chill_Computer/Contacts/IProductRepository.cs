@@ -18,5 +18,8 @@ namespace Chill_Computer.Contacts
         public void AddProduct(Product product);
         public void UpdateProduct(Product product);
         public void DeleteProduct(int id);
+        List<Product> GetProductFromFilter(string filterName, string categoryName);
+
+        public Product GetProductFromNameAndVersion(string productName, string versionName);
     }
 }

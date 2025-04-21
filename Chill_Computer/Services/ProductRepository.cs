@@ -2,6 +2,7 @@
 using Chill_Computer.Models;
 using Chill_Computer.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Collections.Generic;
 
@@ -126,12 +127,7 @@ namespace Chill_Computer.Services
 
         public List<Product> GetProductsByName(string name)
         {
-            return _context.Products
-                     .Include(p => p.Type)
-                     .Include(p => p.Brand)
-                     .Include(p => p.Series)
-                     .Where(p => p.ProductName.Contains(name))
-                     .ToList();
+            return _context.Products.Where(p => p.ProductName == name).ToList();
         }
 
         public List<Product> GetProductsByName(string name, int pageNumber, int pageSize)
@@ -145,5 +141,26 @@ namespace Chill_Computer.Services
                      .Take(pageSize)
                      .ToList();
         }
+
+        public List<Product> GetProductFromFilter(string filterName, string categoryName)
+        {
+            var list = from pa in _context.ProductAttributes
+                       join p in _context.Products on pa.ProductId equals p.ProductId
+                       join a in _context.Attributes on pa.AttributeId equals a.AttributeId
+                       join pt in _context.ProductTypes on a.TypeId equals pt.TypeId
+                       join ptf in _context.ProductTypeFilters on pt.TypeId equals ptf.TypeId
+                       join f in _context.FilterCategories on ptf.FilterId equals f.FilterId
+                       where a.AttributeName.Contains(filterName) && pa.AttributeValue.Contains(categoryName)
+                       select p;
+            return list.Distinct().ToList();
+        }
+
+        public Product GetProductFromNameAndVersion(string productName, string versionName)
+        {
+            var product = _context.Products.FirstOrDefault(p => p.ProductName == productName && p.Version == versionName);
+            return product;
+        }
+
+
     }
 }
