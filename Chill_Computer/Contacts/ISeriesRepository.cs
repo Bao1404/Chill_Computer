@@ -10,5 +10,6 @@ namespace Chill_Computer.Contacts
         public void AddSeries(Series series);
         public void UpdateSeries(Series series);
         public void DeleteSeries(int id);
+        public List<Series> GetSeriesByBrandId(int brandId);
     }
 }

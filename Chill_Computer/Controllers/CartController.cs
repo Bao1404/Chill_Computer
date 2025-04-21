@@ -50,6 +50,7 @@ namespace Chill_Computer.Controllers
                     {
                         ProductId = product.ProductId,
                         ProductName = product.ProductName,
+                        FormattedPrice = product.FormattedPrice,
                         Version = product.Version,
                         ImageUrl = product.Img1,
                         Price = product.Price,

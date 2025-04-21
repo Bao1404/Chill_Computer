@@ -438,8 +438,7 @@ span {
 }
 
 .box-active {
-    background-color: rgb(90, 130, 252);
-    color: white !important;
+    border: 2px solid #5A82FC !important;
 }
 
 .sl-sap-xep {
@@ -1128,4 +1127,9 @@ td:last-child {
     min-width: 200px;
     min-height: 40px;
     appearance: none;
+}
+
+.cart-total-price{
+    display: flex;
+    flex-direction: column;
 }

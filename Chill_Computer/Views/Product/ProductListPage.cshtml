@@ -1,13 +1,12 @@
 ﻿
 @{
     ViewData["Title"] = ViewBag.ProductTypeName;
-    var listId = new List<string>();
 }
 
 <div class="main-content">
 
     <div class="title">
-        <a asp-controller="Home" asp-action="Index">
+        <a asp-controller="Home" asp-action="Index" style="text-decoration:none;">
             <p class="box">Trang chủ</p>
         </a>
         <p> / </p>
@@ -19,18 +18,42 @@
     <h1>@ViewBag.ProductTypeName.TypeName</h1>
 
     <div class="list-box">
+        @{
+            var listId = new List<string>();
+            var listSeries = new List<string>();
+        }
         @foreach (var product in ViewBag.ProductList)
         {
             if(product.TypeId == Model)
             {
-                @foreach (var brand in ((IEnumerable<dynamic>)ViewBag.ProductBrand).Where(b => b.BrandId == product.BrandId))
+                if (ViewBag.ProductBrand != null)
                 {
-                    if (!listId.Contains(brand.BrandName))
+                    @foreach (var brand in ((IEnumerable<dynamic>)ViewBag.ProductBrand).Where(b => b.BrandId == product.BrandId))
                     {
-                        listId.Add(brand.BrandName);
-                        <button class="box">
-                            <span>@brand.BrandName</span>
-                        </button>
+                        if (!listId.Contains(brand.BrandName))
+                        {
+                            listId.Add(brand.BrandName);
+                            <a asp-route="ProductListByBrand" asp-route-brandName="@brand.BrandName">
+                                <button class="box">
+                                    <span>@brand.BrandName</span>
+                                </button>
+                            </a>
+                        }
+                    }
+                }
+                else
+                {
+                    @foreach(var series in ((IEnumerable<dynamic>)ViewBag.BrandSeries).Where(s => s.BrandId == product.BrandId))
+                    {
+                        if (!listSeries.Contains(series.SeriesName))
+                        {
+                            listSeries.Add(series.SeriesName);
+                            <a asp-route="ProductListByBrand" asp-route-brandName="@series.SeriesName">
+                                <button class="box">
+                                    <span>@series.SeriesName</span>
+                                </button>
+                            </a>
+                        }
                     }
                 }
             }

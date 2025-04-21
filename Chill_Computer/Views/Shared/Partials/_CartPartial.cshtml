@@ -3,7 +3,7 @@
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @using Chill_Computer.ViewModels
-
+@model List<Chill_Computer.ViewModels.CartItemViewModel>
 @{
     var cart = Context.Session.GetObject<List<CartItemViewModel>>("Cart") ?? new List<CartItemViewModel>();
 }
@@ -37,7 +37,7 @@
                         <div>
                             <h6>@item.ProductName</h6>
                             <span style="color: gray; font-size: 14px;">@item.Version</span>
-                            <h6 style="color: #EC1250;">@item.Price</h6>
+                            <h6 style="color: #EC1250;">@item.FormattedPrice đ</h6>
                         </div>
                     </div>
                 }

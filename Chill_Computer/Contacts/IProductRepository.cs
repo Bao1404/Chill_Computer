@@ -20,6 +20,6 @@ namespace Chill_Computer.Contacts
         public void DeleteProduct(int id);
         List<Product> GetProductFromFilter(string filterName, string categoryName);
 
-
+        public Product GetProductFromNameAndVersion(string productName, string versionName);
     }
 }

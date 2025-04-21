@@ -11,11 +11,13 @@
 
 <div class="main-content">
     <div class="title">
-        <a asp-controller="Home" asp-action="Index">
+        <a asp-controller="Home" asp-action="Index" style="text-decoration:none;">
             <p class="box">Trang chủ</p>
         </a>
         <p> / </p>
-        <p class="box">@ViewBag.ProductTypeName</p>
+        <a asp-controller="Product" asp-action="ProductListPage" asp-route-id="@Model.TypeId" style="text-decoration:none;">
+            <p class="box">@ViewBag.ProductTypeName</p>
+        </a>
         <p> / </p>
         <p class="box box-active">@ViewBag.Brand.BrandName</p>
     </div>
@@ -76,7 +78,9 @@
             <div class="type-div">
                 @foreach (var ver in ViewBag.ProductVersion)
                 {
-                    <button class="type-box @(ver == Model.Version ? "box-active" : "")">@ver</button>
+                    <a asp-route="ProductDetailByVersion" asp-route-productName="@Model.ProductName" asp-route-productVersion="@ver">
+                        <button class="type-box @(ver == Model.Version ? "box-active" : "")">@ver</button>
+                    </a>
                 }
             </div>
 
