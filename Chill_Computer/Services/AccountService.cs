@@ -156,5 +156,10 @@ namespace Chill_Computer.Services
                         RoleId = role.RoleId
                     }).Skip((pageNumber-1)*pageSize).Take(pageSize).ToList();
         }
+
+        public Account GetAccountByNameAndPass(string username, string password)
+        {
+            return _context.Accounts.FirstOrDefault(x => x.UserName == username && x.Password == password);
+        }
     }
 }

@@ -1,0 +1,102 @@
+﻿.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-input {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.login-container {
+    display: flex;
+    border: 1px solid lightgray;
+    margin: 125px 0;
+    background: #00D4FF;
+    background: linear-gradient(90deg,rgba(0, 212, 255, 1) 23%, rgba(77, 225, 255, 1) 51%, rgba(0, 212, 255, 1) 84%);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.right-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: black;
+    font-size: 600;
+    font-family: Lexend, sans-serif;
+}
+
+    .right-box h5 {
+        margin: 0;
+    }
+
+    .right-box button {
+        background: none;
+        border: 2px solid black;
+        border-radius: 20px;
+        padding: 8px 12px;
+    }
+
+.left-box {
+    /* margin: 20px 20px 20px 10px; */
+    padding: 48px;
+    font-size: 600;
+    font-family: Lexend, sans-serif;
+    background-color: white;
+}
+
+    .left-box h2 {
+        margin-bottom: 25px;
+    }
+
+.login-btn {
+    background: #00D4FF;
+    background: linear-gradient(90deg,rgba(0, 212, 255, 1) 23%, rgba(77, 225, 255, 1) 51%, rgba(0, 212, 255, 1) 84%);
+    border: 1px solid lightgray;
+    border-radius: 20px;
+    padding: 5px;
+    height: 50px;
+}
+
+.left-box input {
+    border-radius: 20px;
+    border: 1px solid lightgray;
+    height: 50px;
+    padding: 5px 16px;
+    margin-bottom: 16px;
+}
+
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.remember-check {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.or {
+    margin: 0 180px;
+    height: 26px;
+    position: absolute;
+    background-color: white;
+    padding: 0 5px;
+}
+
+.google-btn {
+    background: #00D4FF;
+    background: linear-gradient(90deg,rgba(0, 212, 255, 1) 23%, rgba(77, 225, 255, 1) 51%, rgba(0, 212, 255, 1) 84%);
+    border: 1px solid lightgray;
+    border-radius: 20px;
+    padding: 5px;
+    height: 50px;
+    min-width: 410px;
+}
