@@ -50,10 +50,11 @@
 
         .box-border-Right{
             justify-items: right;
-            height: 650px;
-            width: 1000px;
-            border: 1px solid;
+            height: fit-content;
+            width: 100%;
             margin: 20px 0 0 0;
+            border: 1px solid;
+            margin-right: 20px;
             padding: 15px;
             border-radius: 15px;
         }
@@ -61,7 +62,7 @@
 </head>
 <body>
     <div class="row">
-        <div class="col-md-4" style="justify-items: center;">
+        <div class="col-md-3" style="justify-items: center;">
             <div class="box-border-Left">
                 <img class="img-fluid" src="https://www.svgrepo.com/show/345047/person.svg" alt="personal-icon" style="width: 69px;
                 height: 71px;
@@ -129,7 +130,7 @@
             </div>
         </div>
 
-        <div class="col-md-8" style="justify-items: center;">
+        <div class="col-md-9" style="justify-items: center; width: 100%;">
             <div class="box-border-Right">
                 
                     @RenderBody() <!-- Đây là phần nội dung chính -->

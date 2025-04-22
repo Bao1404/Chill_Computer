@@ -1,0 +1,65 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+    ViewData["Title"] = "Login";
+}
+
+<div class="container login-container" style="width: 60%; min-height: fit-content; padding: 0;">
+    <a asp-controller="Home" asp-action="Index">
+        <svg width="25" height="25" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: absolute; z-index: 10; margin: 15px 20px;">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.03224 4.29033L8.96569 4.21967C8.6773 3.94931 8.22351 3.92851 7.90968 4.15728L7.83431 4.21967L2.23431 9.46967L2.2012 9.50264L2.15707 9.55352L2.09974 9.63695L2.05698 9.7215L2.02868 9.80051L2.00553 9.91143L2 10L2.00223 10.0564L2.01619 10.1505L2.03979 10.2341L2.07494 10.3174L2.1168 10.3905L2.17575 10.4691L2.23431 10.5303L7.83431 15.7803C8.14673 16.0732 8.65327 16.0732 8.96569 15.7803C9.25407 15.51 9.27626 15.0845 9.03224 14.7903L8.96569 14.7197L4.7328 10.75H17.2C17.6418 10.75 18 10.4142 18 10C18 9.58579 17.6418 9.25 17.2 9.25H4.7312L8.96569 5.28033C9.25407 5.00997 9.27626 4.58454 9.03224 4.29033L8.96569 4.21967L9.03224 4.29033Z" fill="#06152B" />
+        </svg>
+    </a>
+    <div class="col-lg-6 left-box">
+        <h2 style="text-align: center;">Đăng nhập</h2>
+        @if(ViewBag.Error != null)
+        {
+            <h5 style="color: #ff0f0f;">@ViewBag.Error</h5>
+        }
+        <form action="Login" method="POST" class="login-form">
+            <div class="form-input">
+                <label for="">Tên đăng nhập</label>
+                <input type="text" placeholder="Tên đăng nhập" name="username">
+            </div>
+
+            <div class="form-input">
+                <label for="">Mật khẩu</label>
+                <input type="text" placeholder="Mật khẩu" name="password">
+            </div>
+
+            <button class="login-btn">Đăng nhập</button>
+
+            <div class="remember-forgot">
+                <div class="remember-check">
+                    <input type="checkbox" id="remember" style="margin: 0;">
+                    <label for="remember">Ghi nhớ</label>
+                </div>
+
+                <span>Quên mật khẩu</span>
+            </div>
+        </form>
+
+        <div style="display: flex; align-items: center;">
+            <hr style="height: 1px; width: 410px;">
+            <p class="or">Hoặc</p>
+        </div>
+
+        <div style="text-align: center;">
+            <p>Đăng nhập với google</p>
+            <button class="google-btn">
+                <i class="fa-brands fa-google"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="col-lg-6 right-box">
+        <img src="../imgs/output-onlinepngtools.png" alt="">
+        <h2>Chào mừng đến với Chill Computer</h2>
+        <p>Chưa có tài khoản?</p>
+        <button>
+            <span>Đăng ký ngay</span>
+        </button>
+    </div>
+</div>

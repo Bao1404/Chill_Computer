@@ -124,5 +124,42 @@ namespace Chill_Computer.Services
                 return false;
             }
         }
+
+        public List<AccountViewModel> SearchByUsername (string username)
+        {
+            return (from account in _context.Accounts
+                    join user in _context.Users on account.UserName equals user.UserName
+                    join role in _context.Roles on account.RoleId equals role.RoleId
+                    where user.UserName.Contains(username)
+                    select new AccountViewModel
+                    {
+                        Id = user.UserId,
+                        Username = user.UserName,
+                        FullName = user.FullName,
+                        Role = role.RolePosition,
+                        RoleId = role.RoleId
+                    }).ToList();
+        }
+
+        public List<AccountViewModel> SearchByUsername(string username, int pageNumber, int pageSize)
+        {
+            return (from account in _context.Accounts
+                    join user in _context.Users on account.UserName equals user.UserName
+                    join role in _context.Roles on account.RoleId equals role.RoleId
+                    where user.UserName.Contains(username)
+                    select new AccountViewModel
+                    {
+                        Id = user.UserId,
+                        Username = user.UserName,
+                        FullName = user.FullName,
+                        Role = role.RolePosition,
+                        RoleId = role.RoleId
+                    }).Skip((pageNumber-1)*pageSize).Take(pageSize).ToList();
+        }
+
+        public Account GetAccountByNameAndPass(string username, string password)
+        {
+            return _context.Accounts.FirstOrDefault(x => x.UserName == username && x.Password == password);
+        }
     }
 }
