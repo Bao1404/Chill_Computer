@@ -2,6 +2,7 @@ using Chill_Computer.Models;
 using Chill_Computer.Contacts;
 using Chill_Computer.Services;
 using Microsoft.EntityFrameworkCore;
+using Chill_Computer.Helpers;
 
 namespace Chill_Computer
 {
@@ -28,9 +29,10 @@ namespace Chill_Computer
             builder.Services.AddSession();
             builder.Services.AddScoped<ISeriesRepository, SeriesRepository>();
             builder.Services.AddScoped<IOrderRepository, OrderRepository>();
-
+            builder.Services.AddSignalR();
             var app = builder.Build();
 
+            app.MapHub<ChatHub>("/chathub");
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {

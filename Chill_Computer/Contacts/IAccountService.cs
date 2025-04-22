@@ -8,6 +8,7 @@ namespace Chill_Computer.Contacts
     public interface IAccountService
     {
         List<AccountViewModel> GetAccounts(int pageNumber, int pageSize);
+        public Account GetAccountByUserId(int userId);
         public List<AccountViewModel> SearchByUsername(string username, int pageNumber, int pageSize);
         public List<AccountViewModel> SearchByUsername(string username);
         public AccountViewModel GetAccountVMByUserName(string username);
