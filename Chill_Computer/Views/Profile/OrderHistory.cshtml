@@ -1,0 +1,150 @@
+﻿@model List<Chill_Computer.ViewModels.OrderHistoryViewModel>
+@{
+    Layout = "~/Views/Shared/_LayoutProfile.cshtml";
+    ViewData["ChooseOrderHistory"] = "chooseButton";
+}
+
+<style>
+    .content {
+    margin-left: 60px;
+    flex: 1;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .content h2 {
+    font-size: 60px;
+    font-weight: bold;
+    margin-bottom: 24px;
+    color: #0f172a;
+    }
+
+    table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 8px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    th, td {
+    padding: 16px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    font-size: 15px;
+    }
+
+    th {
+    background-color: #f1f5f9;
+    font-weight: 600;
+    color: #334155;
+    }
+
+    .status {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    display: inline-block;
+    }
+
+    .status.completed {
+    background-color: #bbf7d0;
+    color: #166534;
+    }
+
+    .status.pending {
+    background-color: #fef9c3;
+    color: #92400e;
+    }
+
+    .status.canceled {
+    background-color: #fecaca;
+    color: #991b1b;
+    }
+
+    .view-btn {
+    padding: 8px 16px;
+    background-color: #0ea5e9;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .view-btn:hover {
+    background-color: #0284c7;
+    transform: translateY(-1px);
+    }
+
+    td {
+    position: relative;
+    padding-left: 50%;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    }
+
+    td::before {
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    font-weight: bold;
+    white-space: nowrap;
+    }
+
+    tr {
+    margin-bottom: 20px;
+    border-bottom: 2px solid #f1f5f9;
+    }
+
+</style>
+
+<div class="content">
+    <h2>Lịch sử đơn hàng</h2>
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table" style="width: 100%;background: #f9fbfd;box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th>Mã đơn</th>
+                    <th>Ngày đặt</th>
+                    <th>Tổng tiền</th>
+                    <th>Trạng thái</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model)
+                {
+                    var statusClass = order.OrderStatus switch
+                    {
+                        "Hoàn tất" => "completed",
+                        "Đang giao" => "pending",
+                        "Đã hủy" => "canceled",
+                        _ => "pending"
+                    };
+                    <tr>
+                        <td>@order.OrderId</td>
+                        <td>@order.OrderDate.ToString("dd/MM/yyyy")</td>
+                        <td>@order.TotalPrice.ToString("N0")₫</td>
+                        <td><span class="status @statusClass">@order.OrderStatus</span></td>
+                        <td>
+                            <a class="view-btn" href="@Url.Action("Details", "Order", new { orderId = order.OrderId })">
+                                Xem chi tiết
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>Không có đơn hàng nào.</p>
+    }
+</div>

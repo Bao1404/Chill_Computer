@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebMVC</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        .sidebar {
+            width: 260px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin: 35px;
+            padding: 24px;
+        }
+
+            .sidebar ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            .sidebar li {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 20px 20px;
+                font-size: 16px;
+                color: #0f172a;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+                .sidebar li i {
+                    margin-right: 10px;
+                }
+
+                .sidebar li span {
+                    flex: 1;
+                }
+
+                .sidebar li:hover {
+                    background-color: #e2e8f0;
+                    border-radius: 4px;
+                }
+
+                .sidebar li.active {
+                    background-color: #22d3ee;
+                    color: white;
+                    border-radius: 999px;
+                }
+
+                    .sidebar li.active i,
+                    .sidebar li.active span {
+                        color: white;
+                    }
+
+        /* Class này được gắn động từ Razor thông qua @ViewData */
+        .chooseButton {
+            background-color: #22d3ee !important;
+            color: white !important;
+            border-radius: 999px;
+        }
+
+        .chooseButton i,
+        .chooseButton span {
+            color: white !important;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container" style="display:flex; padding: 40px;">
+        <!-- Sidebar -->
+        <div class="col-md-5 sidebar" style="width: 260px; border: 1px solid #ccc; border-radius: 8px; margin: 35px; padding: 24px;">
+            <ul class="list-unstyled">
+                <li class="nav-item @ViewData["ChooseProfile"]">
+                    <a class="nav-link text-dark d-flex justify-content-between align-items-center" asp-controller="Profile" asp-action="Profile">
+                        <span><i class="fa-solid fa-user me-2"></i>Thông tin tài khoản</span>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </a>
+                </li>
+
+                <li class="nav-item @ViewData["ChooseUpdateProfile"]">
+                    <a class="nav-link text-dark d-flex justify-content-between align-items-center" asp-controller="Profile" asp-action="UpdateProfile">
+                        <span><i class="fa-solid fa-user-pen me-2"></i>Cập nhật thông tin</span>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </a>
+                </li>
+
+                <li class="nav-item @ViewData["ChooseOrderHistory"]">
+                    <a class="nav-link text-dark d-flex justify-content-between align-items-center" asp-controller="Profile" asp-action="OrderHistory">
+                        <span><i class="fa-solid fa-bag-shopping me-2"></i>Lịch sử đơn hàng</span>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </a>
+                </li>
+
+                <li class="nav-item @ViewData["ChooseReview"]">
+                    <a class="nav-link text-dark d-flex justify-content-between align-items-center" asp-controller="Profile" asp-action="Review">
+                        <span><i class="fa-regular fa-star me-2"></i>Đánh giá & Nhận xét</span>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </a>
+                </li>
+
+                <li class="nav-item @ViewData["ChooseChangedPassword"]">
+                    <a class="nav-link text-dark d-flex justify-content-between align-items-center" asp-controller="User" asp-action="ChangePassword">
+                        <span><i class="fa-regular fa-user me-2"></i>Đổi mật khẩu</span>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-dark d-flex justify-content-between align-items-center" href="#" onclick="Logout()">
+                        <span><i class="fa-solid fa-right-from-bracket me-2"></i>Đăng xuất</span>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+            <!-- Content -->
+            <div class="col-md-7 content" style="margin-left: 60px; flex: 1;">
+                <div class="main-content">
+                    @RenderBody() <!-- Đây là phần nội dung chính -->
+                </div>
+            </div>
+        
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        function logout() {
+            if (confirm("Bạn có chắc chắn muốn đăng xuất không?")) {
+                window.location.href = '/Home';
+            }
+        }
+    </script>
+
+
+</body>
+</html>
