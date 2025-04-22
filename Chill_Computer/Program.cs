@@ -28,6 +28,9 @@ namespace Chill_Computer
             builder.Services.AddSession();
             builder.Services.AddScoped<ISeriesRepository, SeriesRepository>();
             builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<ICartItemRepository, CartItemRepository>();
+            builder.Services.AddScoped<ICartRepository, CartRepository>();
 
             var app = builder.Build();
 
