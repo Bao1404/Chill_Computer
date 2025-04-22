@@ -17,9 +17,11 @@ namespace Chill_Computer.Controllers
         private readonly IProductAttributeRepository _productAttributeRepository;
         private readonly IBrandRepository _brandRepository;
         private readonly ISeriesRepository _seriesRepository;
+        private readonly ICartRepository _cartRepository;
+        private readonly ICartItemRepository _cartItemRepository;
 
-        public ProductController(ChillComputerContext context, IProductTypeRepository productTypeRepository, IProductTypeFilterRepository productTypeFilterRepository, IFilterCategoryRepository filterCategoryRepository, IProductRepository productRepository, IAttributeRepository attributeRepository, IProductAttributeRepository productAttributeRepository, IBrandRepository brandRepository, ISeriesRepository seriesRepository) 
-            : base(context, productTypeRepository, productTypeFilterRepository, filterCategoryRepository)
+        public ProductController(ChillComputerContext context, IProductTypeRepository productTypeRepository, IProductTypeFilterRepository productTypeFilterRepository, IFilterCategoryRepository filterCategoryRepository, IProductRepository productRepository, IAttributeRepository attributeRepository, IProductAttributeRepository productAttributeRepository, IBrandRepository brandRepository, ISeriesRepository seriesRepository, ICartRepository cartRepository, ICartItemRepository cartItemRepository) 
+            : base(context, productTypeRepository, productTypeFilterRepository, filterCategoryRepository, cartRepository, cartItemRepository)
         {
             _context = context;
             _productTypeRepository = productTypeRepository;

@@ -14,9 +14,11 @@ public class HomeController : BaseController
     private readonly IProductTypeFilterRepository _productTypeFilterRepository;
     private readonly IFilterCategoryRepository _filterCategoryRepository;
     private readonly IProductRepository _productRepository;
+    private readonly ICartRepository _cartRepository;
+    private readonly ICartItemRepository _cartItemRepository;
 
-    public HomeController(ILogger<HomeController> logger, ChillComputerContext context, IProductTypeRepository productTypeRepository, IProductTypeFilterRepository productTypeFilterRepository, IFilterCategoryRepository filterCategoryRepository, IProductRepository productRepository)
-        : base(context, productTypeRepository, productTypeFilterRepository, filterCategoryRepository)
+    public HomeController(ILogger<HomeController> logger, ChillComputerContext context, IProductTypeRepository productTypeRepository, IProductTypeFilterRepository productTypeFilterRepository, IFilterCategoryRepository filterCategoryRepository, IProductRepository productRepository, ICartRepository cartRepository, ICartItemRepository cartItemRepository)
+        : base(context, productTypeRepository, productTypeFilterRepository, filterCategoryRepository, cartRepository, cartItemRepository)
     {
         _logger = logger;
         _productTypeRepository = productTypeRepository;
@@ -24,6 +26,8 @@ public class HomeController : BaseController
         _productTypeFilterRepository = productTypeFilterRepository;
         _filterCategoryRepository = filterCategoryRepository;
         _productRepository = productRepository;
+        _cartRepository = cartRepository;
+        _cartItemRepository = cartItemRepository;
     }
 
     public IActionResult Index()
