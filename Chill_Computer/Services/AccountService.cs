@@ -166,7 +166,7 @@ namespace Chill_Computer.Services
 
         public Account GetAccountByNameAndPass(string username, string password)
         {
-            return _context.Accounts.FirstOrDefault(x => x.UserName == username && x.Password == password);
+            return _context.Accounts.Include(x=>x.Role).FirstOrDefault(x => x.UserName == username && x.Password == password);
         }
     }
 }

@@ -32,8 +32,17 @@ namespace Chill_Computer
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<ICartItemRepository, CartItemRepository>();
             builder.Services.AddScoped<ICartRepository, CartRepository>();
-
+            builder.Services.AddHttpContextAccessor();
             builder.Services.AddSignalR();
+
+            builder.Services.AddDistributedMemoryCache(); 
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);  
+                options.Cookie.HttpOnly = true;  
+                options.Cookie.IsEssential = true; 
+            });
+
             var app = builder.Build();
 
             app.MapHub<ChatHub>("/chathub");
