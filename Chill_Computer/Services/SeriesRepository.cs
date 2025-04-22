@@ -52,6 +52,11 @@ namespace Chill_Computer.Services
         {
             return _context.Series.Any(b => b.SeriesName == seriesName);
         }
+
+        public List<Series> GetSeriesByBrandId(int brandId)
+        {
+            return _context.Series.Where(s => s.BrandId == brandId).ToList();
+        }
     }
     
 }

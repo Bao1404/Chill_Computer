@@ -2,11 +2,6 @@
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @model IEnumerable<Chill_Computer.Models.ProductType>
-@{
-
-    var processedId2 = new HashSet<int>();
-    var processedId3 = new HashSet<int>();
-}
 
 <div class="product-menu">
     <ul style="padding: 0;">
@@ -44,25 +39,18 @@
             <div class="row">
                 @foreach (var filterTitle in ((IEnumerable<dynamic>)ViewBag.FilterTitle).Where(f => f.TypeId == category.TypeId))
                 {
-                    if (!processedId2.Contains(filterTitle.FilterId))
-                    {
-                        processedId2.Add(filterTitle.FilterId);
                         <div class="col-lg-4 category-type">
                             <span>@filterTitle.FilterName</span>
                             <div class="row category-content">
                                 @foreach (var categoryName in ((IEnumerable<dynamic>)ViewBag.Categories).Where(c => c.FilterId == filterTitle.FilterId))
                                 {
-                                    if (!processedId3.Contains(categoryName.CategoryId))
-                                    {
-                                        processedId3.Add(categoryName.CategoryId);
+
                                         <div class="col-lg-6">
                                             <p>@categoryName.CategoryName</p>
                                         </div>
-                                    }
                                 }
                             </div>
-                        </div>
-                    }
+                        </div>                    
                 }
             </div>
         </div>

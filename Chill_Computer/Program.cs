@@ -25,8 +25,12 @@ namespace Chill_Computer
             builder.Services.AddScoped<IAttributeRepository, AttributeRepository>();  
             builder.Services.AddScoped<IProductAttributeRepository, ProductAttributeRepository>();
             builder.Services.AddScoped<IBrandRepository, BrandRepository>();
+            builder.Services.AddSession();
             builder.Services.AddScoped<ISeriesRepository, SeriesRepository>();
             builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<ICartItemRepository, CartItemRepository>();
+            builder.Services.AddScoped<ICartRepository, CartRepository>();
 
             var app = builder.Build();
 
@@ -37,6 +41,8 @@ namespace Chill_Computer
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseSession();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
