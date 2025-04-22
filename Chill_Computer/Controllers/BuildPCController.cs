@@ -13,9 +13,11 @@ namespace Chill_Computer.Controllers
         private readonly IFilterCategoryRepository _filterCategoryRepository;
         private readonly IProductRepository _productRepository;
         private readonly IBrandRepository _brandRepository;
+        private readonly ICartRepository _cartRepository;
+        private readonly ICartItemRepository _cartItemRepository;
 
-        public BuildPCController(ChillComputerContext context, IProductTypeRepository productTypeRepository, IProductTypeFilterRepository productTypeFilterRepository, IFilterCategoryRepository filterCategoryRepository, IProductRepository productRepository, IBrandRepository brandRepository)
-        : base(context, productTypeRepository, productTypeFilterRepository, filterCategoryRepository)
+        public BuildPCController(ChillComputerContext context, IProductTypeRepository productTypeRepository, IProductTypeFilterRepository productTypeFilterRepository, IFilterCategoryRepository filterCategoryRepository, IProductRepository productRepository, IBrandRepository brandRepository, ICartRepository cartRepository, ICartItemRepository cartItemRepository)
+        : base(context, productTypeRepository, productTypeFilterRepository, filterCategoryRepository, cartRepository, cartItemRepository)
         {
             _productTypeRepository = productTypeRepository;
             _context = context;
@@ -23,6 +25,8 @@ namespace Chill_Computer.Controllers
             _filterCategoryRepository = filterCategoryRepository;
             _productRepository = productRepository;
             _brandRepository = brandRepository;
+            _cartRepository = cartRepository;
+            _cartItemRepository = cartItemRepository;
         }
         public IActionResult BuildPage()
         {
