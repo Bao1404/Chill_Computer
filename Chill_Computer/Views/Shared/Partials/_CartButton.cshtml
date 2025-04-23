@@ -1,0 +1,22 @@
+﻿@using Chill_Computer.ViewModels
+
+@{
+    var cart = Context.Session.GetObject<List<CartItemViewModel>>("Cart") ?? new List<CartItemViewModel>();
+    var user = Context.Session.GetObject<int>("_userId");
+}
+
+@if (ViewBag.CartItems != null)
+{
+    <span>@(((IEnumerable<dynamic>)ViewBag.CartItems).Sum(item => (decimal)item.Price * (int)item.Quantity).ToString("N0")) đ</span>
+}
+else
+{
+    if (cart == null)
+    {
+        <span>0 Đ</span>
+    }
+    else
+    {
+        <span>@cart.Sum(item => item.Price * item.Quantity).ToString("N0") Đ</span>
+    }
+}

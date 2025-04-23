@@ -227,7 +227,7 @@ span {
     }
 
 .btn-header {
-    width: 127px;
+    width: max-content;
     height: 45px;
     border-radius: 20px;
     background-color: #605cff;
@@ -236,12 +236,14 @@ span {
     justify-content: space-around;
     align-items: center;
     padding: 0 15px;
+    gap: 10px;
 }
 
 .dangnhap-giohang {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
+    gap: 15px;
 }
 
 .btn-header span {
@@ -612,7 +614,7 @@ span {
 
 .active-slide {
     border-radius: 20px;
-    background-color: #5A82FC;
+    background-color: #605cff;
     height: 38px;
     width: 106px;
     position: absolute;
@@ -684,7 +686,8 @@ span {
 }
 
 .btn2 {
-    background-color: #5A82FC;
+    background-color: #605cff;
+    color: white;
 }
 
 .btn-div {
@@ -735,19 +738,19 @@ span {
     padding: 10px 10px;
 }
 
-tr:nth-child(odd) {
+rounded-table tr:nth-child(odd) {
     background-color: #ffffff;
 }
 
-tr:nth-child(even) {
+rounded-table tr:nth-child(even) {
     background-color: #f2f4f7;
 }
 
-td:first-child {
+rounded-table td:first-child {
     width: 400px;
 }
 
-td:last-child {
+rounded-table td:last-child {
     width: 470px;
 }
 
@@ -881,8 +884,8 @@ td:last-child {
 }
 
     .left-cart-box img {
-        width: 120px;
-        height: 120px;
+        width: 80px;
+        height: 80px;
         border-radius: 10px;
         border: 1px solid lightgray;
     }
@@ -934,12 +937,13 @@ td:last-child {
 }
 
 .total-btn {
-    background-color: #5A82FC;
+    background-color: #605cff;
     font-family: Lexend, sans-serif;
     border-radius: 10px;
     border: 1px solid lightgray;
     width: 75%;
     min-height: 40px;
+    color: white;
 }
 
 .right-cart-box {
