@@ -11,11 +11,13 @@
 
 <div class="main-content">
     <div class="title">
-        <a asp-controller="Home" asp-action="Index">
+        <a asp-controller="Home" asp-action="Index" style="text-decoration:none;">
             <p class="box">Trang chủ</p>
         </a>
         <p> / </p>
-        <p class="box">@ViewBag.ProductTypeName</p>
+        <a asp-controller="Product" asp-action="ProductListPage" asp-route-id="@Model.TypeId" style="text-decoration:none;">
+            <p class="box">@ViewBag.ProductTypeName</p>
+        </a>
         <p> / </p>
         <p class="box box-active">@ViewBag.Brand.BrandName</p>
     </div>
@@ -51,18 +53,14 @@
                 <div class="rounded-table" style="overflow: hidden;">
                     <table>
                         @foreach (var attr in ViewBag.AttrbuteList)
-                        {
-                            if (!processedId2.Contains(attr.AttributeName))
-                            {
-                                processedId2.Add(attr.AttributeName);
+                        {          
                                 foreach (var productAttr in ((IEnumerable<dynamic>)ViewBag.ProductAttributeList).Where(f => f.AttributeId == attr.AttributeId && f.ProductId == Model.ProductId))
                                 {
                                     <tr>
                                         <td>@attr.AttributeName </td>
                                         <td>@productAttr.AttributeValue </td>
-                                    </tr>
-                                }
-                            }                          
+                                    </tr>                                   
+                                }                                                     
                         }
                     </table>
                 </div>
@@ -80,7 +78,9 @@
             <div class="type-div">
                 @foreach (var ver in ViewBag.ProductVersion)
                 {
-                    <button class="type-box">@ver</button>
+                    <a asp-route="ProductDetailByVersion" asp-route-productName="@Model.ProductName" asp-route-productVersion="@ver">
+                        <button class="type-box @(ver == Model.Version ? "box-active" : "")">@ver</button>
+                    </a>
                 }
             </div>
 
@@ -93,7 +93,7 @@
             <h4 class>@Model.FormattedPrice đ</h4>
 
             <div class="btn-div">
-                <button class="btn1 col-lg-6">
+                <button class="btn1 col-lg-6 add-to-cart" data-id="@Model.ProductId">
                     <svg width="24" height="24" viewBox="0 0 24 24"
                          fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -141,5 +141,30 @@
             $('.img-selection button').removeClass('selected-img').css('border', 'none');
             $(this).addClass('selected-img').css('border', '2px solid black');
         });
+
+            $('.add-to-cart').click(function () {
+        var productId = $(this).data('id');
+
+        $.ajax({
+            url: '@Url.Action("AddToCart", "Cart")',
+            type: 'POST',
+            data: { productId: productId },
+            success: function (response) {
+                if (response.success) {
+                    alert('Đã thêm sản phẩm vào giỏ!');
+                    $('.modal-cart-title h5').text('Giỏ hàng (' + response.count + ')');
+                    // optionally, you could refresh or update the cart UI here dynamically
+                    $.get('@Url.Action("RenderMiniCart", "Cart")', function (html) {
+                        $('#cart-container').html(html);
+                    });
+                    $.get('@Url.Action("RenderCartButton", "Cart")', function (html){
+                        $('#cartButton').html(html);
+                    });
+                } else {
+                    alert('Có lỗi xảy ra!');
+                }
+            }
+        });
+    });
     });
 </script>

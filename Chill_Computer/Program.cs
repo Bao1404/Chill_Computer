@@ -2,6 +2,7 @@ using Chill_Computer.Models;
 using Chill_Computer.Contacts;
 using Chill_Computer.Services;
 using Microsoft.EntityFrameworkCore;
+using Chill_Computer.Helpers;
 
 namespace Chill_Computer
 {
@@ -25,11 +26,26 @@ namespace Chill_Computer
             builder.Services.AddScoped<IAttributeRepository, AttributeRepository>();  
             builder.Services.AddScoped<IProductAttributeRepository, ProductAttributeRepository>();
             builder.Services.AddScoped<IBrandRepository, BrandRepository>();
+            builder.Services.AddSession();
             builder.Services.AddScoped<ISeriesRepository, SeriesRepository>();
             builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<ICartItemRepository, CartItemRepository>();
+            builder.Services.AddScoped<ICartRepository, CartRepository>();
+            builder.Services.AddHttpContextAccessor();
+            builder.Services.AddSignalR();
+
+            builder.Services.AddDistributedMemoryCache(); 
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);  
+                options.Cookie.HttpOnly = true;  
+                options.Cookie.IsEssential = true; 
+            });
 
             var app = builder.Build();
 
+            app.MapHub<ChatHub>("/chathub");
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
@@ -37,6 +53,8 @@ namespace Chill_Computer
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseSession();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

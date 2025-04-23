@@ -16,6 +16,13 @@ namespace Chill_Computer.Services
             _context = context;
         }
 
+        public Account GetAccountByUserId(int userId)
+        {
+            return _context.Accounts
+                .Include(a => a.Users)
+                .FirstOrDefault(a => a.Users.Any(u => u.UserId == userId));
+        }
+
         public List<AccountViewModel> GetAccounts(int pageNumber, int pageSize)
         {
             return (from account in _context.Accounts
@@ -155,6 +162,11 @@ namespace Chill_Computer.Services
                         Role = role.RolePosition,
                         RoleId = role.RoleId
                     }).Skip((pageNumber-1)*pageSize).Take(pageSize).ToList();
+        }
+
+        public Account GetAccountByNameAndPass(string username, string password)
+        {
+            return _context.Accounts.Include(x=>x.Role).FirstOrDefault(x => x.UserName == username && x.Password == password);
         }
     }
 }

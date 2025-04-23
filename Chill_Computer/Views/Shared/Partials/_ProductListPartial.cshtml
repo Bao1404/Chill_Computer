@@ -1,0 +1,45 @@
+﻿
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var storedProduct = new List<dynamic>();
+}
+@foreach (var product in ViewBag.ProductList)
+{
+    if (!storedProduct.Contains(product.ProductName))
+    {
+        storedProduct.Add(product.ProductName);
+        if (product.TypeId == Model)
+        {
+            <a asp-area="" asp-controller="Product" asp-action="ProductDetailPage" asp-route-id="@product.ProductId" style="color: black; text-decoration:none;">
+                <div class="product-box-list">
+                    <img src="@product.Img1" height="180px" width="180px" alt="">
+                    <div class="product-info">
+                        <span>@product.ProductName</span>
+                        <h6>@product.FormattedPrice đ</h6>
+                        <div class="color-list">
+                            <span>Màu</span>
+                            <svg width="14" height="14">
+                                <circle cx="7" cy="7" r="7" fill="@(product.Color.Contains("Gray") || product.Color.Contains("Grey") ? "Gray" : "")" />
+                            </svg>
+                        </div>
+                        <span>@product.Version</span>
+                        <div class="product-version-count">
+                            @{
+                                var versionList = ((IEnumerable<dynamic>)ViewBag.ProductList)
+                                .Where(p => p.ProductName == product.ProductName)
+                                .ToList();
+                            }
+                            @if (versionList.Count > 1)
+                            {
+                                <span>+ @versionList.Count tùy chọn khác</span>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+        }
+    }
+}

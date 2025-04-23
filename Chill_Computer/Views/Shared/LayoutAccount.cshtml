@@ -1,0 +1,388 @@
+﻿<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebMVC</title>
+    <script type="Account Information"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WebMVC.styles.css" asp-append-version="true" />
+
+    <script>
+            .container {
+            margin-left: 100px;
+            margin-right: 100px;
+        }
+        .sidebar a, .sidebar button {
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .sidebar a:hover, .sidebar button:hover {
+            background-color: #e2e8f0;
+            color: #1a202c;
+        }
+        .sidebar a.active, .sidebar button.active {
+            background-color: #38bdf8;
+            color: white;
+        }
+        .sidebar a.inactive, .sidebar button.inactive {
+            background-color: white;
+            color: #1a202c;
+        }
+        .main-title {
+            font-size: 60px;
+            text-align: center; /* Center align the header */
+        }
+        .input-box {
+            background-color: #f3f4f6;
+            border: 1px solid #d1d5db;
+            padding: 8px;
+            border-radius: 4px;
+            width: 50%; /* Adjusted width */
+        }
+        .input-box[readonly] {
+            pointer-events: none;
+        }
+        .hidden {
+            display: none;
+        }
+        .sidebar {
+            position: fixed;
+            top: 100px;
+            left: 100px;
+            width: 250px;
+        }
+        .main-content {
+            margin-left: 350px; /* Adjusted to make space for the fixed sidebar */
+        }
+    </script>
+</head>
+
+
+<body class="bg-white text-gray-800">
+    <div class="container mx-auto p-4">
+        <div class="grid grid-cols-12 gap-4">
+            <!-- Sidebar -->
+            <div class="col-span-12 md:col-span-3 p-4 border rounded-lg shadow-md sidebar">
+                <ul class="space-y-4">
+                    <li>
+                        <a href="#" class="flex items-center justify-between p-2 rounded-lg active" data-target="account-info">
+                            <span>Thông tin tài khoản</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center justify-between p-2 text-gray-800" data-target="update-info">
+                            <span>Cập nhật thông tin</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center justify-between p-2 text-gray-800" data-target="order-history">
+                            <span>Lịch sử đơn hàng</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center justify-between p-2 text-gray-800" data-target="reviews">
+                            <span>Đánh giá & Nhận xét</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center justify-between p-2 text-gray-800" data-target="change-password">
+                            <span>Đổi mật khẩu</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <button class="flex items-center justify-between p-2 text-gray-800 w-full text-left" onclick="logout()">
+                            <span>Đăng xuất</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <!-- Main Content -->
+            <div class="col-span-12 md:col-span-9 p-4 main-content">
+                <div id="account-info" class="content-section">
+                    <h1 class="main-title font-bold mb-4">Thông tin tài khoản</h1>
+                    <div class="space-y-4">
+                        <div>
+                            <span class="font-semibold block mb-1">Fullname:</span>
+                            <input type="text" class="input-box" value="No name" readonly>
+                        </div>
+                        <div>
+                            <span class="font-semibold block mb-1">Phone number:</span>
+                            <input type="text" class="input-box" value="0xxxxxxx" readonly>
+                        </div>
+                        <div>
+                            <span class="font-semibold block mb-1">Email:</span>
+                            <input type="text" class="input-box" value="abc@gmail.com" readonly>
+                        </div>
+                        <div>
+                            <span class="font-semibold block mb-1">Date of birth:</span>
+                            <input type="text" class="input-box" value="01/01/1999" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div id="update-info" class="content-section hidden">
+                    <h1 class="main-title font-bold mb-4">Cập nhật thông tin</h1>
+                    <div class="space-y-4">
+                        <div>
+                            <span class="font-semibold block mb-1">Fullname:</span>
+                            <input type="text" class="input-box" value="No name">
+                        </div>
+                        <div>
+                            <span class="font-semibold block mb-1">Phone number:</span>
+                            <input type="text" class="input-box" value="0xxxxxxx">
+                        </div>
+                        <div>
+                            <span class="font-semibold block mb-1">Email:</span>
+                            <input type="text" class="input-box" value="abc@gmail.com">
+                        </div>
+                        <div>
+                            <span class="font-semibold block mb-1">Date of birth:</span>
+                            <input type="text" class="input-box" value="01/01/1999">
+                        </div>
+                    </div>
+                </div>
+                <div id="order-history" class="content-section hidden">
+                    <h1 class="main-title font-bold mb-4">Lịch sử đơn hàng</h1>
+                    <div id="order-list" class="space-y-4">
+                        <!-- Orders will be dynamically inserted here -->
+                    </div>
+                </div>
+                <div id="reviews" class="content-section hidden">
+                    <h1 class="main-title font-bold mb-4">Đánh giá & Nhận xét</h1>
+                    <div id="review-list" class="space-y-4">
+                        <!-- Reviews will be dynamically inserted here -->
+                    </div>
+                </div>
+                <div id="change-password" class="content-section hidden">
+                    <h1 class="main-title font-bold mb-4">Đổi mật khẩu</h1>
+                    <div class="space-y-4">
+                        <p>Change password content goes here...</p>
+                    </div>
+                </div>
+                <div id="logout" class="content-section hidden">
+                    <h1 class="main-title font-bold mb-4">Đăng xuất</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+                document.addEventListener('DOMContentLoaded', function () {
+            const links = document.querySelectorAll('.sidebar a');
+            const sections = document.querySelectorAll('.content-section');
+
+            links.forEach(link => {
+                link.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    links.forEach(l => l.classList.remove('active', 'inactive'));
+                    this.classList.add('active');
+
+                    const target = this.getAttribute('data-target');
+                    sections.forEach(section => {
+                        if (section.id === target) {
+                            section.classList.remove('hidden');
+                        } else {
+                            section.classList.add('hidden');
+                        }
+                    });
+
+                    // Enable or disable input fields based on the section
+                    const inputs = document.querySelectorAll('.input-box');
+                    if (target === 'update-info') {
+                        inputs.forEach(input => input.removeAttribute('readonly'));
+                    } else {
+                        inputs.forEach(input => input.setAttribute('readonly', 'readonly'));
+                    }
+
+                    // Change background color to white for all sections except account-info
+                    if (target !== 'account-info') {
+                        document.querySelector('[data-target="account-info"]').classList.add('inactive');
+                    } else {
+                        document.querySelector('[data-target="account-info"]').classList.add('active');
+                    }
+
+                    // Load order history if the target is order-history
+                    if (target === 'order-history') {
+                        loadOrderHistory();
+                    }
+
+                    // Load reviews if the target is reviews
+                    if (target === 'reviews') {
+                        loadReviews();
+                    }
+                });
+            });
+        });
+
+        function loadOrderHistory() {
+            const orders = [
+                {
+                    id: '12345',
+                    date: '01/01/2023',
+                    status: 'Delivered',
+                    items: [
+                        {
+                            name: 'Laptop A',
+                            price: 1000.00,
+                            discountedPrice: 900.00,
+                            quantity: 1,
+                            imageUrl: 'https://placehold.co/100x100'
+                        }
+                    ]
+                },
+                {
+                    id: '12346',
+                    date: '02/01/2023',
+                    status: 'Shipped',
+                    items: [
+                        {
+                            name: 'Laptop B',
+                            price: 1500.00,
+                            discountedPrice: 1350.00,
+                            quantity: 2,
+                            imageUrl: 'https://placehold.co/100x100'
+                        }
+                    ]
+                },
+                {
+                    id: '12347',
+                    date: '03/01/2023',
+                    status: 'Processing',
+                    items: [
+                        {
+                            name: 'Laptop C',
+                            price: 2000.00,
+                            discountedPrice: 1800.00,
+                            quantity: 1,
+                            imageUrl: 'https://placehold.co/100x100'
+                        }
+                    ]
+                }
+            ];
+
+            const orderList = document.getElementById('order-list');
+            orderList.innerHTML = '';
+
+            orders.forEach(order => {
+                const orderDiv = document.createElement('div');
+                orderDiv.classList.add('border', 'p-4', 'rounded-lg', 'shadow-md', 'mb-4');
+
+                const orderHeader = document.createElement('h2');
+                orderHeader.classList.add('font-semibold', 'mb-2');
+                orderHeader.textContent = `Order #${order.id}`;
+                orderDiv.appendChild(orderHeader);
+
+                order.items.forEach(item => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.classList.add('flex', 'items-center', 'mb-2');
+
+                    const itemImage = document.createElement('img');
+                    itemImage.classList.add('w-20', 'h-20', 'mr-4');
+                    itemImage.src = item.imageUrl;
+                    itemImage.alt = 'Laptop image';
+                    itemDiv.appendChild(itemImage);
+
+                    const itemDetails = document.createElement('div');
+
+                    const itemName = document.createElement('p');
+                    itemName.classList.add('mb-1');
+                    itemName.textContent = `Tên laptop: ${item.name}`;
+                    itemDetails.appendChild(itemName);
+
+                    const itemPrice = document.createElement('p');
+                    itemPrice.classList.add('mb-1');
+                    itemPrice.textContent = `Giá: $${item.price.toFixed(2)}`;
+                    itemDetails.appendChild(itemPrice);
+
+                    const itemDiscountedPrice = document.createElement('p');
+                    itemDiscountedPrice.classList.add('mb-1');
+                    itemDiscountedPrice.textContent = `Giá sau khi add voucher: $${item.discountedPrice.toFixed(2)}`;
+                    itemDetails.appendChild(itemDiscountedPrice);
+
+                    const itemQuantity = document.createElement('p');
+                    itemQuantity.classList.add('mb-1');
+                    itemQuantity.textContent = `Số lượng: ${item.quantity}`;
+                    itemDetails.appendChild(itemQuantity);
+
+                    const itemTotal = document.createElement('p');
+                    itemTotal.classList.add('mb-1');
+                    itemTotal.textContent = `Thành tiền: $${(item.discountedPrice * item.quantity).toFixed(2)}`;
+                    itemDetails.appendChild(itemTotal);
+
+                    itemDiv.appendChild(itemDetails);
+                    orderDiv.appendChild(itemDiv);
+                });
+
+                orderList.appendChild(orderDiv);
+            });
+        }
+
+        function loadReviews() {
+            const reviews = [
+                {
+                    product: 'Laptop A',
+                    rating: 5,
+                    comment: 'Great laptop!',
+                    date: '01/01/2023'
+                },
+                {
+                    product: 'Laptop B',
+                    rating: 4,
+                    comment: 'Good value for money.',
+                    date: '02/01/2023'
+                },
+                {
+                    product: 'Laptop C',
+                    rating: 3,
+                    comment: 'Average performance.',
+                    date: '03/01/2023'
+                }
+            ];
+
+            const reviewList = document.getElementById('review-list');
+            reviewList.innerHTML = '';
+
+            reviews.forEach(review => {
+                const reviewDiv = document.createElement('div');
+                reviewDiv.classList.add('border', 'p-4', 'rounded-lg', 'shadow-md', 'mb-4');
+
+                const reviewHeader = document.createElement('h2');
+                reviewHeader.classList.add('font-semibold', 'mb-2');
+                reviewHeader.textContent = `Product: ${review.product}`;
+                reviewDiv.appendChild(reviewHeader);
+
+                const reviewRating = document.createElement('p');
+                reviewRating.classList.add('mb-1');
+                reviewRating.textContent = `Rating: ${review.rating} stars`;
+                reviewDiv.appendChild(reviewRating);
+
+                const reviewComment = document.createElement('p');
+                reviewComment.classList.add('mb-1');
+                reviewComment.textContent = `Comment: ${review.comment}`;
+                reviewDiv.appendChild(reviewComment);
+
+                const reviewDate = document.createElement('p');
+                reviewDate.classList.add('mb-1');
+                reviewDate.textContent = `Date: ${review.date}`;
+                reviewDiv.appendChild(reviewDate);
+
+                reviewList.appendChild(reviewDiv);
+            });
+        }
+
+        function logout() {
+            // Implement your logout logic here
+            alert('You have been logged out.');
+            // Redirect to login page or home page
+            window.location.href = '/login'; // Change this to your login or home page URL
+        }
+
+    </script>
+
+</body>
+</html>

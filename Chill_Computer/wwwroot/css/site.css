@@ -41,6 +41,8 @@ span {
 
 .header-1 {
     display: flex;
+    color: mistgreen;
+    margin: 15px 200px !important;
 }
 
 .hotline-box {
@@ -129,6 +131,36 @@ span {
 .header-2 {
     display: flex;
     align-items: center;
+    margin: 15px 200px !important;
+    background-color: white;
+    position: relative;
+    z-index: 10;
+}
+
+
+.sticky-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0 !important;
+    padding: 15px 200px;
+    background-color: white;
+    z-index: 1000;
+    animation: slideDown 1s ease forwards;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .logo-sanpham {
@@ -195,7 +227,7 @@ span {
     }
 
 .btn-header {
-    width: 127px;
+    width: max-content;
     height: 45px;
     border-radius: 20px;
     background-color: #605cff;
@@ -204,12 +236,14 @@ span {
     justify-content: space-around;
     align-items: center;
     padding: 0 15px;
+    gap: 10px;
 }
 
 .dangnhap-giohang {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
+    gap: 15px;
 }
 
 .btn-header span {
@@ -406,8 +440,7 @@ span {
 }
 
 .box-active {
-    background-color: rgb(90, 130, 252);
-    color: white !important;
+    border: 2px solid #5A82FC !important;
 }
 
 .sl-sap-xep {
@@ -581,7 +614,7 @@ span {
 
 .active-slide {
     border-radius: 20px;
-    background-color: #5A82FC;
+    background-color: #605cff;
     height: 38px;
     width: 106px;
     position: absolute;
@@ -653,7 +686,8 @@ span {
 }
 
 .btn2 {
-    background-color: #5A82FC;
+    background-color: #605cff;
+    color: white;
 }
 
 .btn-div {
@@ -704,19 +738,19 @@ span {
     padding: 10px 10px;
 }
 
-tr:nth-child(odd) {
+rounded-table tr:nth-child(odd) {
     background-color: #ffffff;
 }
 
-tr:nth-child(even) {
+rounded-table tr:nth-child(even) {
     background-color: #f2f4f7;
 }
 
-td:first-child {
+rounded-table td:first-child {
     width: 400px;
 }
 
-td:last-child {
+rounded-table td:last-child {
     width: 470px;
 }
 
@@ -850,8 +884,8 @@ td:last-child {
 }
 
     .left-cart-box img {
-        width: 120px;
-        height: 120px;
+        width: 80px;
+        height: 80px;
         border-radius: 10px;
         border: 1px solid lightgray;
     }
@@ -903,12 +937,13 @@ td:last-child {
 }
 
 .total-btn {
-    background-color: #5A82FC;
+    background-color: #605cff;
     font-family: Lexend, sans-serif;
     border-radius: 10px;
     border: 1px solid lightgray;
     width: 75%;
     min-height: 40px;
+    color: white;
 }
 
 .right-cart-box {
@@ -1003,4 +1038,102 @@ td:last-child {
 
 .component-box h4 {
     margin: 0;
+}
+
+.modal-cart {
+    position: absolute;
+    width: 400px;
+    right: 0;
+    margin: 0 75px;
+    background-color: #f5f5f5;
+    font-family: Lexend, sans-serif;
+    border-radius: 20px;
+    border: 1px solid lightgray;
+}
+
+    .modal-cart h5 {
+        margin: 0;
+        font-weight: 600;
+    }
+
+.modal-cart-title {
+    padding: 8px 16px;
+}
+
+.modal-cart-empty {
+    min-height: 140px;
+    background-color: white;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 15px;
+}
+
+.cart-placeholder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid lightgray;
+    padding: 5px 10px;
+}
+
+.sticky-modal {
+    position: fixed;
+    top: -40px !important;
+    right: 100px;
+    z-index: 1000;
+}
+
+.cart-item {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 10px;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+}
+
+.item {
+    display: flex;
+    align-self: center;
+    gap: 20px;
+    padding: 8px 12px;
+    width: 100%;
+}
+
+    .item h6 {
+        margin: 0;
+    }
+
+    .item:hover {
+        background-color: #f5f5f5;
+        border-radius: 10px;
+        width: 100%;
+    }
+
+.cart-order-btn {
+    padding: 8px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.order-btn {
+    background-color: #605cff;
+    color: white;
+    font-weight: 600;
+    border-radius: 10px;
+    border: 1px solid lightgray;
+    min-width: 200px;
+    min-height: 40px;
+    appearance: none;
+}
+
+.cart-total-price{
+    display: flex;
+    flex-direction: column;
 }
