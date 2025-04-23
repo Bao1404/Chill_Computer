@@ -283,7 +283,7 @@
             const normalizedSenderRole = senderRole.trim().replace(/"/g, '');
             const normalizedCurrentRole = currentUserRole.trim().replace(/"/g, '');
 
-            const isSender = normalizedSenderRole === normalizedCurrentRole;  // Kiểm tra xem người gửi có phải là người dùng hiện tại không
+            const isSender = normalizedSenderRole === normalizedCurrentRole;  
             console.log("Received message:", message, "Sender role:", senderRole, "Is sender:", isSender, "Current User:", currentUserRole);
             let chatHtml = "";
 
