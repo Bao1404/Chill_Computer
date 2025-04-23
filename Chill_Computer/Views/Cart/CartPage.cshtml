@@ -3,6 +3,7 @@
 *@
 @{
     ViewData["Title"] = "Cart Page";
+    var storedItem = new List<string>();
 }
 
 <div style="background-color: #f8f8fc; padding: 10px 0">
@@ -25,29 +26,31 @@
                 <table>
                     <thead>
                         <tr>
-                            <th class="col-lg-6">Sản phẩm</th>
-                            <th class="col-lg-2">Đơn giá</th>
-                            <th class="col-lg-2">Số lượng</th>
-                            <th class="col-lg-2">Thành tiền</th>
+                            <th class="col-lg-6" style="padding: 0">Sản phẩm</th>
+                            <th class="col-lg-2" style="padding: 0">Đơn giá</th>
+                            <th class="col-lg-2" style="padding: 0">Số lượng</th>
+                            <th class="col-lg-2" style="padding: 0">Thành tiền</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="cart-product-name">
-                                <img src="../imgs/lenovo-thinkpad-x1-carbon-gen-10-thinkpro.webp" alt="">
-                                <div>
-                                    <h6>Lenovo ThinkPad X1 Carbon Gen 11</h6>
-                                    <span>i7 1365U, 32GB, 512GB, FHD / Black</span>
-                                </div>
-                            </td>
-                            <td><span>28.790.000</span></td>
-                            <td style="margin: auto;">
-                                <span>1</span>
-                                <br>
-                                <span>Xóa</span>
-                            </td>
-                            <td><span>28.790.000</span></td>
-                        </tr>
+                        @foreach (var item in ViewBag.CartItems)
+                        {
+                                <tr>
+                                    <td class="cart-product-name">
+                                        <img src="@item.ImageUrl" alt="">
+                                        <div>
+                                            <h6>@item.ProductName</h6>
+                                            <span>@item.Version / @item.Color</span>
+                                        </div>
+                                    </td>
+                                    <td><span>@item.FormattedPrice đ</span></td>
+                                    <td style="margin: auto;">
+                                        <span>@item.Quantity</span>
+                                    </td>
+                                    <td><span>@((item.Quantity * item.Price).ToString("N0")) đ</span></td>
+                                </tr>
+                            
+                        }
                     </tbody>
                 </table>
             </div>
@@ -62,7 +65,7 @@
                     <h6>Thanh toán</h6>
                     <div class="total-box-detail">
                         <span>Tổng tạm tính</span>
-                        <span>28.790.000</span>
+                        <span>@(((IEnumerable<dynamic>)ViewBag.CartItems).Sum(item => (decimal)item.Price * (int)item.Quantity).ToString("N0")) đ</span>
                     </div>
                     <div class="total-box-detail">
                         <span>Khuyến mãi</span>
@@ -71,7 +74,7 @@
                     <div class="total-box-detail">
                         <span>Thành tiền</span>
                         <div style="display: flex; flex-direction: column; align-items: flex-end;">
-                            <span style="color: #5A82FC;">28.790.000</span>
+                            <span style="color: #5A82FC;">@(((IEnumerable<dynamic>)ViewBag.CartItems).Sum(item => (decimal)item.Price * (int)item.Quantity).ToString("N0")) đ</span>
                             <span>(Đã bao gồm VAT)</span>
                         </div>
                     </div>

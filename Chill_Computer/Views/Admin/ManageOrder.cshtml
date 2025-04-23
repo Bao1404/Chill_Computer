@@ -4,6 +4,90 @@
     ViewData["ChooseManageOrder"] = "chooseButton";
 }
 
+<style>
+    .modal-content {
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .modal-header {
+        background-color: #f5f5f5;
+        border-bottom: 1px solid #dee2e6;
+        padding: 16px 24px;
+    }
+
+    .modal-title {
+        font-weight: 600;
+        font-size: 20px;
+    }
+
+    .modal-body {
+        padding: 24px;
+    }
+
+        .modal-body label {
+            font-weight: 500;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .modal-body input,
+        .modal-body select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+            .modal-body input[readonly] {
+                background-color: #f9f9f9;
+            }
+
+    .modal-footer {
+        padding: 16px 24px;
+        border-top: 1px solid #dee2e6;
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+    }
+
+        .modal-footer .btn {
+            padding: 8px 20px;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .modal-footer .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .modal-footer .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+
+    /* Button in modal body */
+    .modal-body button[type="submit"] {
+        margin-top: 10px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+        .modal-body button[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+</style>
+
 <nav class="navbar navbar-light bg-light" style="height: 30px;">
     <form class="form-inline" action="/Admin/SearchByCustomerName" method="post">
         <input class="form-control mr-sm-2" name="customerName" type="search" placeholder="Search" aria-label="Search" style="width: 500px; border-radius: 15px;">
