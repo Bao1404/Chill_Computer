@@ -28,6 +28,7 @@ namespace Chill_Computer.Controllers
         {
             List<ProductTypeFilter> filters = new List<ProductTypeFilter>();
             List<FilterCategory> categories = new List<FilterCategory>();
+            List<CartItemViewModel> cartItems = new List<CartItemViewModel>();
             var user = HttpContext.Session.GetObject<int>("_userId");
             foreach (var typeFilter in _productTypeRepository.GetProductTypes())
             {
@@ -40,12 +41,11 @@ namespace Chill_Computer.Controllers
             if (user != 0)
             {
                 var cartId = _cartRepository.GetCartByUserId(user);
-                List<CartItemViewModel> cartItems = new List<CartItemViewModel>();
                 if (cartId != null)
                 {
                     cartItems = _cartItemRepository.GetCartItemByCartId(cartId.CartId).ToList();
-                    ViewBag.CartItems = cartItems;
                 }
+                ViewBag.CartItems = cartItems;
             }
             ViewBag.MenuTitle = _productTypeRepository.GetProductTypes();
             ViewBag.FilterTitle = filters;
