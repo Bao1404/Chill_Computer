@@ -32,7 +32,22 @@ namespace Chill_Computer.Controllers
         public IActionResult CartPage()
         {
             Init();
-            return View();
+            var userId = HttpContext.Session.GetObject<int>("_userId");
+            List<CartItemViewModel> listItem = new List<CartItemViewModel>();
+            if(userId != 0)
+            {
+                var cartId = _cartRepository.GetCartByUserId(userId).CartId;
+                if(cartId != null)
+                {
+                    listItem = _cartItemRepository.GetCartItemByCartId(cartId);
+                }
+                ViewBag.CartItems = listItem;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         [HttpPost]
@@ -93,10 +108,48 @@ namespace Chill_Computer.Controllers
             return Json(new { success = true, count = cart.Sum(x => x.Quantity) });
         }
 
-        public ActionResult RenderMiniCart()
+        public IActionResult RenderMiniCart()
         {
             var cart = HttpContext.Session.GetObject<List<CartItemViewModel>>("Cart") ?? new List<CartItemViewModel>();
-            return PartialView("Partials/_CartPartial", cart);
+            var userId = HttpContext.Session.GetObject<int>("_userId");
+            List<CartItemViewModel> cartItems = new List<CartItemViewModel>();
+            if (userId != 0)
+            {
+                var cartId = _cartRepository.GetCartByUserId(userId);
+                if (cartId != null)
+                {
+                    cartItems = _cartItemRepository.GetCartItemByCartId(cartId.CartId).ToList();
+                }
+                 ViewBag.CartItems = cartItems;
+                return PartialView("Partials/_CartPartial", ViewBag.CartItems);
+            }
+            else
+            {
+                return PartialView("Partials/_CartPartial", cart);
+            }
         }
+
+        public IActionResult RenderCartButton()
+        {
+            Init();
+            var cart = HttpContext.Session.GetObject<List<CartItemViewModel>>("Cart") ?? new List<CartItemViewModel>();
+            var userId = HttpContext.Session.GetObject<int>("_userId");
+            List<CartItemViewModel> cartItems = new List<CartItemViewModel>();
+            if (userId != 0)
+            {
+                var cartId = _cartRepository.GetCartByUserId(userId);
+                if (cartId != null)
+                {
+                    cartItems = _cartItemRepository.GetCartItemByCartId(cartId.CartId).ToList();
+                }
+                ViewBag.CartItems = cartItems;
+                return PartialView("Partials/_CartButton", ViewBag.CartItems);
+            }
+            else
+            {
+                return PartialView("Partials/_CartButton", cart);
+            }
+        }
+
     }
 }

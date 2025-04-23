@@ -155,8 +155,11 @@
                     $('.modal-cart-title h5').text('Giỏ hàng (' + response.count + ')');
                     // optionally, you could refresh or update the cart UI here dynamically
                     $.get('@Url.Action("RenderMiniCart", "Cart")', function (html) {
-                    $('#cart-container').html(html);
-                });
+                        $('#cart-container').html(html);
+                    });
+                    $.get('@Url.Action("RenderCartButton", "Cart")', function (html){
+                        $('#cartButton').html(html);
+                    });
                 } else {
                     alert('Có lỗi xảy ra!');
                 }
