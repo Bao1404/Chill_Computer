@@ -738,19 +738,19 @@ span {
     padding: 10px 10px;
 }
 
-rounded-table tr:nth-child(odd) {
+.rounded-table tr:nth-child(odd) {
     background-color: #ffffff;
 }
 
-rounded-table tr:nth-child(even) {
+.rounded-table tr:nth-child(even) {
     background-color: #f2f4f7;
 }
 
-rounded-table td:first-child {
+.rounded-table td:first-child {
     width: 400px;
 }
 
-rounded-table td:last-child {
+.rounded-table td:last-child {
     width: 470px;
 }
 
@@ -1136,4 +1136,13 @@ rounded-table td:last-child {
 .cart-total-price{
     display: flex;
     flex-direction: column;
+}
+
+.deleteCartBtn {
+    border: none;
+    background: none;
+    position: absolute;
+    right: 0;
+    margin-top: -10px;
+    margin-right: -15px;
 }
