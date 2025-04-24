@@ -48,5 +48,14 @@ namespace Chill_Computer.Services
 
             return groupedItems;
         }
+        public void DeleteItemByProductIdAndCartId(int productId, int cartId)
+        {
+            var item = _context.CartItems.FirstOrDefault(i => i.ProductId == productId && i.CartId == cartId);
+            if(item != null)
+            {
+                _context.Remove(item);
+                _context.SaveChanges();
+            }
+        }
     }
 }

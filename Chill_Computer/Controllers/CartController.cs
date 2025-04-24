@@ -108,6 +108,27 @@ namespace Chill_Computer.Controllers
             return Json(new { success = true, count = cart.Sum(x => x.Quantity) });
         }
 
+        [HttpDelete]
+        public IActionResult DeleteCartItem(int productId)
+        {
+            var cart = HttpContext.Session.GetObject<List<CartItemViewModel>>("Cart") ?? new List<CartItemViewModel>();
+            var userId = HttpContext.Session.GetObject<int>("_userId");
+            if (userId != 0)
+            {
+                var cartId = _cartRepository.GetCartByUserId(userId).CartId;
+                _cartItemRepository.DeleteItemByProductIdAndCartId(productId, cartId);
+            }
+            else
+            {
+                var removedItem = cart.FirstOrDefault(c => c.ProductId == productId);
+                if(removedItem != null)
+                {
+                    cart.Remove(removedItem);
+                    HttpContext.Session.SetObject("Cart", cart);
+                }
+            }
+            return Json(new { success = true, count = cart.Sum(x => x.Quantity) });
+        }
         public IActionResult RenderMiniCart()
         {
             var cart = HttpContext.Session.GetObject<List<CartItemViewModel>>("Cart") ?? new List<CartItemViewModel>();
