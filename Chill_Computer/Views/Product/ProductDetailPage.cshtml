@@ -151,7 +151,6 @@
             data: { productId: productId },
             success: function (response) {
                 if (response.success) {
-                    alert('Đã thêm sản phẩm vào giỏ!');
                     $('.modal-cart-title h5').text('Giỏ hàng (' + response.count + ')');
                     // optionally, you could refresh or update the cart UI here dynamically
                     $.get('@Url.Action("RenderMiniCart", "Cart")', function (html) {
