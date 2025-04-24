@@ -366,3 +366,5 @@ FodyWeavers.xsd
 /Chill_Computer/appsettings.json
 /Chill_Computer/Models
 /Chill_Computer/Program.cs
+/Chill_Computer/Chill_Computer.csproj
+*.zip

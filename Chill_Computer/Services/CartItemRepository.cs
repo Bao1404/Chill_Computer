@@ -20,6 +20,7 @@ namespace Chill_Computer.Services
         {
             var list = from cartItem in _context.CartItems
                        join product in _context.Products on cartItem.ProductId equals product.ProductId
+                       join pc in _context.Pcs on cartItem.PcId equals pc.PcId
                        where cartItem.CartId == cartId
                        select new
                        {
@@ -27,26 +28,38 @@ namespace Chill_Computer.Services
                            product.ProductName,
                            cartItem.ItemQuantity,
                            product.Img1,
-                           product.Price,
+                           ProductPrice = product.Price,
                            product.Version,
-                           product.Color
+                           product.Color,
+                           pc.PcId,
+                           PcPrice = pc.Price
                        };
 
             var groupedItems = list
-                .GroupBy(i => new { i.ProductId, i.ProductName, i.Img1, i.Price, i.Version, i.Color })
+                .GroupBy(i => new { i.ProductId, i.ProductName, i.Img1, i.ProductPrice, i.Version, i.Color, i.PcId })
                 .Select(g => new CartItemViewModel
                 {
                     ProductId = g.Key.ProductId,
                     ProductName = g.Key.ProductName,
                     Quantity = g.Sum(i => i.ItemQuantity),
                     ImageUrl = g.Key.Img1,
-                    Price = g.Key.Price,
+                    Price = g.Key.ProductPrice,
                     Version = g.Key.Version,
                     Color = g.Key.Color,
-                    FormattedPrice = g.Key.Price.ToString("N0")
+                    FormattedPrice = g.Key.ProductPrice.ToString("N0"),
+                    PcId = g.Key.PcId,
                 }).ToList();
 
             return groupedItems;
+        }
+        public void DeleteItemByProductIdAndCartId(int productId, int cartId)
+        {
+            var item = _context.CartItems.FirstOrDefault(i => i.ProductId == productId && i.CartId == cartId);
+            if(item != null)
+            {
+                _context.Remove(item);
+                _context.SaveChanges();
+            }
         }
     }
 }

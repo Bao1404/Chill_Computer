@@ -3,6 +3,7 @@
     public class CartItemViewModel
     {
         public int? ProductId { get; set; }
+        public int? PcId { get; set; }
         public string? ProductName { get; set; }
         public string? Version { get; set; }
         public string? Color { get; set; }
