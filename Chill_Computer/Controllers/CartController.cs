@@ -16,8 +16,10 @@ namespace Chill_Computer.Controllers
         private readonly IProductRepository _productRepository;
         private readonly ICartRepository _cartRepository;
         private readonly ICartItemRepository _cartItemRepository;
+        private readonly IPcComponentRepository _pcComponentRepository;
+        private readonly IPCRepository _pcRepository;
 
-        public CartController(ChillComputerContext context, IProductTypeRepository productTypeRepository, IProductTypeFilterRepository productTypeFilterRepository, IFilterCategoryRepository filterCategoryRepository, IProductRepository productRepository, ICartRepository cartRepository, ICartItemRepository cartItemRepository)
+        public CartController(ChillComputerContext context, IProductTypeRepository productTypeRepository, IProductTypeFilterRepository productTypeFilterRepository, IFilterCategoryRepository filterCategoryRepository, IProductRepository productRepository, ICartRepository cartRepository, ICartItemRepository cartItemRepository, IPCRepository pcRepository, IPcComponentRepository pcComponentRepository)
         : base(context, productTypeRepository, productTypeFilterRepository, filterCategoryRepository, cartRepository, cartItemRepository)
         {
             _productTypeRepository = productTypeRepository;
@@ -27,6 +29,8 @@ namespace Chill_Computer.Controllers
             _productRepository = productRepository;
             _cartRepository = cartRepository;
             _cartItemRepository = cartItemRepository;
+            _pcComponentRepository = pcComponentRepository;
+            _pcRepository = pcRepository;
         }
 
         public IActionResult CartPage()
@@ -172,5 +176,58 @@ namespace Chill_Computer.Controllers
             }
         }
 
+        [HttpPost]
+        public IActionResult AddProductBuildPcToCart(IFormCollection form)
+        {   
+            var userId = HttpContext.Session.GetObject<int>("_userId");
+            var selectedIds = new List<int>();
+            var totalPrice = form["TotalPrice"];
+            var keys = new[]
+            {
+                "selectedCpuId",
+                "selectedMainboardId",
+                "selectedVgaId",
+                "selectedRamId",
+                "selectedSsdId",
+                "selectedHddId",
+                "selectedCaseId",
+                "selectedPsuId",
+                "selectedTanNhietId",
+                "selectedMonitorId",
+                "selectedMouseId",
+                "selectedKeyboardId",
+                "selectedEarphoneId"
+            };
+
+            if (userId != 0)
+            {
+                var cartId = _cartRepository.GetCartByUserId(userId).CartId;
+                foreach (var key in keys)
+                {
+                    var value = form[key];
+
+                    if (int.TryParse(value, out var id))
+                    {
+                        selectedIds.Add(id);
+                    }
+                }
+
+                Pc pc = new Pc
+                {
+                    Price = decimal.Parse(totalPrice),
+                };
+
+                _pcRepository.AddPc(pc);
+                _pcComponentRepository.AddListProductToPC(pc.PcId, selectedIds);
+                _cartItemRepository.AddCartItem(new CartItem
+                {
+                    ProductId = pc.PcId,
+                    ItemQuantity = 1,
+                    CartId = cartId
+                });
+            }
+
+            return View();
+        }
     }
 }
