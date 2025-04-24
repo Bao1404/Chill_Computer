@@ -2,6 +2,7 @@ using Chill_Computer.Models;
 using Chill_Computer.Contacts;
 using Chill_Computer.Services;
 using Microsoft.EntityFrameworkCore;
+using Chill_Computer.Helpers;
 
 namespace Chill_Computer
 {
@@ -31,9 +32,20 @@ namespace Chill_Computer
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<ICartItemRepository, CartItemRepository>();
             builder.Services.AddScoped<ICartRepository, CartRepository>();
+            builder.Services.AddHttpContextAccessor();
+            builder.Services.AddSignalR();
+
+            builder.Services.AddDistributedMemoryCache(); 
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);  
+                options.Cookie.HttpOnly = true;  
+                options.Cookie.IsEssential = true; 
+            });
 
             var app = builder.Build();
 
+            app.MapHub<ChatHub>("/chathub");
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
