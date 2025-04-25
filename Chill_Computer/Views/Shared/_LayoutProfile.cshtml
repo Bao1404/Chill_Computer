@@ -76,7 +76,7 @@
 <body>
     <div class="container" style="display:flex; padding: 40px;">
         <!-- Sidebar -->
-        <div class="col-md-5 sidebar" style="width: 260px; border: 1px solid #ccc; border-radius: 8px; margin: 35px; padding: 24px;">
+        <div class="col-md-5 sidebar" style="width: 320px; border: 1px solid #ccc; border-radius: 8px; margin: 35px; padding: 24px;">
             <ul class="list-unstyled">
                 <li class="nav-item @ViewData["ChooseProfile"]">
                     <a class="nav-link text-dark d-flex justify-content-between align-items-center" asp-controller="Profile" asp-action="Profile">
@@ -137,7 +137,7 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
     <script>
-        function logout() {
+        function Logout() {
             if (confirm("Bạn có chắc chắn muốn đăng xuất không?")) {
                 window.location.href = '/Home';
             }

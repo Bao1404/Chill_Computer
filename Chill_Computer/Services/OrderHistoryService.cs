@@ -28,23 +28,5 @@ namespace Chill_Computer.Services
                     .Take(pageSize)
                     .ToList();
         }
-
-        public async Task<DetailsViewModel> OrderItemViewModel(int orderId)
-        {
-            var orderItem = await _context.OrderItems
-                .Where(oi => oi.OrderId == orderId)
-                .Select(oi => new DetailsViewModel
-                {
-                    ProductName = oi.Product.Name,
-                    Quantity = oi.Quantity,
-                    Price = oi.Price
-                })
-                .ToListAsync();
-            return new DetailsViewModel
-            {
-                OrderItems = orderItem
-            };
-
-        }
     }
 }

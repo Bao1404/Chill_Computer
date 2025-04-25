@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Chill_Computer.ViewModels;
 using Chill_Computer.Services;
 using Chill_Computer.Contacts;
+using System.Security.Claims;
 
 namespace Chill_Computer.Controllers
 {
@@ -11,17 +12,51 @@ namespace Chill_Computer.Controllers
     {
         private readonly ChillComputerContext _context;
         private readonly IReviewService _reviewService;
+        private readonly IUserRepository _userRepository;
+        private readonly IAccountService _accountService;
+        private readonly IOrderHistoryService _orderHistoryService;
 
-        public ProfileController(ChillComputerContext context, IReviewService reviewService)
+        public ProfileController(ChillComputerContext context, IReviewService reviewService, IUserRepository userRepository, IAccountService accountService, IOrderHistoryService orderHistoryService)
         {
-            _reviewService = reviewService;
             _context = context;
+            _reviewService = reviewService;
+            _userRepository = userRepository;
+            _accountService = accountService;
+            _orderHistoryService = orderHistoryService;
         }
+
 
         public async Task<IActionResult> Profile()
         {
-            var user = await _context.Users
-            .FirstOrDefaultAsync(u => u.UserId == 2);
+            // Lấy claim Email và UserName
+            var emailClaim = User.FindFirst(ClaimTypes.Email);
+            var usernameClaim = User.FindFirst(ClaimTypes.Name);
+
+            if (emailClaim == null && usernameClaim == null)
+            {
+                return Unauthorized(); // Không có thông tin xác thực
+            }
+
+            User? user = null;
+
+            if (emailClaim != null)
+            {
+                string email = emailClaim.Value;
+                user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            }
+
+            // Nếu không tìm thấy theo email và có username thì tìm theo username
+            if (user == null && usernameClaim != null)
+            {
+                string username = usernameClaim.Value;
+                user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == username);
+            }
+
+            if (user == null)
+            {
+                return NotFound(); // Không tìm thấy user
+            }
+
             var userViewModel = new ProfileViewModel
             {
                 FullName = user.FullName,
@@ -32,6 +67,8 @@ namespace Chill_Computer.Controllers
 
             return View(userViewModel);
         }
+
+
 
         public async Task<IActionResult> UpdateProfile()
         {
@@ -68,6 +105,24 @@ namespace Chill_Computer.Controllers
         {
             return View();
         }
+
+        //public IActionResult Review(int productId)
+        //{
+        //    var product = _context.Products.FirstOrDefault(p => p.ProductId == productId);
+        //    if (product == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var model = new ReviewViewModel
+        //    {
+        //        ProductId = product.ProductId,
+        //        ProductName = product.ProductName
+        //    };
+
+        //    return View(model);
+        //}
+
 
         [HttpPost]
         public async Task<IActionResult> SaveProfile(ProfileViewModel model)

@@ -8,12 +8,4 @@
         public string OrderStatus { get; set; }
         public List<DetailsViewModel> Items { get; set; }
     }
-
-    //public class OrderPageViewModel
-    //{
-    //    public List<OrderHistoryViewModel> OrderHistories { get; set; } = new();
-    //    public List<OrderItemViewModel> OrderDetails { get; set; } = new();
-    //    public int? SelectedOrderId { get; set; } // Cho ViewBag
-    //}
-
 }
