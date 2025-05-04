@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using Chill_Computer.ViewModels;
 using Chill_Computer.Services;
 using Chill_Computer.Contacts;
-using System.Security.Claims;
 
 namespace Chill_Computer.Controllers
 {
@@ -28,35 +27,24 @@ namespace Chill_Computer.Controllers
 
         public async Task<IActionResult> Profile()
         {
-            // Lấy claim Email và UserName
-            var emailClaim = User.FindFirst(ClaimTypes.Email);
-            var usernameClaim = User.FindFirst(ClaimTypes.Name);
+            // Lấy userId từ Session
+            var userId = HttpContext.Session.GetObject<int>("_userId");
 
-            if (emailClaim == null && usernameClaim == null)
+            // Nếu chưa có userId trong Session thì trả về Unauthorized
+            if (userId == 0)
             {
-                return Unauthorized(); // Không có thông tin xác thực
+                return Unauthorized();
             }
 
-            User? user = null;
-
-            if (emailClaim != null)
-            {
-                string email = emailClaim.Value;
-                user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
-            }
-
-            // Nếu không tìm thấy theo email và có username thì tìm theo username
-            if (user == null && usernameClaim != null)
-            {
-                string username = usernameClaim.Value;
-                user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == username);
-            }
+            // Truy vấn dữ liệu người dùng từ database
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
 
             if (user == null)
             {
                 return NotFound(); // Không tìm thấy user
             }
 
+            // Tạo ViewModel để truyền qua View
             var userViewModel = new ProfileViewModel
             {
                 FullName = user.FullName,
@@ -68,12 +56,22 @@ namespace Chill_Computer.Controllers
             return View(userViewModel);
         }
 
-
-
         public async Task<IActionResult> UpdateProfile()
         {
-            var user = await _context.Users
-            .FirstOrDefaultAsync(u => u.UserId == 2);
+            var userId = HttpContext.Session.GetObject<int>("_userId");
+
+            if (userId == 0)
+            {
+                return Unauthorized();
+            }
+
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
             var userViewModel = new ProfileViewModel
             {
                 FullName = user.FullName,
@@ -83,12 +81,50 @@ namespace Chill_Computer.Controllers
             };
 
             return View(userViewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SaveProfile(ProfileViewModel model)
+        {
+            var userId = HttpContext.Session.GetObject<int>("_userId");
+
+            if (userId == 0)
+            {
+                return Unauthorized();
+            }
+
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            user.FullName = model.FullName;
+            user.Email = model.Email;
+            user.Phone = model.Phone;
+
+            if (model.Dob.HasValue)
+            {
+                user.Dob = model.Dob;
+            }
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("UpdateProfile");
         }
 
         public async Task<IActionResult> OrderHistory()
         {
+            var userId = HttpContext.Session.GetObject<int>("_userId");
+
+            if (userId == 0)
+            {
+                return Unauthorized();
+            }
+
             var orders = await _context.Orders
-                .Where(o => o.UserId == 2) // Chỉ lấy đơn hàng của UserId = 2  
+                .Where(o => o.UserId == userId)
                 .Select(o => new OrderHistoryViewModel
                 {
                     OrderId = o.OrderId.ToString(),
@@ -101,73 +137,68 @@ namespace Chill_Computer.Controllers
             return View(orders);
         }
 
-        public IActionResult Review()
+        public IActionResult Review(int productId)
         {
-            return View();
-        }
+            var userId = HttpContext.Session.GetObject<int>("_userId");
+            if (userId == 0) return Unauthorized();
 
-        //public IActionResult Review(int productId)
-        //{
-        //    var product = _context.Products.FirstOrDefault(p => p.ProductId == productId);
-        //    if (product == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var model = new ReviewViewModel
-        //    {
-        //        ProductId = product.ProductId,
-        //        ProductName = product.ProductName
-        //    };
-
-        //    return View(model);
-        //}
-
-
-        [HttpPost]
-        public async Task<IActionResult> SaveProfile(ProfileViewModel model)
-        {
-            // Giả sử bạn đang có thông tin UserId hoặc lấy được thông qua xác thực đăng nhập  
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == 2); // hoặc lấy theo username  
-
-            if (user == null)
-            {
-                return NotFound(); // hoặc xử lý phù hợp  
-            }
-
-            user.FullName = model.FullName;
-            user.Email = model.Email;
-            user.Phone = model.Phone;
-
-            // Chỉ gán ngày sinh nếu người dùng có nhập  
-            if (model.Dob.HasValue)
-            {
-                user.Dob = model.Dob;
-            }
-
-            await _context.SaveChangesAsync();
-
-            return RedirectToAction("UpdateProfile");
+            var model = new ReviewViewModel { ProductId = productId };
+            return View(model);
         }
 
         [HttpPost]
         public async Task<IActionResult> Submit(ReviewViewModel model)
         {
-            if (!ModelState.IsValid)
+            var userId = HttpContext.Session.GetObject<int>("_userId");
+            if (userId == 0)
             {
-                return View("Review", model); // Trả lại view cùng dữ liệu lỗi  
+                return Unauthorized(); // Chưa đăng nhập
             }
 
-            await _reviewService.SubmitReviewAsync(model);
+            if (!ModelState.IsValid)
+            {
+                return View("Review", model); // Form lỗi, trả về form với lỗi
+            }
 
-            // Bạn có thể trả về view thành công hoặc redirect:  
-            return RedirectToAction("ReviewSuccess");
+            model.UserId = userId;
+
+            bool alreadyReviewed = await _reviewService.HasUserReviewedProductAsync(userId, model.ProductId);
+            if (alreadyReviewed)
+            {
+                ModelState.AddModelError("", "Bạn đã đánh giá sản phầm này.");
+                return View("Review", model);
+            }
+
+            try
+            {
+                await _reviewService.SubmitReviewAsync(model);
+                return RedirectToAction("ReviewSuccess");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "An error occurred while submitting your review. Please try again later.");
+                return View("Review", model);
+            }
         }
 
-        public IActionResult ReviewSuccess()
+
+        public async Task<IActionResult> List(int productId)
         {
-            return View(); // Tạo view báo thành công nếu cần
+            var reviews = await _reviewService.GetReviewsByProductIdAsync(productId);
+            var avgRating = await _reviewService.GetAverageRatingAsync(productId);
+
+            ViewBag.AvgRating = avgRating;
+            return View(reviews);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Delete(int reviewId)
+        {
+            var userId = HttpContext.Session.GetObject<int>("_userId");
+            if (userId == 0) return Unauthorized();
+
+            await _reviewService.DeleteReviewAsync(reviewId, userId);
+            return RedirectToAction("List");
+        }
     }
 }

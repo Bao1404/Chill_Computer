@@ -26,6 +26,7 @@ namespace Chill_Computer.Controllers
             {
                 var user = _userRepository.GetUserByUserName(account.UserName);
                 HttpContext.Session.SetObject("_userId", user.UserId);
+                HttpContext.Session.SetObject("_userRole", account.Role.RolePosition);
                 HttpContext.Session.SetString("_userFullName", user.FullName);
                 if (account.RoleId == 1)
                 {

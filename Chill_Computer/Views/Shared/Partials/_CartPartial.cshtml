@@ -10,7 +10,7 @@
 }
 
 <div class="modal-cart">
-    @if (user != null)
+    @if (user == 0)
     {
         @if (cart.Count() == 0)
         {
@@ -36,12 +36,19 @@
                 <div class="cart-item">
                     @foreach (var item in cart)
                     {
-                        <div class="item">
-                            <img src="@item.ImageUrl" alt="" width="72px" height="72px">
-                            <div>
-                                <h6>@item.ProductName</h6>
-                                <span style="color: gray; font-size: 14px;">@item.Version</span>
-                                <h6 style="color: #EC1250;">@item.FormattedPrice đ</h6>
+                        <div class="cart-item-wrapper" style="position: relative;">
+                            <button class="deleteCartBtn" data-id="@item.ProductId" style="position: absolute; top: 0; right: 0; z-index: 10; background: transparent; border: none;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2ZM12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4ZM7.29325 7.29325C7.65417 6.93233 8.22045 6.90456 8.61296 7.20996L8.70725 7.29325L12.0002 10.5863L15.2933 7.29325C15.6842 6.90225 16.3162 6.90225 16.7072 7.29325C17.0682 7.65417 17.0959 8.22045 16.7905 8.61296L16.7072 8.70725L13.4142 12.0002L16.7072 15.2933C17.0982 15.6842 17.0982 16.3162 16.7072 16.7072C16.5122 16.9022 16.2562 17.0002 16.0002 17.0002C15.7869 17.0002 15.5736 16.9322 15.3956 16.7967L15.2933 16.7072L12.0002 13.4142L8.70725 16.7072C8.51225 16.9022 8.25625 17.0002 8.00025 17.0002C7.74425 17.0002 7.48825 16.9022 7.29325 16.7072C6.93233 16.3463 6.90456 15.7801 7.20996 15.3875L7.29325 15.2933L10.5863 12.0002L7.29325 8.70725C6.90225 8.31625 6.90225 7.68425 7.29325 7.29325Z" fill="#ec1250" />
+                                </svg>
+                            </button>
+                            <div class="item">
+                                <img src="@item.ImageUrl" alt="" width="72px" height="72px">
+                                <div>
+                                    <h6>@item.ProductName</h6>
+                                    <span style="color: gray; font-size: 14px;">@item.Version</span>
+                                    <h6 style="color: #EC1250;">@item.FormattedPrice đ</h6>
+                                </div>
                             </div>
                         </div>
                     }
@@ -52,42 +59,74 @@
                         <span style="color: gray; font-size: 14px;">Tổng cộng</span>
                         @cart.Sum(item => item.Price * item.Quantity).ToString("N0") đ
                     </div>
-                    <button class="order-btn">
-                        <span>Đặt hàng</span>
-                    </button>
+                    <a asp-action="CartPage" asp-controller="Cart">
+                        <button class="order-btn">
+                            <span>Đặt hàng</span>
+                        </button>
+                    </a>
                 </div>
             </div>
         }
     }
     else
     {
-        <div class="modal-cart-title">
-            <h5>Giỏ hàng (@ViewBag.CartItems.Count())</h5>
-        </div>
-        <div class="modal-cart-item">
-            <div class="cart-item">
-                @foreach (var item in ViewBag.CartItems)
-                {
-                    <div class="item">
-                        <img src="@item.ImageUrl" alt="" width="72px" height="72px">
-                        <div>
-                            <h6>@item.ProductName</h6>
-                            <span style="color: gray; font-size: 14px;">@item.Version</span>
-                            <h6 style="color: #EC1250;">@item.FormattedPrice đ</h6>
+        if (ViewBag.CartItems.Count > 0)
+        {
+            <div class="modal-cart-title">
+                <h5>Giỏ hàng (@ViewBag.CartItems.Count)</h5>
+            </div>
+            <div class="modal-cart-item">
+                <div class="cart-item">
+                    @foreach (var item in ViewBag.CartItems)
+                    {
+                        <div class="cart-item-wrapper" style="position: relative;">
+                            <button class="deleteCartBtn" data-id="@item.ProductId" style="position: absolute; top: 0; right: 0; z-index: 10; background: transparent; border: none;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2ZM12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4ZM7.29325 7.29325C7.65417 6.93233 8.22045 6.90456 8.61296 7.20996L8.70725 7.29325L12.0002 10.5863L15.2933 7.29325C15.6842 6.90225 16.3162 6.90225 16.7072 7.29325C17.0682 7.65417 17.0959 8.22045 16.7905 8.61296L16.7072 8.70725L13.4142 12.0002L16.7072 15.2933C17.0982 15.6842 17.0982 16.3162 16.7072 16.7072C16.5122 16.9022 16.2562 17.0002 16.0002 17.0002C15.7869 17.0002 15.5736 16.9322 15.3956 16.7967L15.2933 16.7072L12.0002 13.4142L8.70725 16.7072C8.51225 16.9022 8.25625 17.0002 8.00025 17.0002C7.74425 17.0002 7.48825 16.9022 7.29325 16.7072C6.93233 16.3463 6.90456 15.7801 7.20996 15.3875L7.29325 15.2933L10.5863 12.0002L7.29325 8.70725C6.90225 8.31625 6.90225 7.68425 7.29325 7.29325Z" fill="#ec1250" />
+                                </svg>
+                            </button>
+                            <div class="item">
+                                <img src="@item.ImageUrl" alt="" width="72px" height="72px">
+                                <div style="min-width: 262px">
+                                    <h6>@item.ProductName</h6>
+                                    <span style="color: gray; font-size: 14px;">@item.Version</span>
+                                    <div style="display:flex; justify-content: space-between; align-items: center;">
+                                        <h6 style="color: #EC1250;">@item.FormattedPrice đ</h6>
+                                        <span style="color: gray; font-size: 18px;">x @item.Quantity</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                }
-            </div>
-
-            <div class="cart-order-btn">
-                <div class="cart-total-price">
-                    <span style="color: gray; font-size: 14px;">Tổng cộng</span>
-                    @(((IEnumerable<dynamic>)ViewBag.CartItems).Sum(item => (decimal)item.Price * (int)item.Quantity).ToString("N0")) đ
+                    }
                 </div>
-                <button class="order-btn">
-                    <span>Đặt hàng</span>
-                </button>
+
+                <div class="cart-order-btn">
+                    <div class="cart-total-price">
+                        <span style="color: gray; font-size: 14px;">Tổng cộng</span>
+                        @(((IEnumerable<dynamic>)ViewBag.CartItems).Sum(item => (decimal)item.Price * (int)item.Quantity).ToString("N0")) đ
+                    </div>
+                    <a asp-action="CartPage" asp-controller="Cart">
+                        <button class="order-btn">
+                            <span>Đặt hàng</span>
+                        </button>
+                    </a>
+                </div>
             </div>
-        </div>
+        }
+        else
+        {
+            <div class="modal-cart-title">
+                <h5>Giỏ hàng (0)</h5>
+            </div>
+            <div class="modal-cart-empty">
+                <div class="cart-placeholder">
+                    <svg width="100" height="100" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M14.1086 5.83268C14.1351 5.77362 14.1475 5.70926 14.1449 5.64462H14.1667C14.0735 3.42094 12.2374 1.66602 10.0041 1.66602C7.77083 1.66602 5.93477 3.42094 5.84157 5.64462C5.83059 5.70683 5.83059 5.77047 5.84157 5.83268H5.77643C4.70851 5.83268 3.56695 6.53765 3.23553 8.43274L2.58742 13.595C2.05715 17.3851 4.00885 18.3327 6.55711 18.3327H13.4654C16.0063 18.3327 17.8991 16.9606 17.4277 13.595L16.787 8.43274C16.3966 6.59072 15.2919 5.83268 14.2387 5.83268H14.1086ZM12.911 5.83268C12.8878 5.77263 12.8755 5.70896 12.8747 5.64462C12.8747 4.0467 11.5749 2.75134 9.97146 2.75134C8.36803 2.75134 7.0682 4.0467 7.0682 5.64462C7.07919 5.70683 7.07919 5.77047 7.0682 5.83268H12.911ZM7.58083 10.1232C7.17408 10.1232 6.84434 9.78378 6.84434 9.36513C6.84434 8.94648 7.17408 8.60709 7.58083 8.60709C7.98758 8.60709 8.31732 8.94648 8.31732 9.36513C8.31732 9.78378 7.98758 10.1232 7.58083 10.1232ZM11.6684 9.36513C11.6684 9.78378 11.9981 10.1232 12.4048 10.1232C12.8116 10.1232 13.1413 9.78378 13.1413 9.36513C13.1413 8.94648 12.8116 8.60709 12.4048 8.60709C11.9981 8.60709 11.6684 8.94648 11.6684 9.36513Z" fill="#605cff" />
+                    </svg>
+                    <h5>Giỏ hàng trống</h5>
+                    <p style="text-align: center;">Không có sản phẩm nào trong giỏ hàng của bạn</p>
+                </div>
+            </div>
+        }
     }
 </div>

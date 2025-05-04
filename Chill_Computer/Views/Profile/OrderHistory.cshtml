@@ -120,8 +120,8 @@
                 {
                     string statusClass = order.OrderStatus switch
                     {
-                        "Đang giao" => "pending",
-                        "Đã giao" => "completed",
+                        "Đang giao hàng" => "pending",
+                        "Đã giao hàng" => "completed",
                         "Đã huỷ" => "canceled",
                         _ => "pending"
                     };
