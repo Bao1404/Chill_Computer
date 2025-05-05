@@ -72,18 +72,12 @@ namespace Chill_Computer.Controllers
                 }
             }
 
-            // Parse total price safely
             int price = 0;
-            if (!int.TryParse(totalPrice, out price))
-            {
-                price = 0; // fallback to 0 if parse fails
-            }
 
             var formattedPrice = String.Format("{0:N0}₫", price);
 
             if (userId != 0)
             {
-                var cartId = _cartRepository.GetCartByUserId(userId).CartId;
                 var userCart = _cartRepository.GetCartByUserId(userId);
                 if (userCart == null)
                 {
@@ -106,15 +100,14 @@ namespace Chill_Computer.Controllers
                 {
                     PcId = pc.PcId,
                     ItemQuantity = 1,
-                    CartId = cartId
+                    CartId = userCart.CartId
                 });
             }
             else
             {
-                // For guests, simulate the "custom PC" as a CartItemViewModel
                 var guestPc = new CartItemViewModel
                 {
-                    PcId = 0, // You may use a temp ID or handle PcId = null for guest PCs
+                    PcId = 0,
                     ProductName = "Custom PC Build",
                     Price = price,
                     FormattedPrice = formattedPrice,

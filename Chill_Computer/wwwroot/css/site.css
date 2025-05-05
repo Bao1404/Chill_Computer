@@ -692,13 +692,11 @@ span {
 }
 
 .btn-div {
-    margin: 0 !important;
-    display: flex;
-    gap: 15px;
+    margin: 0 50px !important;
 }
 
     .btn-div button {
-        max-width: 230px;
+        width: 100%;
         border-radius: 20px;
         border: 1px solid lightgray;
         height: 44px;
