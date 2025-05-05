@@ -1,0 +1,45 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    List<Product> list = ViewBag.ProductList;
+}
+<body class="blur">
+    <div class="main-content">
+        <h3 style="font-weight: 600;">Kết quả tìm kiếm cho: "@Model"</h3>
+        <div class="sl-sap-xep">
+            <span>@list.Count() sản phẩm</span>
+            <select id="select" class="select-filter">
+                <option value="0" selected>Nổi bật nhất</option>
+                <option value="1">Giá tăng dần</option>
+                <option value="2">Giá giảm dần</option>
+            </select>
+        </div>
+
+        <div class="product-list-search" id="searchList">
+            <partial name="Partials/_ProductListPartial" model="@ViewBag.TypeId" />
+        </div>
+    </div>
+</body>
+
+<script>
+    document.getElementById('select').addEventListener('change', function () {
+        const sortValue = this.value;
+        const searchValue = "@Model";
+
+        $.ajax({
+            url: '/Product/SortSearchResults',
+            type: 'GET',
+            data: {
+                value: searchValue,
+                sort: sortValue
+            },
+            success: function (result) {
+                $('#searchList').html(result);
+            },
+            error: function () {
+                $('#searchList').html('<span>Lỗi khi sắp xếp sản phẩm!</span>');
+            }
+        });
+    });
+</script>

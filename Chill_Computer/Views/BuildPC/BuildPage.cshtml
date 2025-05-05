@@ -15,7 +15,7 @@
     </div>
 
     <h1>Build PC</h1>
-    <form action="Cart/AddProductBuildPcToCart" method="post">
+    @* <form action="" method="post"> *@
         <div class="buildPC-content">
         <button id="btnResetAllBox" class="btn-reset" onclick="resetAllBox()">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -288,21 +288,24 @@
                 </div>
             </div>
 
-            <div class="component-cart">
-                <div class="component-cart-text">
-                    <h4>Tạm tính:</h4>
-                        <h4 name="TotalPrice" id="TotalPrice"></h4>
-                </div>
+                <div class="component-cart">
+                <form action="AddProductBuildPcToCart" method="post">
+                    <div class="component-cart-text">
+                        <h4>Tạm tính:</h4>
+                        <h4 id="TotalPriceDisplay"></h4>
+                        <input type="hidden" id="TotalPrice" name="TotalPrice" value="0" />
+                    </div>
 
-                <div style="text-align: center; margin-top: 40px;">
-                    <button type="submit" class="btn-add-to-cart">
-                        <span>Thêm vào giỏ hàng</span>
-                    </button>
+                    <div style="text-align: center; margin-top: 40px;">
+                        <button type="submit" class="btn-add-to-cart">
+                            <span>Thêm vào giỏ hàng</span>
+                        </button>
+                    </div>
+                </form>
                 </div>
-            </div>
         </div>
     </div>
-    </form>
+    @* </form> *@
 </div>
 
 
@@ -318,7 +321,7 @@
                     <div class="product-list">
                         @foreach (var product in ViewBag.ProductList)
                         {
-                            if (product.TypeId == 1)
+                            if (product.TypeId == 7)
                             {
                                 <a href="javascript:void(0);" onclick="selectCPU('@product.ProductId' ,'@product.Img1', '@product.ProductName', '@product.FormattedPrice', '@product.Price')" style="color: black; text-decoration:none;">
                                     <div class="product-box-list">
@@ -328,9 +331,12 @@
                                             <h6>@product.FormattedPrice</h6>
                                             <div class="color-list">
                                                 <span>Màu</span>
-                                                <svg width="14" height="14">
-                                                    <circle cx="7" cy="7" r="7" fill="@(product.Color.Contains("Gray") || product.Color.Contains("Grey") ? "Gray" : "")" />
-                                                </svg>
+                                                @if (!string.IsNullOrEmpty(product.Color))
+                                                {
+                                                    <svg width="14" height="14">
+                                                        <circle cx="7" cy="7" r="7" fill="@(product.Color.Contains("Gray") || product.Color.Contains("Grey") ? "Gray" : "black")" />
+                                                    </svg>
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -359,7 +365,7 @@
                     <div class="product-list">
                         @foreach (var product in ViewBag.ProductList)
                         {
-                            if (product.TypeId == 4)
+                            if (product.TypeId == 6)
                             {
                                 <a href="javascript:void(0);" onclick="selectMainboard('@product.ProductId' ,'@product.Img1', '@product.ProductName', '@product.FormattedPrice', '@product.Price')" style="color: black; text-decoration:none;">
                                     <div class="product-box-list">
@@ -369,9 +375,12 @@
                                             <h6>@product.FormattedPrice</h6>
                                             <div class="color-list">
                                                 <span>Màu</span>
-                                                <svg width="14" height="14">
-                                                    <circle cx="7" cy="7" r="7" fill="@(product.Color.Contains("Gray") || product.Color.Contains("Grey") ? "Gray" : "")" />
-                                                </svg>
+                                                @if (!string.IsNullOrEmpty(product.Color))
+                                                {
+                                                    <svg width="14" height="14">
+                                                        <circle cx="7" cy="7" r="7" fill="@(product.Color.Contains("Gray") || product.Color.Contains("Grey") ? "Gray" : "black")" />
+                                                    </svg>
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -399,7 +408,7 @@
                     <div class="product-list">
                         @foreach (var product in ViewBag.ProductList)
                         {
-                            if (product.TypeId == 4)
+                            if (product.TypeId == 8)
                             {
                                 <a href="javascript:void(0);" onclick="selectVGA('@product.ProductId' ,'@product.Img1', '@product.ProductName', '@product.FormattedPrice', '@product.Price')" style="color: black; text-decoration:none;">
                                     <div class="product-box-list">
@@ -409,9 +418,12 @@
                                             <h6>@product.FormattedPrice</h6>
                                             <div class="color-list">
                                                 <span>Màu</span>
-                                                <svg width="14" height="14">
-                                                    <circle cx="7" cy="7" r="7" fill="@(product.Color.Contains("Gray") || product.Color.Contains("Grey") ? "Gray" : "")" />
-                                                </svg>
+                                                @if (!string.IsNullOrEmpty(product.Color))
+                                                {
+                                                    <svg width="14" height="14">
+                                                        <circle cx="7" cy="7" r="7" fill="@(product.Color.Contains("Gray") || product.Color.Contains("Grey") ? "Gray" : "black")" />
+                                                    </svg>
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -439,7 +451,7 @@
                     <div class="product-list">
                         @foreach (var product in ViewBag.ProductList)
                         {
-                            if (product.TypeId == 4)
+                            if (product.TypeId == 9)
                             {
                                 <a href="javascript:void(0);" onclick="selectRam('@product.ProductId' ,'@product.Img1', '@product.ProductName', '@product.FormattedPrice', '@product.Price')" style="color: black; text-decoration:none;">
                                     <div class="product-box-list">
@@ -449,9 +461,12 @@
                                             <h6>@product.FormattedPrice</h6>
                                             <div class="color-list">
                                                 <span>Màu</span>
-                                                <svg width="14" height="14">
-                                                    <circle cx="7" cy="7" r="7" fill="@(product.Color.Contains("Gray") || product.Color.Contains("Grey") ? "Gray" : "")" />
-                                                </svg>
+                                                @if (!string.IsNullOrEmpty(product.Color))
+                                                {
+                                                    <svg width="14" height="14">
+                                                        <circle cx="7" cy="7" r="7" fill="@(product.Color.Contains("Gray") || product.Color.Contains("Grey") ? "Gray" : "black")" />
+                                                    </svg>
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -479,7 +494,7 @@
                     <div class="product-list">
                         @foreach (var product in ViewBag.ProductList)
                         {
-                            if (product.TypeId == 4)
+                            if (product.TypeId == 10)
                             {
                                 <a href="javascript:void(0);" onclick="selectSsd('@product.ProductId' ,'@product.Img1', '@product.ProductName', '@product.FormattedPrice', '@product.Price')" style="color: black; text-decoration:none;">
                                     <div class="product-box-list">
@@ -489,9 +504,12 @@
                                             <h6>@product.FormattedPrice</h6>
                                             <div class="color-list">
                                                 <span>Màu</span>
-                                                <svg width="14" height="14">
-                                                    <circle cx="7" cy="7" r="7" fill="@(product.Color.Contains("Gray") || product.Color.Contains("Grey") ? "Gray" : "")" />
-                                                </svg>
+                                                @if (!string.IsNullOrEmpty(product.Color))
+                                                {
+                                                    <svg width="14" height="14">
+                                                        <circle cx="7" cy="7" r="7" fill="@(product.Color.Contains("Gray") || product.Color.Contains("Grey") ? "Gray" : "black")" />
+                                                    </svg>
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -519,7 +537,7 @@
                     <div class="product-list">
                         @foreach (var product in ViewBag.ProductList)
                         {
-                            if (product.TypeId == 4)
+                            if (product.TypeId == 11)
                             {
                                 <a href="javascript:void(0);" onclick="selectHdd('@product.ProductId' ,'@product.Img1', '@product.ProductName', '@product.FormattedPrice', '@product.Price')" style="color: black; text-decoration:none;">
                                     <div class="product-box-list">
@@ -529,9 +547,12 @@
                                             <h6>@product.FormattedPrice</h6>
                                             <div class="color-list">
                                                 <span>Màu</span>
-                                                <svg width="14" height="14">
-                                                    <circle cx="7" cy="7" r="7" fill="@(product.Color.Contains("Gray") || product.Color.Contains("Grey") ? "Gray" : "")" />
-                                                </svg>
+                                                @if (!string.IsNullOrEmpty(product.Color))
+                                                {
+                                                    <svg width="14" height="14">
+                                                        <circle cx="7" cy="7" r="7" fill="@(product.Color.Contains("Gray") || product.Color.Contains("Grey") ? "Gray" : "black")" />
+                                                    </svg>
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -559,7 +580,7 @@
                     <div class="product-list">
                         @foreach (var product in ViewBag.ProductList)
                         {
-                            if (product.TypeId == 4)
+                            if (product.TypeId == 12)
                             {
                                 <a href="javascript:void(0);" onclick="selectCase('@product.ProductId' ,'@product.Img1', '@product.ProductName', '@product.FormattedPrice', '@product.Price')" style="color: black; text-decoration:none;">
                                     <div class="product-box-list">
@@ -569,9 +590,12 @@
                                             <h6>@product.FormattedPrice</h6>
                                             <div class="color-list">
                                                 <span>Màu</span>
-                                                <svg width="14" height="14">
-                                                    <circle cx="7" cy="7" r="7" fill="@(product.Color.Contains("Gray") || product.Color.Contains("Grey") ? "Gray" : "")" />
-                                                </svg>
+                                                @if (!string.IsNullOrEmpty(product.Color))
+                                                {
+                                                    <svg width="14" height="14">
+                                                        <circle cx="7" cy="7" r="7" fill="@(product.Color.Contains("Gray") || product.Color.Contains("Grey") ? "Gray" : "black")" />
+                                                    </svg>
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -599,7 +623,7 @@
                     <div class="product-list">
                         @foreach (var product in ViewBag.ProductList)
                         {
-                            if (product.TypeId == 4)
+                            if (product.TypeId == 13)
                             {
                                 <a href="javascript:void(0);" onclick="selectPsu('@product.ProductId' ,'@product.Img1', '@product.ProductName', '@product.FormattedPrice', '@product.Price')" style="color: black; text-decoration:none;">
                                     <div class="product-box-list">
@@ -609,9 +633,12 @@
                                             <h6>@product.FormattedPrice</h6>
                                             <div class="color-list">
                                                 <span>Màu</span>
-                                                <svg width="14" height="14">
-                                                    <circle cx="7" cy="7" r="7" fill="@(product.Color.Contains("Gray") || product.Color.Contains("Grey") ? "Gray" : "")" />
-                                                </svg>
+                                                @if (!string.IsNullOrEmpty(product.Color))
+                                                {
+                                                    <svg width="14" height="14">
+                                                        <circle cx="7" cy="7" r="7" fill="@(product.Color.Contains("Gray") || product.Color.Contains("Grey") ? "Gray" : "black")" />
+                                                    </svg>
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -639,7 +666,7 @@
                     <div class="product-list">
                         @foreach (var product in ViewBag.ProductList)
                         {
-                            if (product.TypeId == 4)
+                            if (product.TypeId == 14)
                             {
                                 <a href="javascript:void(0);" onclick="selectTanNhiet('@product.ProductId' ,'@product.Img1', '@product.ProductName', '@product.FormattedPrice', '@product.Price')" style="color: black; text-decoration:none;">
                                     <div class="product-box-list">
@@ -649,9 +676,12 @@
                                             <h6>@product.FormattedPrice</h6>
                                             <div class="color-list">
                                                 <span>Màu</span>
-                                                <svg width="14" height="14">
-                                                    <circle cx="7" cy="7" r="7" fill="@(product.Color.Contains("Gray") || product.Color.Contains("Grey") ? "Gray" : "")" />
-                                                </svg>
+                                                @if (!string.IsNullOrEmpty(product.Color))
+                                                {
+                                                    <svg width="14" height="14">
+                                                        <circle cx="7" cy="7" r="7" fill="@(product.Color.Contains("Gray") || product.Color.Contains("Grey") ? "Gray" : "black")" />
+                                                    </svg>
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -679,7 +709,7 @@
                     <div class="product-list">
                         @foreach (var product in ViewBag.ProductList)
                         {
-                            if (product.TypeId == 4)
+                            if (product.TypeId == 5)
                             {
                                 <a href="javascript:void(0);" onclick="selectMonitor('@product.ProductId' ,'@product.Img1', '@product.ProductName', '@product.FormattedPrice', '@product.Price')" style="color: black; text-decoration:none;">
                                     <div class="product-box-list">
@@ -689,9 +719,12 @@
                                             <h6>@product.FormattedPrice</h6>
                                             <div class="color-list">
                                                 <span>Màu</span>
-                                                <svg width="14" height="14">
-                                                    <circle cx="7" cy="7" r="7" fill="@(product.Color.Contains("Gray") || product.Color.Contains("Grey") ? "Gray" : "")" />
-                                                </svg>
+                                                @if (!string.IsNullOrEmpty(product.Color))
+                                                {
+                                                    <svg width="14" height="14">
+                                                        <circle cx="7" cy="7" r="7" fill="@(product.Color.Contains("Gray") || product.Color.Contains("Grey") ? "Gray" : "black")" />
+                                                    </svg>
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -719,7 +752,7 @@
                     <div class="product-list">
                         @foreach (var product in ViewBag.ProductList)
                         {
-                            if (product.TypeId == 4)
+                            if (product.TypeId == 3)
                             {
                                 <a href="javascript:void(0);" onclick="selectMouse('@product.ProductId' ,'@product.Img1', '@product.ProductName', '@product.FormattedPrice', '@product.Price')" style="color: black; text-decoration:none;">
                                     <div class="product-box-list">
@@ -729,9 +762,12 @@
                                             <h6>@product.FormattedPrice</h6>
                                             <div class="color-list">
                                                 <span>Màu</span>
-                                                <svg width="14" height="14">
-                                                    <circle cx="7" cy="7" r="7" fill="@(product.Color.Contains("Gray") || product.Color.Contains("Grey") ? "Gray" : "")" />
-                                                </svg>
+                                                @if (!string.IsNullOrEmpty(product.Color))
+                                                {
+                                                    <svg width="14" height="14">
+                                                        <circle cx="7" cy="7" r="7" fill="@(product.Color.Contains("Gray") || product.Color.Contains("Grey") ? "Gray" : "black")" />
+                                                    </svg>
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -769,9 +805,12 @@
                                             <h6>@product.FormattedPrice</h6>
                                             <div class="color-list">
                                                 <span>Màu</span>
-                                                <svg width="14" height="14">
-                                                    <circle cx="7" cy="7" r="7" fill="@(product.Color.Contains("Gray") || product.Color.Contains("Grey") ? "Gray" : "")" />
-                                                </svg>
+                                                @if (!string.IsNullOrEmpty(product.Color))
+                                                {
+                                                    <svg width="14" height="14">
+                                                        <circle cx="7" cy="7" r="7" fill="@(product.Color.Contains("Gray") || product.Color.Contains("Grey") ? "Gray" : "black")" />
+                                                    </svg>
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -799,7 +838,7 @@
                     <div class="product-list">
                         @foreach (var product in ViewBag.ProductList)
                         {
-                            if (product.TypeId == 4)
+                            if (product.TypeId == 2)
                             {
                                 <a href="javascript:void(0);" onclick="selectEarphone('@product.ProductId' ,'@product.Img1', '@product.ProductName', '@product.FormattedPrice', '@product.Price')" style="color: black; text-decoration:none;">
                                     <div class="product-box-list">
@@ -809,9 +848,12 @@
                                             <h6>@product.FormattedPrice</h6>
                                             <div class="color-list">
                                                 <span>Màu</span>
-                                                <svg width="14" height="14">
-                                                    <circle cx="7" cy="7" r="7" fill="@(product.Color.Contains("Gray") || product.Color.Contains("Grey") ? "Gray" : "")" />
-                                                </svg>
+                                                @if (!string.IsNullOrEmpty(product.Color))
+                                                {
+                                                    <svg width="14" height="14">
+                                                        <circle cx="7" cy="7" r="7" fill="@(product.Color.Contains("Gray") || product.Color.Contains("Grey") ? "Gray" : "black")" />
+                                                    </svg>
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -834,11 +876,14 @@
 <script>
     let TotalPrice = 0;
 
-        function updateTotalPrice() {
+    function updateTotalPrice() {
         if (!isNaN(TotalPrice) && TotalPrice >= 0) {
-            document.getElementById('TotalPrice').innerText = TotalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + 'đ';
+            const formatted = TotalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + 'đ';
+            document.getElementById('TotalPriceDisplay').innerText = formatted;
+            document.getElementById('TotalPrice').value = TotalPrice;
         } else {
-            document.getElementById('TotalPrice').innerText = '0đ';
+            document.getElementById('TotalPriceDisplay').innerText = '0đ';
+            document.getElementById('TotalPrice').value = 0;
         }
     }
 
@@ -1413,6 +1458,7 @@
         document.getElementById('selectedEarphoneName').innerText = '';
         document.getElementById('selectedEarphonePrice').innerText = '';
         document.getElementById('selectedEarphoneTitle').innerText = 'Tai Nghe';
+
     }
 </script>
 

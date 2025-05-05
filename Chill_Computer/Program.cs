@@ -35,6 +35,8 @@ namespace Chill_Computer
             builder.Services.AddScoped<IProfileService, ProfileService>();
             builder.Services.AddScoped<IOrderHistoryService, OrderHistoryService>();
             builder.Services.AddScoped<IReviewService, ReviewService>();
+            builder.Services.AddScoped<IPcComponentRepository, PcComponentRepository>();
+            builder.Services.AddScoped<IPCRepository, PCRepository>();
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddSignalR();
 

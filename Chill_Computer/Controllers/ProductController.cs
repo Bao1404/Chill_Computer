@@ -53,6 +53,26 @@ namespace Chill_Computer.Controllers
         }
 
         [HttpGet]
+        public IActionResult SortProductList(int typeId, int sort = 0)
+        {
+            Init();
+            var productList = _productRepository.GetProductByTypeId(typeId);
+            switch (sort)
+            {
+                case 1:
+                    productList = productList.OrderBy(p => p.Price).ToList();
+                    break;
+                case 2:
+                    productList = productList.OrderByDescending(p => p.Price).ToList();
+                    break;
+            }
+
+            ViewBag.ProductList = productList;
+
+            return PartialView("Partials/_ProductListPartial", typeId);
+        }
+
+        [HttpGet]
         [Route("Product/ProductDetail")]
         public IActionResult ProductDetailPage(int id)
         {
@@ -173,5 +193,78 @@ namespace Chill_Computer.Controllers
             ViewBag.BrandSeries = _seriesRepository.GetSeriesByBrandId(brand);
             return View("ProductListPage", typeId);
         }
+
+        [HttpGet]
+        public IActionResult SearchProduct(string searchInput)
+        {
+            Init();
+            if (string.IsNullOrWhiteSpace(searchInput))
+            {
+                // Optional: return an empty result to clear previous results
+                return Content(""); // or return PartialView("EmptyPartial");
+            }
+
+            var productList = _productRepository.SearchProduct(searchInput);
+            if (productList.Any())
+            {
+                ViewBag.SearchList = productList;
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "Không tìm thấy sản phẩm phù hợp!";
+            }
+
+            return PartialView("Partials/_SearchBarPartial");
+        }
+
+        public IActionResult SearchPage(string value)
+        {
+            Init();
+            var productList = _productRepository.SearchProduct(value);
+            int typeId = productList.First().TypeId ?? 0;
+
+            if (productList.Any())
+            {
+                ViewBag.ProductList = productList;
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "Không tìm thấy sản phẩm phù hợp!";
+            }
+            ViewBag.TypeId = typeId;
+            return View("SearchPage", value);
+        }
+
+        [HttpGet]
+        public IActionResult SortSearchResults(string value, int sort = 0)
+        {
+            Init();
+            var productList = _productRepository.SearchProduct(value);
+            switch (sort)
+            {
+                case 1:
+                    productList = productList.OrderBy(p => p.Price).ToList();
+                    break;
+                case 2:
+                    productList = productList.OrderByDescending(p => p.Price).ToList();
+                    break;
+            }
+
+            ViewBag.ProductList = productList;
+            return PartialView("Partials/_SearchPagePartial");
+        }
+
+        [HttpPost]
+        public IActionResult FilterByPriceRange(int startPrice, int endPrice, int productTypeId)
+        {
+            Init();
+
+            List<Product> list = _productRepository.GetProductFromPriceRange(startPrice, endPrice, productTypeId);
+
+            ViewBag.ProductList = list;
+
+            return PartialView("Partials/_ProductListPartial", productTypeId);
+        }
+
     }
 }

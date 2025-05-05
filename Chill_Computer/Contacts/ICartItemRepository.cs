@@ -7,6 +7,6 @@ namespace Chill_Computer.Contacts
     {
         public void AddCartItem(CartItem cartItem);
         public List<CartItemViewModel> GetCartItemByCartId(int cartId);
-        public void DeleteItemByProductIdAndCartId(int productId, int cartId);
+        public void DeleteItemByProductIdAndCartId(int productId, int pcId, int cartId);
     }
 }

@@ -168,5 +168,10 @@ namespace Chill_Computer.Services
         {
             return _context.Accounts.Include(x=>x.Role).FirstOrDefault(x => x.UserName == username && x.Password == password);
         }
+        public void AddAccount(Account account)
+        {
+            _context.Accounts.Add(account);
+            _context.SaveChanges();
+        }
     }
 }
