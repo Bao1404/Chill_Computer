@@ -202,7 +202,7 @@ span {
     border-radius: 20px;
 }
 
-.header-search input[type="text"] {
+.header-search input[type="search"] {
     border: none;
     outline: none;
     font-size: 14px;
@@ -386,6 +386,7 @@ span {
     margin: 0 200px;
     min-height: 453px;
     margin-bottom: 30px;
+    font-family: Lexend, sans-serif;
 }
 
     .main-content h1 {
@@ -1146,3 +1147,77 @@ span {
     margin-top: -10px;
     margin-right: -15px;
 }
+
+.user-profile {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid lightgray;
+    position: absolute;
+    margin-top: 5px;
+    background-color: white;
+    padding: 5px;
+    font-family: Lexend, sans-serif;
+    border-radius: 5px;
+}
+
+.search-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    padding: 5px 8px;
+}
+
+.search-item-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 650px;
+}
+
+.search-result {
+    position: absolute;
+    background-color: white;
+    width: 100%;
+    left: 0;
+    border-bottom: 1px solid lightgray;
+    padding: 0 450px 5px 450px;
+    max-height: 410px;
+    overflow-y: scroll;
+    font-family: Lexend, sans-serif;
+}
+
+.product-box-search {
+    width: 235px;
+    min-height: 439px;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    overflow: hidden;
+}
+
+.product-list-search {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.product-info-search {
+    margin: 0 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+    .product-info-search span {
+        font-size: 16px;
+    }
+
+    .product-info-search h6 {
+        font-family: Lexend, sans-serif;
+        color: #E30019;
+        margin: 0;
+        font-size: 16px;
+    }
