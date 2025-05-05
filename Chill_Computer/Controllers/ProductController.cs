@@ -253,5 +253,18 @@ namespace Chill_Computer.Controllers
             ViewBag.ProductList = productList;
             return PartialView("Partials/_SearchPagePartial");
         }
+
+        [HttpPost]
+        public IActionResult FilterByPriceRange(int startPrice, int endPrice, int productTypeId)
+        {
+            Init();
+
+            List<Product> list = _productRepository.GetProductFromPriceRange(startPrice, endPrice, productTypeId);
+
+            ViewBag.ProductList = list;
+
+            return PartialView("Partials/_ProductListPartial", productTypeId);
+        }
+
     }
 }
