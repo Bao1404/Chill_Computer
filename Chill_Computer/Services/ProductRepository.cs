@@ -170,5 +170,10 @@ namespace Chill_Computer.Services
                        select product;
             return list.Distinct().ToList();
         }
+
+        public List<Product> GetProductFromPriceRange(int startPrice, int endPrice, int productTypeId)
+        {
+            return _context.Products.Where(p => p.Price >= startPrice && p.Price <= endPrice && p.TypeId == productTypeId).ToList();
+        }
     }
 }
