@@ -1,0 +1,92 @@
+﻿@model Chill_Computer.ViewModels.ReviewViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutProfile.cshtml";
+    ViewData["ChooseReview"] = "chooseButton";
+}
+<style>
+    .review-card {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 24px;
+        margin-bottom: 24px;
+        background-color: #f9fafb; /* soft background */
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+        .review-card h3 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+            color: #111827; /* dark slate */
+        }
+
+        .review-card .stars {
+            color: #facc15; /* yellow-400 */
+            font-size: 20px;
+            margin: 12px 0;
+        }
+
+        .review-card label {
+            font-weight: 500;
+            margin-bottom: 6px;
+            display: block;
+            color: #374151; /* slate-700 */
+        }
+
+        .review-card textarea {
+            width: 100%;
+            height: 100px;
+            padding: 12px;
+            font-size: 15px;
+            border-radius: 6px;
+            border: 1px solid #cbd5e1; /* slate-300 */
+            resize: vertical;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        .review-card input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 15px;
+            border-radius: 6px;
+            border: 1px solid #cbd5e1;
+            margin-bottom: 12px;
+            background-color: #f1f5f9;
+            color: #1e293b;
+        }
+
+    .submit-btn {
+        margin-top: 10px;
+        background-color: #0ea5e9;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+        .submit-btn:hover {
+            background-color: #0284c7;
+        }
+</style>
+
+<div class="content">
+    <h2 style="font-size: 48px; font-weight: bold; margin-bottom: 24px;">Đánh giá&Nhận xét</h2>
+    <form asp-controller="Profile" asp-action="Submit" method="post" class="review-card" style="max-width: 600px;">
+
+        <input type="hidden" asp-for="ProductId" />
+
+        <label>Đánh giá sao</label>
+        <input type="number" asp-for="Rating" min="1" max="5" required />
+
+        <label>Nhận xét</label>
+        <textarea asp-for="Comment" required></textarea>
+
+        <button type="submit" class="submit-btn">Gửi đánh giá</button>
+    </form>
+</div>

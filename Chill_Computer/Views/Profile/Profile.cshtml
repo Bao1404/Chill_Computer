@@ -1,0 +1,38 @@
+﻿@model Chill_Computer.ViewModels.ProfileViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutProfile.cshtml";
+    ViewData["ChooseProfile"] = "chooseButton";
+}
+<style>
+
+        .account-info label {
+            margin-bottom: 6px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .account-info input {
+            margin-bottom: 16px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+</style>
+
+<div class="content">
+    <h2 style="font-size: 48px; font-weight: bold; margin-bottom: 24px;">Thông tin tài khoản</h2>
+    <form class="account-info" style="display: flex; flex-direction: column; max-width: 600px;">
+        <label>FullName</label>
+        <input type="text" value="@Model.FullName" readonly />
+
+        <label>Số điện thoại</label>
+        <input type="text" value="@Model.Phone" readonly />
+
+        <label>Email</label>
+        <input type="text" value="@Model.Email" readonly />
+
+        <label>Ngày sinh</label>
+        <input type="text" value="@Model.Dob?.ToString("MM/dd/yyyy")" readonly />
+    </form>
+</div>
