@@ -342,11 +342,15 @@
 
         $(document).on('click', '.deleteCartBtn', function () {
             var productId = $(this).data('id');
+            var pcId = $(this).data('pcId');
 
             $.ajax({
                 url: '@Url.Action("DeleteCartItem", "Cart")',
                 type: 'DELETE',
-                data: { productId: productId },
+                data: { 
+                    productId: productId,
+                    pcId: pcId,
+                },
                 success: function (response) {
                     if (response.success) {
                         $('.modal-cart-title h5').text('Giỏ hàng (' + response.count + ')');

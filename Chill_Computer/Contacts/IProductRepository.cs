@@ -21,5 +21,6 @@ namespace Chill_Computer.Contacts
         List<Product> GetProductFromFilter(string filterName, string categoryName);
         public List<Product> SearchProduct(string input);
         public Product GetProductFromNameAndVersion(string productName, string versionName);
+        public List<Product> GetProductFromPriceRange(int startPrice, int endPrice, int productTypeId);
     }
 }

@@ -113,21 +113,27 @@ namespace Chill_Computer.Controllers
         }
 
         [HttpDelete]
-        public IActionResult DeleteCartItem(int productId)
+        public IActionResult DeleteCartItem(int productId, int pcId)
         {
             var cart = HttpContext.Session.GetObject<List<CartItemViewModel>>("Cart") ?? new List<CartItemViewModel>();
             var userId = HttpContext.Session.GetObject<int>("_userId");
             if (userId != 0)
             {
                 var cartId = _cartRepository.GetCartByUserId(userId).CartId;
-                _cartItemRepository.DeleteItemByProductIdAndCartId(productId, cartId);
+                _cartItemRepository.DeleteItemByProductIdAndCartId(productId, pcId, cartId);
             }
             else
             {
                 var removedItem = cart.FirstOrDefault(c => c.ProductId == productId);
+                var removePc = cart.FirstOrDefault(p => p.PcId == pcId);
                 if(removedItem != null)
                 {
                     cart.Remove(removedItem);
+                    HttpContext.Session.SetObject("Cart", cart);
+                }
+                if (removePc != null)
+                {
+                    cart.Remove(removePc);
                     HttpContext.Session.SetObject("Cart", cart);
                 }
             }
@@ -174,60 +180,6 @@ namespace Chill_Computer.Controllers
             {
                 return PartialView("Partials/_CartButton", cart);
             }
-        }
-
-        [HttpPost]
-        public IActionResult AddProductBuildPcToCart(IFormCollection form)
-        {   
-            var userId = HttpContext.Session.GetObject<int>("_userId");
-            var selectedIds = new List<int>();
-            var totalPrice = form["TotalPrice"];
-            var keys = new[]
-            {
-                "selectedCpuId",
-                "selectedMainboardId",
-                "selectedVgaId",
-                "selectedRamId",
-                "selectedSsdId",
-                "selectedHddId",
-                "selectedCaseId",
-                "selectedPsuId",
-                "selectedTanNhietId",
-                "selectedMonitorId",
-                "selectedMouseId",
-                "selectedKeyboardId",
-                "selectedEarphoneId"
-            };
-
-            if (userId != 0)
-            {
-                var cartId = _cartRepository.GetCartByUserId(userId).CartId;
-                foreach (var key in keys)
-                {
-                    var value = form[key];
-
-                    if (int.TryParse(value, out var id))
-                    {
-                        selectedIds.Add(id);
-                    }
-                }
-
-                Pc pc = new Pc
-                {
-                 //   Price = decimal.Parse(totalPrice),
-                };
-
-                _pcRepository.AddPc(pc);
-                _pcComponentRepository.AddListProductToPC(pc.PcId, selectedIds);
-                _cartItemRepository.AddCartItem(new CartItem
-                {
-                    ProductId = pc.PcId,
-                    ItemQuantity = 1,
-                    CartId = cartId
-                });
-            }
-
-            return View();
         }
     }
 }

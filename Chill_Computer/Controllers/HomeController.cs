@@ -34,7 +34,7 @@ public class HomeController : BaseController
     {
         Init();
         List<Product> productList = new List<Product>();
-        foreach(var type in _productTypeRepository.GetProductTypes())
+        foreach(var type in _productTypeRepository.GetProductTypes().Where(t => t.TypeId == 1 || t.TypeId == 2 || t.TypeId == 3 || t.TypeId == 4))
         {
             productList = _productRepository.GetProductByTypeId(type.TypeId);
         }
