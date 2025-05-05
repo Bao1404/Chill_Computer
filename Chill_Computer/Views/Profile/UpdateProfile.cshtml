@@ -1,0 +1,67 @@
+﻿@model Chill_Computer.ViewModels.ProfileViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutProfile.cshtml";
+    ViewData["ChooseUpdateProfile"] = "chooseButton";
+}
+
+<style>
+         .content h2 { 
+             font-size: 48px; 
+             font-weight: bold; 
+             margin-bottom: 24px; 
+         } 
+
+    .update-form {
+        display: flex;
+        flex-direction: column;
+        max-width: 600px;
+    }
+
+        .update-form label {
+            margin-bottom: 6px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .update-form input {
+            margin-bottom: 16px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        .update-form button {
+            padding: 12px;
+            font-size: 16px;
+            background-color: #22d3ee;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+            .update-form button:hover {
+                background-color: #0ea5e9;
+            }
+</style>
+
+<div class="content">
+    <h2>Cập nhật thông tin</h2>  
+    <form class="update-form" asp-action="SaveProfile" asp-controller="Profile" method="post">
+        <label for="fullname">Họ và tên</label>
+        <input type="text" id="fullname" name="FullName" placeholder="Nhập họ tên" value="@Model.FullName" />
+
+        <label for="phone">Số điện thoại</label>
+        <input type="text" id="phone" name="Phone" placeholder="Nhập số điện thoại" value="@Model.Phone" />
+
+        <label for="email">Email</label>
+        <input type="text" id="email" name="Email" placeholder="Nhập email" value="@Model.Email" />
+
+        <label for="dob">Ngày sinh</label>
+        <input type="text" id="dob" name="Dob" value="@Model.Dob?.ToString("MM/dd/yyyy")" />
+
+        <button type="submit">Lưu thay đổi</button>
+    </form>
+</div>

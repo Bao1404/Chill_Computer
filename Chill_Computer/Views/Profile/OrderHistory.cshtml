@@ -1,0 +1,210 @@
+﻿@model List<Chill_Computer.ViewModels.OrderHistoryViewModel>
+@{
+    Layout = "~/Views/Shared/_LayoutProfile.cshtml";
+    ViewData["ChooseOrderHistory"] = "chooseButton";
+}
+
+<style>
+    .content h2 {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 24px;
+    color: #0f172a;
+    }
+
+    table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 8px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    th, td {
+    padding: 16px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    font-size: 15px;
+    }
+
+    th {
+    background-color: #f1f5f9;
+    font-weight: 600;
+    color: #334155;
+    }
+
+    .status {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    display: inline-block;
+    }
+
+    .status.completed {
+    background-color: #bbf7d0;
+    color: #166534;
+    }
+
+    .status.pending {
+    background-color: #fef9c3;
+    color: #92400e;
+    }
+
+    .status.canceled {
+    background-color: #fecaca;
+    color: #991b1b;
+    }
+
+    .view-btn {
+        display: inline-block;
+        padding: 8px 12px;
+        background-color: #0ea5e9;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+        text-align: center;
+        line-height: 1.4;
+    }
+
+
+    .view-btn:hover {
+    background-color: #0284c7;
+    transform: translateY(-1px);
+    }
+
+    td {
+    position: relative;
+    padding-left: 50%;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    }
+
+    td::before {
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    font-weight: bold;
+    white-space: nowrap;
+    }
+
+    tr {
+    margin-bottom: 20px;
+    border-bottom: 2px solid #f1f5f9;
+    }
+
+</style>
+
+<div class="content">
+    <h2>Lịch sử đơn hàng</h2>
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table" style="width: 100%;background: #f9fbfd;box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th>Mã đơn</th>
+                    <th>Ngày đặt</th>
+                    <th>Tổng tiền</th>
+                    <th>Trạng thái</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model)
+                {
+                    string statusClass = order.OrderStatus switch
+                    {
+                        "Đang giao hàng" => "pending",
+                        "Đã giao hàng" => "completed",
+                        "Đã huỷ" => "canceled",
+                        _ => "pending"
+                    };
+
+                    <tr>
+                        <td data-label="Mã đơn">@order.OrderId</td>
+                        <td data-label="Ngày đặt">@order.OrderDate.ToString("dd/MM/yyyy")</td>
+                        <td data-label="Tổng tiền">@order.TotalPrice.ToString("N0")₫</td>
+                        <td data-label="Trạng thái"><span class="status @statusClass">@order.OrderStatus</span></td>
+                        <td data-label="Hành động">
+                            <a class="view-btn" href="javascript:void(0);" onclick="openModalDetail(@order.OrderId)">Xem chi tiết</a>
+                        </td>
+                    </tr>
+
+
+                    <!-- Modal Detail -->
+                    <div id="product-list-@order.OrderId" style="display:none;">
+                        <p><strong>Mã đơn:</strong> @order.OrderId</p>
+                        <p><strong>Ngày đặt:</strong> @order.OrderDate.ToString("dd/MM/yyyy")</p>
+                        <p><strong>Tổng tiền:</strong> @order.TotalPrice.ToString("N0")₫</p>
+                        <p><strong>Trạng thái:</strong> @order.OrderStatus</p>
+                        <hr />
+                        <p><strong>Danh sách sản phẩm:</strong></p>
+                        @if (ViewBag.Dictionary != null && ViewBag.Dictionary.ContainsKey(order.OrderId))
+                        {
+                            var products = ViewBag.Dictionary[order.OrderId] as List<Chill_Computer.Models.Product>;
+                            if (products != null && products.Any())
+                            {
+                                <ul>
+                                    @foreach (var product in products)
+                                    {
+                                        <li>
+                                            <strong>@product.ProductName</strong> - @product.FormattedPrice
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                            else
+                            {
+                                <p>Không có sản phẩm nào trong đơn hàng này.</p>
+                            }
+                        }
+                        else
+                        {
+                            <p>Không có sản phẩm nào trong đơn hàng này.</p>
+                        }
+                    </div>
+                }
+
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>Không có đơn hàng nào.</p>
+    }
+</div>
+
+<!-- Modal Detail -->
+<div class="modal fade" id="DetailOrder" tabindex="-1" aria-labelledby="detailOrderLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailOrderLabel">Chi tiết đơn hàng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+            </div>
+            <div class="modal-body" id="modalProductList">
+                <!-- Nội dung sẽ được chèn động tại đây -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+
+        function openModalDetail(orderId) {
+        var content = document.getElementById('product-list-' + orderId).innerHTML;
+        document.getElementById('modalProductList').innerHTML = content;
+        $('#DetailOrder').modal('show');
+    }
+</script>

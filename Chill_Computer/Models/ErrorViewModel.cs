@@ -1,4 +1,4 @@
-namespace Chill_Computer.Models
+﻿namespace Chill_Computer.Models
 {
     public class ErrorViewModel
     {
