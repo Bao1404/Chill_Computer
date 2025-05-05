@@ -1,0 +1,21 @@
+﻿@model Chill_Computer.Models.News
+
+@{
+    ViewData["Title"] = "Thêm tin tức mới";
+
+}
+
+<div class="container mt-4">
+    <h1>@Model.Title</h1>
+
+    <p class="text-muted">
+        <strong>Ngày đăng:</strong> @Model.DatePublish.ToString("dd/MM/yyyy") |
+        <strong>Chuyên mục ID:</strong> @Model.CategoryId
+    </p>
+
+    <hr />
+
+    <div class="news-content">
+        @Html.Raw(Model.Content)
+    </div>
+</div>
