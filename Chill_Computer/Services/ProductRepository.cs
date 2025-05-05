@@ -161,6 +161,14 @@ namespace Chill_Computer.Services
             return product;
         }
 
-
+        public List<Product> SearchProduct(string input)
+        {
+            var list = from brand in _context.Brands
+                       join product in _context.Products on brand.BrandId equals product.BrandId
+                       join type in _context.ProductTypes on product.TypeId equals type.TypeId
+                       where product.ProductName.Contains(input) || brand.BrandName.Contains(input) || type.TypeName.Contains(input)
+                       select product;
+            return list.Distinct().ToList();
+        }
     }
 }

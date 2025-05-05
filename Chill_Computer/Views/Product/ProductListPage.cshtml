@@ -71,10 +71,10 @@
                 <span>@productList.Count() Sản phẩm</span>
             }
         </div>
-        <select name="" id="select" class="select-filter">
-            <option value="0">Nổi bật nhất</option>
+        <select id="select" class="select-filter">
+            <option value="0" selected>Nổi bật nhất</option>
             <option value="1">Giá tăng dần</option>
-            <option value="2">Giảm giảm dần</option>
+            <option value="2">Giá giảm dần</option>
         </select>
     </div>
 
@@ -144,6 +144,27 @@
             }
         });
     });
+
+            var typeId = @Model;
+
+    $('#select').change(function () {
+        const sortValue = $(this).val();
+        $.ajax({
+            url: '/Product/SortProductList',
+            type: 'GET',
+            data: {
+                typeId: typeId,
+                sort: sortValue
+            },
+            success: function (result) {
+                $('#product-list').html(result);
+            },
+            error: function () {
+                $('#product-list').html('<span>Lỗi khi sắp xếp sản phẩm!</span>');
+            }
+        });
+    });
+
     });
 
 

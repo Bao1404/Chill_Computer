@@ -17,6 +17,6 @@ namespace Chill_Computer.Contacts
         public void DeleteAccount(Account a);
         public Account GetAccountByNameAndPass(string username, string password);
         public bool IsExistAccount(string username);
-
+        public void AddAccount(Account account);
     }
 }

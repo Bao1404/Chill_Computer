@@ -41,7 +41,7 @@ namespace Chill_Computer.Controllers
             if(userId != 0)
             {
                 var cartId = _cartRepository.GetCartByUserId(userId).CartId;
-                if(cartId != null)
+                if(cartId != 0)
                 {
                     listItem = _cartItemRepository.GetCartItemByCartId(cartId);
                 }
@@ -54,7 +54,7 @@ namespace Chill_Computer.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost("Cart/Add", Name = "Add")]
         public IActionResult AddToCart(int productId)
         {
             var product = _context.Products.FirstOrDefault(p => p.ProductId == productId);
@@ -145,7 +145,7 @@ namespace Chill_Computer.Controllers
                 {
                     cartItems = _cartItemRepository.GetCartItemByCartId(cartId.CartId).ToList();
                 }
-                 ViewBag.CartItems = cartItems;
+                ViewBag.CartItems = cartItems;
                 return PartialView("Partials/_CartPartial", ViewBag.CartItems);
             }
             else
@@ -214,7 +214,7 @@ namespace Chill_Computer.Controllers
 
                 Pc pc = new Pc
                 {
-                    Price = decimal.Parse(totalPrice),
+                 //   Price = decimal.Parse(totalPrice),
                 };
 
                 _pcRepository.AddPc(pc);

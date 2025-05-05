@@ -32,6 +32,8 @@ namespace Chill_Computer
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<ICartItemRepository, CartItemRepository>();
             builder.Services.AddScoped<ICartRepository, CartRepository>();
+            builder.Services.AddScoped<IPcComponentRepository, PcComponentRepository>();
+            builder.Services.AddScoped<IPCRepository, PCRepository>();
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddSignalR();
 
