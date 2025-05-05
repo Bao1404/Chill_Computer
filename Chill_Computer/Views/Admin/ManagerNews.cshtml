@@ -1,0 +1,204 @@
+﻿@model List<Chill_Computer.Models.News>
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewData["ChooseManageNews"] = "chooseButton";
+}
+
+<style>
+    .modal-content {
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .modal-header {
+        background-color: #f5f5f5;
+        border-bottom: 1px solid #dee2e6;
+        padding: 16px 24px;
+    }
+
+    .modal-title {
+        font-weight: 600;
+        font-size: 20px;
+    }
+
+    .modal-body {
+        padding: 24px;
+    }
+
+        .modal-body label {
+            font-weight: 500;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .modal-body input,
+        .modal-body select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+    .modal-footer {
+        padding: 16px 24px;
+        border-top: 1px solid #dee2e6;
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+    }
+
+        .modal-footer .btn {
+            padding: 8px 20px;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .modal-footer .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .modal-footer .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+
+    .modal-body button[type="submit"] {
+        margin-top: 10px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+        .modal-body button[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+</style>
+
+<nav class="navbar navbar-light bg-light" style="height: 30px;">
+    <form class="form-inline" action="/ManagerNews/SearchNews" method="post">
+        <input class="form-control mr-sm-2" name="keySearch" type="search" placeholder="Tìm kiếm tin tức" style="width: 500px; border-radius: 15px;">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="border-radius: 20px;">Tìm</button>
+    </form>
+</nav>
+
+<div style="width: 100%;">
+    <table class="table table-bordered table-hover mt-3">
+        <thead class="thead-light">
+            <tr>
+                <th>News_Id</th>
+                <th>Title</th>
+                <th>Summary</th>
+                <th>Date_Publish</th>
+                <th>Author_UserName</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var news in Model)
+                {
+                    <tr>
+                        <td>@news.NewsId</td>
+                        <td>@news.Title</td>
+                        <td>@news.Summary</td>
+                        <td>@news.DatePublish.ToString("dd/MM/yyyy")</td>
+                        <td>@news.AuthorUserName</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm" onclick='openEditModal(@Html.Raw(Json.Serialize(new {
+                            id = news.NewsId,
+                            title = news.Title,
+                            slug = news.Slug,
+                            summary = news.Summary,
+                            content = news.Content,
+                            datePublish = news.DatePublish.ToString("yyyy-MM-dd"),
+                            author = news.AuthorUserName,
+                            approvalStatus = news.ApprovalStatus
+                            })))'>
+                                Sửa
+                            </button>
+
+                            <form asp-action="DeleteNews" method="post" style="display:inline;" onsubmit="return confirm('Bạn có chắc muốn xóa tin này không?');">
+                                <input type="hidden" name="idNew" value="@news.NewsId" />
+                                <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr><td colspan="6" class="text-center">Không có tin tức cần phê duyệt.</td></tr>
+            }
+        </tbody>
+        <div class="modal fade" id="EditNewsModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <form method="post" action="/Admin/EditNews">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Chỉnh sửa tin tức</h5>
+                            <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="hidden" name="idNew" id="editId" />
+
+                            <label>Tiêu đề</label>
+                            <input type="text" name="Title" id="editTitle" class="form-control" required />
+
+                            <label>Slug</label>
+                            <input type="text" name="Slug" id="editSlug" class="form-control" required />
+
+                            <label>Mô tả ngắn</label>
+                            <textarea name="Summary" id="editSummary" class="form-control" rows="2"></textarea>
+
+                            <label>Nội dung</label>
+                            <textarea name="Content" id="editContent" class="form-control" rows="5"></textarea>
+
+                            <label>Ngày đăng</label>
+                            <input type="date" name="DatePublish" id="editDatePublish" class="form-control" required />
+
+                            <label>Tên người viết</label>
+                            <input type="text" name="AuthorUserName" id="editAuthor" class="form-control" required />
+
+                            <label>Trạng thái duyệt</label>
+                            <select name="ApprovalStatus" id="editApprovalStatus" class="form-control">
+                                <option value="Pending">Chờ duyệt</option>
+                                <option value="Approved">Đã duyệt</option>
+                                <option value="Rejected">Từ chối</option>
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Lưu</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </table>
+</div>
+<script>
+    function openEditModal(news) {
+        $('#editId').val(news.id);
+        $('#editTitle').val(news.title);
+        $('#editSlug').val(news.slug); // thêm dòng này
+        $('#editSummary').val(news.summary);
+        $('#editContent').val(news.content);
+        $('#editDatePublish').val(news.datePublish);
+        $('#editAuthor').val(news.author);
+        $('#editApprovalStatus').val(news.approvalStatus); // thêm dòng này
+
+
+        $('#EditNewsModal').modal('show');
+    }
+</script>
+
