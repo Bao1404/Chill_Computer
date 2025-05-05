@@ -97,7 +97,7 @@ namespace Chill_Computer.Controllers
                 Pc pc = new Pc
                 {
                     Price = price,
-                    FormattedPrice = formattedPrice
+                    //FormattedPrice = formattedPrice
                 };
 
                 _pcRepository.AddPc(pc);

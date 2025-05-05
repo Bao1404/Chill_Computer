@@ -18,5 +18,17 @@ namespace Chill_Computer.Contacts
         public Account GetAccountByNameAndPass(string username, string password);
         public bool IsExistAccount(string username);
         public void AddAccount(Account account);
+
+
+        public List<News> GetAllNewsPending(int pageNumber, int pageSize);
+        public void AcceptNewsPending(int newsId);
+        public void RejectNewsPending(int newsId);
+        public List<NewsCategory> GetAllNewsCategories();
+        public void AddNewArticle(News news);
+        public List<News> GetAllNews(int pageNumber, int pageSize);
+        public void EditNews(int idNew, News updatedNews);
+        public void DeleteNews(int idNew);
+
+        public News GetNewsById(int idNew);
     }
 }

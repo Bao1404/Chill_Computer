@@ -297,5 +297,135 @@ namespace Chill_Computer.Controllers
 
             return View("ManageAccount", account);
         }
+
+        // Phần tiến làm
+
+
+        // Phê duyệt tin tức của cấp dưới
+        public IActionResult GetAllNewsApproval(int pageNumber = 1, int pageSize = 5)
+        {
+            // Lấy danh sách các tin tức cần kiểm duyệt từ repository
+            var pendingNews = _accountService.GetAllNewsPending(pageNumber, pageSize);
+
+            // Lấy tổng số bài viết cần kiểm duyệt
+            var totalNews = _context.News.Where(n => n.ApprovalStatus == "Pending").Count();
+
+            // Tính toán số trang cần phân trang
+            ViewBag.TotalPages = (int)Math.Ceiling((double)totalNews / pageSize);
+            ViewBag.CurrentPage = pageNumber;
+
+            // Trả về view và truyền danh sách tin tức cùng thông tin phân trang
+            return View(pendingNews);
+        }
+
+        // Phê duyệt tin tức
+        [HttpPost]
+        public IActionResult ApproveNews(int newsId)
+        {
+            try
+            {
+                // Gọi phương thức trong repository để phê duyệt tin tức
+                _accountService.AcceptNewsPending(newsId);
+                TempData["SuccessMessage"] = "Tin tức đã được phê duyệt thành công.";
+                return RedirectToAction("GetAllNewsApproval"); // Điều hướng đến trang quản lý tin tức
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Lỗi khi phê duyệt tin tức: {ex.Message}";
+                return RedirectToAction("GetAllNewsApproval"); // Điều hướng đến trang quản lý tin tức
+            }
+        }
+
+        // Từ chối tin tức
+        [HttpPost]
+        public IActionResult RejectNews(int newsId)
+        {
+            try
+            {
+                // Gọi phương thức trong repository để từ chối tin tức
+                _accountService.RejectNewsPending(newsId);
+                TempData["SuccessMessage"] = "Tin tức đã bị từ chối.";
+                return RedirectToAction("GetAllNewsApproval"); // Điều hướng đến trang quản lý tin tức
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Lỗi khi từ chối tin tức: {ex.Message}";
+                return RedirectToAction("ManagerNews"); // Điều hướng đến trang quản lý tin tức
+            }
+        }
+
+
+        // thêm tin tức mới
+        [HttpGet]
+        public IActionResult AddNewArticle()
+        {
+            ViewBag.Categories = _accountService.GetAllNewsCategories();
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddNewArticle(News model)
+        {
+            //if (ModelState.IsValid)
+            //{
+            model.DatePublish = DateTime.Now;
+            model.ApprovalStatus = "Pending";
+            model.IsVisible = true;
+            model.AuthorUserName = User.Identity.Name ?? "admin1";
+
+            try
+            {
+                _accountService.AddNewArticle(model);
+                TempData["SuccessMessage"] = "Thêm bài viết thành công!";
+                return RedirectToAction("AddNewArticle");
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Có lỗi xảy ra khi thêm bài viết.";
+                // Log(ex) nếu cần
+            }
+            //}
+            ViewBag.Categories = _accountService.GetAllNewsCategories();
+            TempData["ErrorMessage"] = "Dữ liệu không hợp lệ, vui lòng kiểm tra lại.";
+            return View(model);
+        }
+
+        public IActionResult ManagerNews(int pageNumber = 1, int pageSize = 10)
+        {
+            var newsList = _accountService.GetAllNews(pageNumber, pageSize);
+            return View(newsList);
+        }
+
+        // sửa tin tức 
+        public IActionResult GetNewToEdit(int id)
+        {
+            var news = _accountService.GetNewsById(id);
+
+            if (news == null)
+            {
+                TempData["ErrorMessage"] = "Không tìm thấy bài viết.";
+                return RedirectToAction("GetAllNewsApproval"); // hoặc trang danh sách tin tức
+            }
+
+            ViewBag.Categories = _accountService.GetAllNewsCategories(); // nếu bạn có dropdown chuyên mục
+            return View(news);
+        }
+
+        [HttpPost]
+        // sửa tin tức 
+        public IActionResult EditNews(int idNew, News updatedNews)
+        {
+            _accountService.EditNews(idNew, updatedNews);
+            return RedirectToAction("ManagerNews");
+        }
+
+        // xoá tin tức
+        [HttpPost]
+        public IActionResult DeleteNews(int idNew)
+        {
+            _accountService.DeleteNews(idNew);
+            return RedirectToAction("ManagerNews");
+        }
     }
 }

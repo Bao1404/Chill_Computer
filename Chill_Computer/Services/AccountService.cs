@@ -1,4 +1,4 @@
-using Chill_Computer.Contacts;
+﻿using Chill_Computer.Contacts;
 using Chill_Computer.Models;
 using Chill_Computer.ViewModels;
 using Microsoft.EntityFrameworkCore;
@@ -172,6 +172,110 @@ namespace Chill_Computer.Services
         {
             _context.Accounts.Add(account);
             _context.SaveChanges();
+        }
+
+        // phần này tiến làm
+
+        public List<News> GetAllNewsPending(int pageNumber, int pageSize)
+        {
+            return _context.News
+            .Where(n => n.ApprovalStatus == "Pending") // Lọc các bài viết chờ duyệt
+            .OrderByDescending(n => n.DatePublish)    // Sắp xếp theo ngày đăng giảm dần
+            .Skip((pageNumber - 1) * pageSize)         // Bỏ qua các bản ghi ở trang trước
+            .Take(pageSize)                            // Lấy số lượng bản ghi theo pageSize
+            .ToList();
+        }
+
+        public void AcceptNewsPending(int newsId)
+        {
+            var news = _context.News.FirstOrDefault(n => n.NewsId == newsId);
+
+            if (news == null)
+            {
+                throw new Exception("News not found.");
+            }
+
+            news.ApprovalStatus = "Approved";
+            news.ApprovedBy = "admin1";
+            news.ApprovalDate = DateTime.Now;
+
+            _context.SaveChanges();
+        }
+
+        public void RejectNewsPending(int newsId)
+        {
+            var news = _context.News.FirstOrDefault(n => n.NewsId == newsId);
+
+            if (news == null)
+            {
+                throw new Exception("News not found.");
+            }
+
+            news.ApprovalStatus = "Rejected";
+            news.ApprovedBy = "admin1";
+            news.ApprovalDate = DateTime.Now;
+
+            _context.SaveChanges();
+        }
+
+
+
+        public void AddNewArticle(News news)
+        {
+            _context.News.Add(news);
+            _context.SaveChanges();
+        }
+
+        public List<NewsCategory> GetAllNewsCategories()
+        {
+            return _context.NewsCategories.ToList();
+        }
+
+        public List<News> GetAllNews(int pageNumber, int pageSize)
+        {
+            return _context.News
+                .Where(n => n.ApprovalStatus == "Approved")
+                .OrderByDescending(n => n.DatePublish)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+        }
+
+
+
+        public void EditNews(int idNew, News updatedNews)
+        {
+            var existingNews = _context.News.FirstOrDefault(n => n.NewsId == idNew);
+
+            if (existingNews != null)
+            {
+                existingNews.Title = updatedNews.Title;
+                existingNews.Slug = updatedNews.Slug;
+                existingNews.Summary = updatedNews.Summary;
+                existingNews.Content = updatedNews.Content;
+                existingNews.Thumbnail = updatedNews.Thumbnail;
+                existingNews.CategoryId = updatedNews.CategoryId;
+                existingNews.IsVisible = updatedNews.IsVisible;
+                existingNews.ApprovalStatus = updatedNews.ApprovalStatus;
+
+                _context.SaveChanges();
+            }
+        }
+
+        public void DeleteNews(int idNew)
+        {
+            var newsToDelete = _context.News.FirstOrDefault(n => n.NewsId == idNew);
+
+            if (newsToDelete != null)
+            {
+                _context.News.Remove(newsToDelete);
+                _context.SaveChanges();
+            }
+        }
+
+        public News GetNewsById(int idNew)
+        {
+            return _context.News.FirstOrDefault(n => n.NewsId == idNew);
         }
     }
 }
