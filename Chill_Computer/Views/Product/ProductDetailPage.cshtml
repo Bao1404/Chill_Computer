@@ -143,7 +143,7 @@
         });
 
             $('.add-to-cart').click(function () {
-        var productId = $(this).data('id');
+            var productId = $(this).data('id');
 
         $.ajax({
             url: '@Url.Action("AddToCart", "Cart")',

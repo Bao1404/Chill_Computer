@@ -19,7 +19,7 @@ namespace Chill_Computer.Contacts
         public void UpdateProduct(Product product);
         public void DeleteProduct(int id);
         List<Product> GetProductFromFilter(string filterName, string categoryName);
-
+        public List<Product> SearchProduct(string input);
         public Product GetProductFromNameAndVersion(string productName, string versionName);
     }
 }

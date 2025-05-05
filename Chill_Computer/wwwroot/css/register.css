@@ -9,10 +9,10 @@
     gap: 5px;
 }
 
-.login-container {
+.register-container {
     display: flex;
     border: 1px solid lightgray;
-    margin: 125px 0;
+    margin: 15px 0;
     background: #00D4FF;
     background: linear-gradient(90deg,rgba(0, 212, 255, 1) 23%, rgba(77, 225, 255, 1) 51%, rgba(0, 212, 255, 1) 84%);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
@@ -27,7 +27,7 @@
     align-items: center;
     text-align: center;
     color: black;
-    font-size: 600;
+    font-weight: 600;
     font-family: Lexend, sans-serif;
 }
 
@@ -37,15 +37,15 @@
 
     .right-box button {
         background: none;
-        border: 2px solid black;
+        border: 1px solid black;
         border-radius: 20px;
         padding: 8px 12px;
     }
 
 .left-box {
     /* margin: 20px 20px 20px 10px; */
-    padding: 48px;
-    font-size: 600;
+    padding: 35px;
+    font-weight: 600;
     font-family: Lexend, sans-serif;
     background-color: white;
 }
@@ -71,24 +71,13 @@
     margin-bottom: 16px;
 }
 
-.remember-forgot {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.remember-check {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
 .or {
-    margin: 0 95px;
+    margin: 0 110px;
     height: 26px;
     position: absolute;
     background-color: white;
     padding: 0 5px;
+    font-weight: 400;
 }
 
 .google-btn {
@@ -98,5 +87,5 @@
     border-radius: 20px;
     padding: 5px;
     height: 50px;
-    min-width: 410px;
+    width: 100%;
 }
