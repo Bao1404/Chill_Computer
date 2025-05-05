@@ -40,12 +40,16 @@ namespace Chill_Computer.Controllers
             }
             if (user != 0)
             {
-                var cartId = _cartRepository.GetCartByUserId(user);
-                if (cartId != null)
+                var cart = _cartRepository.GetCartByUserId(user);
+                if (cart != null)
                 {
-                    cartItems = _cartItemRepository.GetCartItemByCartId(cartId.CartId).ToList();
+                    cartItems = _cartItemRepository.GetCartItemByCartId(cart.CartId).ToList();
+                    ViewBag.CartItems = cartItems;
                 }
-                ViewBag.CartItems = cartItems;
+                else
+                {
+                    ViewBag.CartItems = null;
+                }
             }
             ViewBag.MenuTitle = _productTypeRepository.GetProductTypes();
             ViewBag.FilterTitle = filters;
