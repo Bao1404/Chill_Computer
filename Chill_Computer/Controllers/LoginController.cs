@@ -1,4 +1,5 @@
 ﻿using Chill_Computer.Contacts;
+using Chill_Computer.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Chill_Computer.Controllers
@@ -14,14 +15,18 @@ namespace Chill_Computer.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            return View(new LoginViewModel());
         }
         [HttpPost("/Login")]
-        public IActionResult Login(IFormCollection form)
+        public IActionResult Login(LoginViewModel model)
         {
-            var username = form["username"];
-            var password = form["password"];
-            var account = _accountService.GetAccountByNameAndPass(username, password);
+
+            if (!ModelState.IsValid)
+            {
+                return View("Index", model);
+            }
+
+            var account = _accountService.GetAccountByNameAndPass(model.Username, model.Password);
             if(account != null)
             {
                 var user = _userRepository.GetUserByUserName(account.UserName);
