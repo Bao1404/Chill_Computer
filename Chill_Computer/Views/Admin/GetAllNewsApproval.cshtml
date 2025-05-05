@@ -1,0 +1,361 @@
+﻿@using System.Text.Json
+@model List<Chill_Computer.Models.News>
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewData["ChooseManageNews"] = "chooseButton";
+}
+
+<style>
+    .modal-content {
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .modal-header {
+        background-color: #f5f5f5;
+        border-bottom: 1px solid #dee2e6;
+        padding: 16px 24px;
+    }
+
+    .modal-title {
+        font-weight: 600;
+        font-size: 20px;
+    }
+
+    .modal-body {
+        padding: 24px;
+    }
+
+        .modal-body label {
+            font-weight: 500;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .modal-body input,
+        .modal-body select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+    .modal-footer {
+        padding: 16px 24px;
+        border-top: 1px solid #dee2e6;
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+    }
+
+        .modal-footer .btn {
+            padding: 8px 20px;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .modal-footer .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .modal-footer .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+
+    .modal-body button[type="submit"] {
+        margin-top: 10px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+        .modal-body button[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+</style>
+
+<nav class="navbar navbar-light bg-light" style="height: 30px;">
+    <form class="form-inline" action="/Admin/SearchNews" method="post">
+        <input class="form-control mr-sm-2" name="keySearch" type="search" placeholder="Tìm kiếm tin tức" style="width: 500px; border-radius: 15px;">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="border-radius: 20px;">Tìm</button>
+    </form>
+</nav>
+
+<div style="width: 100%;">
+    <table class="table table-bordered table-hover mt-3">
+        <thead class="thead-light">
+            <tr>
+                <th>#</th>
+                <th>Tiêu đề</th>
+                <th>Mô tả ngắn</th>
+                <th>Người viết</th>
+                <th>Ngày đăng</th>
+                <th>Tình trạng</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var news in Model)
+                {
+                    <tr>
+                        <td>@news.NewsId</td>
+                        <td>@news.Title</td>
+                        <td>@news.Summary</td>
+                        <td>@news.AuthorUserName</td>
+                        <td>@news.DatePublish.ToString("dd/MM/yyyy")</td>
+                        <td>@news.ApprovalStatus</td>
+                        <td>
+                           <button
+              type="button"
+              class="btn btn-primary btn-sm"
+              data-toggle="modal"
+              data-target="#DetailNews"
+              
+              data-id="@news.NewsId"
+              data-title="@news.Title"
+              data-slug="@news.Slug"
+              data-summary="@news.Summary"
+              data-thumbnail="@news.Thumbnail"
+              data-content="@Html.Raw(news.Content.Replace("\"", "&quot;"))"
+              data-datepublish="@news.DatePublish.ToString("yyyy-MM-ddTHH:mm:ss")"
+              data-author="@news.AuthorUserName"
+              data-category="@news.Category?.CategoryName"
+              data-status="@news.ApprovalStatus"
+              data-approvedby="@news.ApprovedBy"
+              data-approvaldate="@(news.ApprovalDate?.ToString("yyyy-MM-ddTHH:mm:ss"))"
+            >
+              Xem chi tiết
+            </button>                 
+                            
+                            <button class="btn btn-success btn-sm" onclick="openModalApprove('@news.NewsId')">Phê duyệt</button>
+                            <button class="btn btn-danger btn-sm" onclick="openModalReject('@news.NewsId')">Từ chối</button>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr><td colspan="7" class="text-center">Không có tin tức cần phê duyệt.</td></tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal Phê duyệt -->
+<div class="modal fade" id="ApproveNews" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form action="/Admin/ApproveNews" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title">Phê duyệt tin tức</h5>
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="newsId" id="newsId" />
+                    <p>Bạn chắc chắn muốn phê duyệt tin tức này?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Phê duyệt</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Từ chối -->
+<div class="modal fade" id="RejectNews" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form action="/Admin/RejectNews" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title">Từ chối tin tức</h5>
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="newsId" id="newsIdReject" />
+                    <p>Bạn chắc chắn muốn từ chối tin tức này?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">Từ chối</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Chi tiết đầy đủ -->
+<div class="modal fade" id="DetailNews" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Chi tiết tin tức</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-borderless mb-0">
+          <tr><th>Tiêu đề:</th>           <td id="detailTitle"></td></tr>
+          <tr><th>Slug:</th>              <td id="detailSlug"></td></tr>
+          <tr><th>Mô tả ngắn:</th>        <td id="detailSummary"></td></tr>
+          <tr><th>Hình ảnh:</th>          
+            <td><img id="detailThumbnail" src="" width="200" class="img-thumbnail" /></td>
+          </tr>
+          <tr><th>Nội dung:</th>          <td id="detailContent"></td></tr>
+          <tr><th>Ngày đăng:</th>         <td id="detailDatePublish"></td></tr>
+          <tr><th>Người viết:</th>        <td id="detailAuthor"></td></tr>
+          <tr><th>Danh mục:</th>           <td id="detailCategory"></td></tr>
+          <tr><th>Trạng thái:</th>        <td id="detailStatus"></td></tr>
+          <tr><th>Người duyệt:</th>        <td id="detailApprovedBy"></td></tr>
+          <tr><th>Ngày duyệt:</th>         <td id="detailApprovalDate"></td></tr>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Đóng
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Phê duyệt -->
+<div class="modal fade" id="ApproveNews" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form action="/Admin/ApproveNews" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title">Phê duyệt tin tức</h5>
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="newsId" id="newsId" />
+                    <p>Bạn chắc chắn muốn phê duyệt tin tức này?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Phê duyệt</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Từ chối -->
+<div class="modal fade" id="RejectNews" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form action="/Admin/RejectNews" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title">Từ chối tin tức</h5>
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="newsId" id="newsIdReject" />
+                    <p>Bạn chắc chắn muốn từ chối tin tức này?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">Từ chối</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+     $('#DetailNews').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget);
+
+    // Lấy từng data-* attribute
+    var title     = button.data('title');
+    var slug      = button.data('slug');
+    var summary   = button.data('summary') || 'Không có';
+    var thumbnail = button.data('thumbnail') || '/images/default.jpg';
+    var content   = button.data('content');
+    var datePub   = new Date(button.data('datepublish'));
+    var author    = button.data('author');
+    var category  = button.data('category') || 'Không có';
+    var status    = button.data('status');
+    var approvedBy= button.data('approvedby') || 'Chưa duyệt';
+    var approvalDateRaw = button.data('approvaldate');
+    var approvalDate = approvalDateRaw ? new Date(approvalDateRaw) : null;
+
+    var modal = $(this);
+    modal.find('#detailTitle').text(title);
+    modal.find('#detailSlug').text(slug);
+    modal.find('#detailSummary').text(summary);
+    modal.find('#detailThumbnail').attr('src', thumbnail);
+    modal.find('#detailContent').html(content);
+    modal.find('#detailDatePublish').text(datePub.toLocaleDateString('vi-VN'));
+    modal.find('#detailAuthor').text(author);
+    modal.find('#detailCategory').text(category);
+    modal.find('#detailStatus').text(status);
+    modal.find('#detailApprovedBy').text(approvedBy);
+    modal.find('#detailApprovalDate').text(
+      approvalDate 
+        ? approvalDate.toLocaleDateString('vi-VN') 
+        : 'Chưa duyệt'
+    );
+  });
+
+    function openModalApprove(id) {
+        $('#newsId').val(id);
+        $('#ApproveNews').modal('show');
+    }
+
+    function openModalReject(id) {
+        $('#newsIdReject').val(id);
+        $('#RejectNews').modal('show');
+    }
+
+    function openModalDetail(id, title, content) {
+        $('#detailTitle').text(title);
+        $('#detailContent').html(content);
+        $('#DetailNews').modal('show');
+    }
+
+    function openModalApprove(id) {
+    $('#newsId').val(id);  // Truyền newsId vào input ẩn trong modal
+    $('#ApproveNews').modal('show');  // Hiển thị modal
+}
+
+// Mở modal Từ chối
+function openModalReject(id) {
+    $('#newsIdReject').val(id);  // Truyền newsId vào input ẩn trong modal
+    $('#RejectNews').modal('show');  // Hiển thị modal
+}
+
+
+// Đây là đoạn HTML bạn lấy từ DB
+    const savedHtmlContent = `
+      <div style="padding: 10px; background-color: #eee;">
+        <h2>Chào bạn</h2>
+        <p>Đây là đoạn nội dung được render.</p>
+      </div>
+    `;
+
+    function openModal() {
+      const modal = document.getElementById('modal');
+      const content = document.getElementById('modal-content');
+      content.innerHTML = savedHtmlContent;
+      modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+</script>

@@ -1,0 +1,91 @@
+﻿@model Chill_Computer.Models.News
+@{
+    ViewData["Title"] = "Thêm tin tức mới";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid mt-3">
+    <div class="row justify-content-center">
+        <!-- Form nhập tin tức -->
+        <div class="col-md-10">
+            <div class="p-4 border rounded bg-white shadow-sm" style="font-size: 1.05rem;">
+                <h3 class="mb-4 text-primary">Thêm tin tức mới</h3>
+
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+                }
+                @if (TempData["ErrorMessage"] != null)
+                {
+                    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+                }
+
+                <form asp-action="AddNewArticle" method="post">
+                    @Html.AntiForgeryToken()
+
+                    <div class="mb-3">
+                        <label asp-for="Title" class="form-label fw-bold">Tiêu đề</label>
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Slug" class="form-label fw-bold">Slug (URL)</label>
+                        <input asp-for="Slug" class="form-control" />
+                        <span asp-validation-for="Slug" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Summary" class="form-label fw-bold">Tóm tắt</label>
+                        <textarea asp-for="Summary" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="Summary" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Content" class="form-label fw-bold">Nội dung</label>
+                        <textarea asp-for="Content" id="Content" class="form-control"></textarea>
+                        <span asp-validation-for="Content" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Thumbnail" class="form-label fw-bold">Ảnh đại diện (URL)</label>
+                        <input asp-for="Thumbnail" class="form-control" />
+                        <span asp-validation-for="Thumbnail" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="CategoryId" class="form-label fw-bold">Chuyên mục</label>
+                        <select asp-for="CategoryId" class="form-select" asp-items="@(new SelectList(ViewBag.Categories, "CategoryId", "CategoryName"))">
+                            <option value="">-- Chọn chuyên mục --</option>
+                        </select>
+                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-check mb-4">
+                        <input asp-for="IsVisible" class="form-check-input" type="checkbox" />
+                        <label asp-for="IsVisible" class="form-check-label">Hiển thị công khai</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-success px-4 py-2">Thêm tin tức</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+    <script>
+        let editorInstance;
+
+        ClassicEditor.create(document.querySelector('#Content'))
+            .then(editor => {
+                editorInstance = editor;
+            });
+
+        document.querySelector("form").addEventListener("submit", function () {
+            // Gán lại nội dung HTML vào textarea trước khi gửi đi
+            document.querySelector("#Content").value = editorInstance.getData();
+        });
+    </script>
+}
