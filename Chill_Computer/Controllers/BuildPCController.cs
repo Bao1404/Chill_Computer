@@ -60,7 +60,7 @@ namespace Chill_Computer.Controllers
         "selectedMonitorId",
         "selectedMouseId",
         "selectedKeyboardId",
-        "selectedEarphoneId"
+"selectedEarphoneId"
     };
 
             foreach (var key in keys)
@@ -83,7 +83,6 @@ namespace Chill_Computer.Controllers
 
             if (userId != 0)
             {
-                var cartId = _cartRepository.GetCartByUserId(userId).CartId;
                 var userCart = _cartRepository.GetCartByUserId(userId);
                 if (userCart == null)
                 {
@@ -97,7 +96,7 @@ namespace Chill_Computer.Controllers
                 Pc pc = new Pc
                 {
                     Price = price,
-                    //FormattedPrice = formattedPrice
+                    FormattedPrice = formattedPrice
                 };
 
                 _pcRepository.AddPc(pc);
@@ -106,7 +105,7 @@ namespace Chill_Computer.Controllers
                 {
                     PcId = pc.PcId,
                     ItemQuantity = 1,
-                    CartId = cartId
+                    CartId = userCart.CartId
                 });
             }
             else

@@ -181,5 +181,20 @@ namespace Chill_Computer.Controllers
                 return PartialView("Partials/_CartButton", cart);
             }
         }
+
+        public IActionResult DeleteAll()
+        {
+            Init();
+            var userId = HttpContext.Session.GetObject<int>("_userId");
+            if(userId != 0)
+            {
+                var cartId = _cartRepository.GetCartByUserId(userId);
+                if(cartId != null)
+                {
+                    _cartItemRepository.DeleteAllByCartId(cartId.CartId);
+                }
+            }
+            return RedirectToAction("CartPage", "Cart");
+        }
     }
 }
