@@ -60,7 +60,7 @@ namespace Chill_Computer.Controllers
         "selectedMonitorId",
         "selectedMouseId",
         "selectedKeyboardId",
-        "selectedEarphoneId"
+"selectedEarphoneId"
     };
 
             foreach (var key in keys)
@@ -72,7 +72,12 @@ namespace Chill_Computer.Controllers
                 }
             }
 
+            // Parse total price safely
             int price = 0;
+            if (!int.TryParse(totalPrice, out price))
+            {
+                price = 0; // fallback to 0 if parse fails
+            }
 
             var formattedPrice = String.Format("{0:N0}₫", price);
 
@@ -91,7 +96,7 @@ namespace Chill_Computer.Controllers
                 Pc pc = new Pc
                 {
                     Price = price,
-                    //FormattedPrice = formattedPrice
+                    FormattedPrice = formattedPrice
                 };
 
                 _pcRepository.AddPc(pc);
@@ -105,9 +110,10 @@ namespace Chill_Computer.Controllers
             }
             else
             {
+                // For guests, simulate the "custom PC" as a CartItemViewModel
                 var guestPc = new CartItemViewModel
                 {
-                    PcId = 0,
+                    PcId = 0, // You may use a temp ID or handle PcId = null for guest PCs
                     ProductName = "Custom PC Build",
                     Price = price,
                     FormattedPrice = formattedPrice,

@@ -61,12 +61,22 @@ namespace Chill_Computer.Services
         public void DeleteItemByProductIdAndCartId(int productId, int pcId, int cartId)
         {
             var item = _context.CartItems.FirstOrDefault(i =>
-                (productId != 0 && i.ProductId == productId && i.CartId == cartId) ||
-                (pcId != 0 && i.PcId == pcId && i.CartId == cartId));
+                (i.ProductId == productId && i.CartId == cartId) ||
+                (i.PcId == pcId && i.CartId == cartId));
 
             if (item != null)
             {
                 _context.Remove(item);
+                _context.SaveChanges();
+            }
+        }
+
+        public void DeleteAllByCartId(int cartId)
+        {
+            var items = _context.CartItems.Where(i => i.CartId == cartId).ToList();
+            if(items != null && items.Count > 0)
+            {
+                _context.CartItems.RemoveRange(items);
                 _context.SaveChanges();
             }
         }

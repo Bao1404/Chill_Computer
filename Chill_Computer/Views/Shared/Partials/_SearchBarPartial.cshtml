@@ -13,13 +13,15 @@
         {
             foreach (var product in list)
             {
-                <div class="search-item">
-                    <img src="@product.Img1" alt="" height="75px" width="75px">
-                    <div class="item-info">
-                        <h6 style="margin-bottom: 5px;">@product.ProductName @product.Version</h6>
-                        <h6 style="color: #EC1250; margin: 0;">@product.FormattedPrice</h6>
+                <a asp-controller="Product" asp-action="ProductDetailPage" asp-route-id="@product.ProductId" style="color: black; text-decoration:none;">
+                    <div class="search-item">
+                        <img src="@product.Img1" alt="" height="75px" width="75px">
+                        <div class="item-info">
+                            <h6 style="margin-bottom: 5px;">@product.ProductName @product.Version</h6>
+                            <h6 style="color: #EC1250; margin: 0;">@product.FormattedPrice</h6>
+                        </div>
                     </div>
-                </div>
+                </a>
             }
         }
         else
